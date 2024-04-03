@@ -9,7 +9,7 @@ $(document).ready(function() {
         url: base_url+"/login/loginUser",
         data: $(this).serialize(), // Serializa los datos del formulario
         success: function(response) {
-          console.log(response);
+          console.log(response);  
           var jsonData = JSON.parse(response);
             
           // El usuario se ha autenticado correctamente
@@ -21,7 +21,7 @@ $(document).ready(function() {
             $("#loginResult").html("Usuario o contraseña incorrectos.");
             console.log(jsonData);  
           }
-         }
+          }
       });
     });
   });

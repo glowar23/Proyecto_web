@@ -5,7 +5,7 @@ $(document).ready(function() {
       
       $.ajax({
         type: "POST",
-        url: "http://localhost/Proyecto_web/register/postRegister",
+        url: base_url+"/register/postRegister",
         data: $(this).serialize(), // Serializa los datos del formulario
         success: function(response) {
             console.log(response);
@@ -15,7 +15,7 @@ $(document).ready(function() {
           if (jsonData.success == 1) {
             console.log("sin problemas");
             console.log(jsonData);
-            location.href = 'http://localhost/estructura'; 
+            location.href = base_url+''; 
             
            // console.log(jsonData);
           }
