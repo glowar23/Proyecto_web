@@ -1,3 +1,4 @@
+
 console.log("hola mundo");
 $(document).ready(function() {
     $("#formLogin").on('submit', function(e) {
@@ -5,7 +6,7 @@ $(document).ready(function() {
       
       $.ajax({
         type: "POST",
-        url: "http://localhost/estructura/login/loginUser",
+        url: base_url+"/login/loginUser",
         data: $(this).serialize(), // Serializa los datos del formulario
         success: function(response) {
           console.log(response);
@@ -13,7 +14,7 @@ $(document).ready(function() {
             
           // El usuario se ha autenticado correctamente
           if (jsonData.success == "1") {
-            location.href = 'http://localhost/estructura'; 
+            location.href = base_url+''; 
            // console.log(jsonData);
           }
           else {

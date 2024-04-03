@@ -5,7 +5,7 @@ $(document).ready(function() {
       
       $.ajax({
         type: "POST",
-        url: "http://localhost/estructura/register/postRegister",
+        url: "http://localhost/Proyecto_web/register/postRegister",
         data: $(this).serialize(), // Serializa los datos del formulario
         success: function(response) {
             console.log(response);
