@@ -59,11 +59,17 @@
             if (count($arrProductos)==0){
                 echo '<h1>No hay productos</h1>';
 
-            }else for ($i=0; $i <count($arrProductos) ; $i++) { 
+            }else for ($i=0; $i <count($arrProductos) ; $i++) {
+                if (count($arrProductos[$i]['images'])>0){
+                    $portada = $arrProductos[$i]['images'][0]['url_image'];
+                }
+                else{
+                    $portada='';
+                } 
                 echo '
                     <div class="item">
                 <figure>
-                    <!-- <img src="\images\pedigree.jpg" alt="producto"> -->
+                    <img src='.$portada.' alt="producto"> 
                 </figure>
                 <div>
                     <div class="info-product">
