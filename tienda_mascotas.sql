@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2024 a las 00:59:49
+-- Tiempo de generación: 03-04-2024 a las 22:48:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -26,9 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `categoria`
 --
-CREATE DATABASE IF NOT EXISTS tienda_mascotas;
-use tienda_mascotas;
-
+CREATE database if not exist `tienda_mascotas`;
+use `tienda_mascotas`;
 
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
@@ -87,6 +86,17 @@ CREATE TABLE `imagenes` (
   `ruta` text NOT NULL,
   `productos_idproductos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `imagenes`
+--
+
+INSERT INTO `imagenes` (`idimagenes`, `ruta`, `productos_idproductos`) VALUES
+(1, 'alimento_ave.jpeg', 5),
+(3, 'felix_croquetas.jpg', 1),
+(4, 'hueso_perro.jpg', 3),
+(5, 'pedigree.jpg', 2),
+(6, 'rascador_gato.jpeg', 4);
 
 -- --------------------------------------------------------
 
@@ -276,7 +286,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
