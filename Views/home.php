@@ -64,12 +64,12 @@
                     $portada = $arrProductos[$i]['images'][0]['url_image'];
                 }
                 else{
-                    $portada='';
+                    $portada=media().'images/default-image.jpg';
                 } 
                 echo '
                     <div class="item">
                 <figure>
-                    <img src='.$portada.' alt="producto"> 
+                    <img src="'.$portada.'" alt="producto"> 
                 </figure>
                 <div>
                     <div class="info-product">

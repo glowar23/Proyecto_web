@@ -20,7 +20,4 @@
 	//Simbolo de moneda
 	const SMONEY = "Q";
 
-	
-
-
  ?>
