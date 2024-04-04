@@ -1,57 +1,8 @@
 <?php 
     $arrProductos=$data['products'];
+    require_once('Views/Generals/header_tienda.php');
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $data['page_title']?></title>
-    <link rel="stylesheet" type="text/css" href="<?= media(); ?>css/styleProduct.css">
-    <script src="https://kit.fontawesome.com/3c4b3c6940.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
-    
-</head>
-<style> 
-   
-</style>
-<body>
-    <header id="MyPets" class="title">
-        <a href="">
-        <h1 >MyPets</h1>
-        </a>    
-    <div class="carrito-icon">
-    <div class="a">
-            <a href="<?= base_url().'login'?>" class=" btn btn-light"> login</a>
-            <a href="<?= base_url().'register'?>" class="btn btn-light"> registro</a>
-            <a href="<?= base_url().'logout'?>" class="btn btn-light"> logout</a>
-        </div>
-        <i class="fa-solid fa-basket-shopping"></i>
-        <div class="count-products">
-            <span id="contador-productos">0</span>
-        </div>
 
-        <div class="container-cart-products hidden-cart">
-            <div class="cart-product">
-                <div class="info-cart-product"> <!-- información del carrito-->
-                    <span class="cantidad-producto-carrito">1</span>
-                    <p class="titulo-producto-carrito">
-                        Croquetas Felix
-                    </p>
-                    <span class="precio-producto-carrito">$699</span>
-                </div>
-                <i class="fa-solid fa-x"></i>
-            </div>
-            <div class="cart-total">
-                <h3>Total a pagar:</h3>
-                <span class="total-pagar">$699</span>
-            </div>
-        </div>
-    </div>
-    </header>
     
     <div class="container-items">
         

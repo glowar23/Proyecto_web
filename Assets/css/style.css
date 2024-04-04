@@ -116,7 +116,10 @@ body {
     background: linear-gradient(150deg, #c39bd3, #cacfd2);
     height: 100vh;
 }
+.title{
+    width: 100%;
 
+}
 .formulario2 {
     position: absolute;
     top: 50%;
