@@ -11,30 +11,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>css/styleProduct.css">
-    
 </head>
 <style> 
    
 </style>
 <body>
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="<?=base_url()?>" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-      <h1 class="title">MyPets</h1>
-      </a>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="text-start"></div>  
+            <a href="<?=base_url()?>" class="d-flex align-items-center m-2 mb-lg-0 text-white text-decoration-none">
+          <p class="title">MyPets</p>
+        </a>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-      </ul>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Categorias </a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Categorias </a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Categorias </a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Categorias </a></li>
+        </ul>
 
-      <div class="col-md-3 text-end">
-        
-            <div class="a">
-                    
-                    <a href="<?= base_url().'Login'?>" class=" btn btn-light"> Login</a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
+        </form>
+
+        <div class="text-end">
+        <a href="<?= base_url().'Login'?>" class=" btn btn-light"> Login</a>
                     <a href="<?= base_url().'Register'?>" class="btn btn-light"> Registro</a>
                     <?php
                     if(isset($_SESSION['login']))
@@ -42,13 +45,11 @@
                         echo'<a href="'.base_url().'logout'.'" class="btn btn-light"> logout</a>'; 
                     }  
                     ?>
-                    
-            </div>
-        
+        <i class="fa-solid fa-basket-shopping m-3 " ></i>
         </div>
-        
-    </header>
-    
+      </div>
+    </div>
+  </header>
     <!-- <header id="MyPets"  class="title p-3 mb-3 border-bottom w-100">
         <a href="">
         <h1 >MyPets</h1>
