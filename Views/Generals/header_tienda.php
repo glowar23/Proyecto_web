@@ -50,36 +50,4 @@
       </div>
     </div>
   </header>
-    <!-- <header id="MyPets"  class="title p-3 mb-3 border-bottom w-100">
-        <a href="">
-        <h1 >MyPets</h1>
-        </a>    
-    <div class="carrito-icon">
-    <div class="a">
-            <a href="<?= base_url().'login'?>" class=" btn btn-light"> login</a>
-            <a href="<?= base_url().'register'?>" class="btn btn-light"> registro</a>
-            <a href="<?= base_url().'logout'?>" class="btn btn-light"> logout</a>
-        </div>
-        <i class="fa-solid fa-basket-shopping"></i>
-        <div class="count-products">
-            <span id="contador-productos">0</span>
-        </div>
-
-        <div class="container-cart-products hidden-cart">
-            <div class="cart-product">
-                <div class="info-cart-product"> 
-                    <span class="cantidad-producto-carrito">1</span>
-                    <p class="titulo-producto-carrito">
-                        Croquetas Felix
-                    </p>
-                    <span class="precio-producto-carrito">$699</span>
-                </div>
-                <i class="fa-solid fa-x"></i>
-            </div>
-            <div class="cart-total">
-                <h3>Total a pagar:</h3>
-                <span class="total-pagar">$699</span>
-            </div>
-        </div>
-    </div>
-    </header> -->
+    

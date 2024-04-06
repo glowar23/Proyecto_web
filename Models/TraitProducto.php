@@ -5,7 +5,7 @@
         private $conn; 
         public function getProductosT(){
             $this->conn =new Mysql();
-            $sql="SELECT * FROM `productos`";
+            $sql="SELECT * FROM `productos` LIMIT 9";
             $request = $this->conn->select_all($sql);
             if ($request>0){
                 for ($c=0; $c <count($request) ; $c++) { 
