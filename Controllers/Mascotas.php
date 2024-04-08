@@ -4,7 +4,7 @@
             parent::__construct();  
         }
         public function mascotas($params) {
-            echo "hola desde perro y desde mascotas";
+            echo "En proceso";
         }  
 
     }

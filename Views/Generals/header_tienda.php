@@ -35,18 +35,33 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
         </form>
-
+        <i class="fa-solid fa-basket-shopping m-3 " ></i> 
         <div class="text-end">
-        <a href="<?= base_url().'Login'?>" class=" btn btn-light"> Login</a>
-                    <a href="<?= base_url().'Register'?>" class="btn btn-light"> Registro</a>
-                    <?php
+        <div class="dropdown text-end">
+          <a href="#" style="margin-top: 0px;" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="<?=media().'images/dog.png'?>" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" style="">
+          <?php 
+            if(!isset($_SESSION['login']))
+            {
+          ?>
+            <li><a class="dropdown-item" href="<?= base_url().'Login'?>">Login</a></li>
+            <li><a class="dropdown-item" href="<?= base_url().'Register'?>">Registro</a></li>
+            
+            <?php }?>
+            
+            <?php
                     if(isset($_SESSION['login']))
                     {
-                        echo'<a href="'.base_url().'logout'.'" class="btn btn-light"> logout</a>'; 
+                        echo '<li><a class="dropdown-item" href="#">Profile</a></li>';
+                        echo '<li><hr class="dropdown-divider"></li>';
+                        echo'<a href="'.base_url().'logout'.'" class="dropdown-item"> logout</a>'; 
                     }  
                     ?>
-        <i class="fa-solid fa-basket-shopping m-3 " ></i>
-        </div>
+            
+          </ul>
+          
       </div>
     </div>
   </header>
