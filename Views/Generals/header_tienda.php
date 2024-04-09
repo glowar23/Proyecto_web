@@ -19,7 +19,8 @@
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <div class="text-start"></div>  
+        <div class="text-start"></div> 
+            <p>Bienvenido</p> 
             <a href="<?=base_url()?>" class="d-flex align-items-center m-2 mb-lg-0 text-white text-decoration-none">
           <p class="title">MyPets</p>
         </a>
@@ -37,11 +38,14 @@
         </form>
         <i class="fa-solid fa-basket-shopping m-3 " ></i> 
         <div class="text-end">
-        <div class="dropdown text-end">
+        <div class="dropdown">
           <a href="#" style="margin-top: 0px;" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="<?=media().'images/dog.png'?>" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
+          
           <ul class="dropdown-menu text-small" style="">
+            
+            
           <?php 
             if(!isset($_SESSION['login']))
             {
@@ -52,13 +56,15 @@
             <?php }?>
             
             <?php
-                    if(isset($_SESSION['login']))
-                    {
-                        echo '<li><a class="dropdown-item" href="#">Profile</a></li>';
-                        echo '<li><hr class="dropdown-divider"></li>';
-                        echo'<a href="'.base_url().'logout'.'" class="dropdown-item"> logout</a>'; 
-                    }  
-                    ?>
+              if(isset($_SESSION['login']))
+              { ?>
+                <li><p class="dropdown-item-text title">Bienvenido <?=$_SESSION['name']?></p></li>  
+                <?php if ($_SESSION['tipoUsuario'] === 'admin')echo '<li><a class="dropdown-item" href="#">Administrar Sitio</a></li>';?>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <a href="<?=base_url().'logout'?>" class="dropdown-item"> Logout</a>
+              <?php }?>  
+              
             
           </ul>
           

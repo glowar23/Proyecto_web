@@ -23,10 +23,11 @@
             // Aquí implementarías la lógica para validar las credenciales contra una base de datos o fuente de datos.
             // A modo de ejemplo, usaremos credenciales estáticas:
             
-            if (!empty($requestUser)) {
-              
-                 $_SESSION['idUser'] = $requestUser['id'];
-                 $_SESSION['login'] = true;
+            if (!empty($requestUser)) {    
+                $_SESSION['name'] = $requestUser['name'];
+                $_SESSION['idUser'] = $requestUser['id'];
+                $_SESSION['tipoUsuario'] = $requestUser['tipo_usuario'];
+                $_SESSION['login'] = true;
                 echo json_encode(array("success" => 1));
 
             } else {

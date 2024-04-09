@@ -3,7 +3,7 @@
         public function __construct(){
             parent::__construct();
         }
-        public function valUser (string $name, string $email, string $password, string $password2){   
+        public function valUser (string $name, string $email, string $password, string $password2, $mascotas){   
             if (empty($name) || empty($email) || empty($password) || empty($password2)){   
                 return "-1";
             }
@@ -26,8 +26,21 @@
                    ?,?,?
                 )";
                 $result = $this->insert($sql,array($name,$password,$email));
-                
+                if (!empty($mascotas)){
+                    foreach ($mascotas as $mascota) {
+                        $sql= "INSERT INTO `mascotas`(
+                            `usuarios_id`,
+                            `tipo_animal`
+                        )
+                        VALUES(
+                            ?,?
+                        );";    
+                        $result2= $this->insert($sql, array($result,$mascota));       
+                    }
+                     
+                }
                 $_SESSION['idUser'] = $result;
+                $_SESSION['tipoUsuario'] = 'Cliente';
                 $_SESSION['login'] = true;  
                 
                 

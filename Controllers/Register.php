@@ -19,7 +19,12 @@
             $email = $_POST['txtEmail'] ?? '';
             $password = $_POST['txtPassword'] ?? '';
             $password2 = $_POST['txtPassword2'] ?? '';
-            $requestUser = $this->model->valUser($name,$email, $password, $password2);
+            $mascotas=[];
+            if (isset($_POST['mascotas'])) {
+                $mascotas = $_POST['mascotas'];
+            }
+            
+            $requestUser = $this->model->valUser($name,$email, $password, $password2, $mascotas);
             $captcha = $_POST["g-recaptcha-response"];
             if (empty($captcha)) {
                 echo json_encode(array("success"=> 0, "error"=> "El captcha es invalido"));   

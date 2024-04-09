@@ -27,6 +27,20 @@
 	        }
 	        return $lastInsert; 
 		}
+		public function insert_sin_arreglo(string $query)
+		{
+			$this->strquery = $query;
+			$this->arrVAlues = $arrValues;
+        	$insert = $this->conexion->prepare($this->strquery);
+        	$resInsert = $insert->execute();
+        	if($resInsert)
+	        {
+	        	$lastInsert = $this->conexion->lastInsertId();
+	        }else{
+	        	$lastInsert = 0;
+	        }
+	        return $lastInsert; 
+		}
 		//Busca un registro
 		public function select(string $query)
 		{

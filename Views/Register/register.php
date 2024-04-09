@@ -36,19 +36,19 @@
             <div class="mascotas">
                 
                 <label class="mascota-cat">
-                    <input type="checkbox" name="cat" id="cat">
+                    <input type="checkbox" name="mascotas[]" id="cat" value="cat">
                     <span><i class="fa-solid fa-cat"></i></span>
                 </label>
                 <label for="dog">
-                    <input type="checkbox" name="dog" id="dog">
+                    <input type="checkbox" name="mascotas[]" id="dog" value="dog">
                     <span><i class="fa-solid fa-dog"></i></span>
                 </label>
                 <label for="bird">
-                    <input type="checkbox" name="bird" id="bird">
+                    <input type="checkbox" name="mascotas[]" id="bird" value="bird">
                     <span><i class="fa-solid fa-crow"></i></i></span>
                 </label>
                 <label for="fish">
-                    <input type="checkbox" name="fish" id="fish">
+                    <input type="checkbox" name="mascotas[]" id="fish" value="fish">
                     <span><i class="fa-solid fa-fish-fins"></i></span>
                 </label>
             </div>
@@ -65,7 +65,7 @@
             </div>
         </form>
     </div>
-    <script>const base_url= <?php base_url()?></script>
+    <script>const base_url= "<?=base_url();?>"</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= media(); ?>js/function_register.js"></script>
