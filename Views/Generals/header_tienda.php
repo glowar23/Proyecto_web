@@ -20,7 +20,6 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <div class="text-start"></div> 
-            <p>Bienvenido</p> 
             <a href="<?=base_url()?>" class="d-flex align-items-center m-2 mb-lg-0 text-white text-decoration-none">
           <p class="title">MyPets</p>
         </a>
