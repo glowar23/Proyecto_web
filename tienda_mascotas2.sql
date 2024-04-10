@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2024 a las 02:33:31
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 10-04-2024 a las 06:45:26
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -205,6 +205,14 @@ CREATE TABLE `rol` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcion`, `status`) VALUES
+(3, 'Admin', 'Libre de modifiar todo el sistema', 1),
+(4, 'Cliente', 'Cliente en general', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -230,8 +238,16 @@ CREATE TABLE `users` (
   `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL DEFAULT 'Cliente',
   `email` varchar(45) NOT NULL,
-  `idRol` int(11) NOT NULL
+  `idRol` int(11) NOT NULL DEFAULT 4
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`) VALUES
+(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4),
+(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3);
 
 --
 -- Índices para tablas volcadas
@@ -359,7 +375,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
@@ -371,7 +387,7 @@ ALTER TABLE `transaccion`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
