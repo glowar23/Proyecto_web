@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2024 a las 22:48:58
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 10-04-2024 a las 02:33:31
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tienda_mascotas`
+-- Base de datos: `tienda_mascotas2`
 --
 
 -- --------------------------------------------------------
@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `categoria`
 --
-CREATE database if not exists `tienda_mascotas2`;
-use `tienda_mascotas2`;
 
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
@@ -114,6 +112,19 @@ CREATE TABLE `mascotas` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `modulo`
+--
+
+CREATE TABLE `modulo` (
+  `idmodulo` int(11) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `opiniones`
 --
 
@@ -123,6 +134,22 @@ CREATE TABLE `opiniones` (
   `usuarios_id` int(11) NOT NULL,
   `descripcion` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `idpermiso` bigint(20) NOT NULL,
+  `idRol` int(11) NOT NULL,
+  `moduloid` int(11) NOT NULL,
+  `r` int(11) NOT NULL DEFAULT 0,
+  `w` int(11) NOT NULL DEFAULT 0,
+  `u` int(11) NOT NULL DEFAULT 0,
+  `d` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -168,6 +195,19 @@ CREATE TABLE `proveedores` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `idRol` int(11) NOT NULL,
+  `nombreRol` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `transaccion`
 --
 
@@ -189,15 +229,9 @@ CREATE TABLE `users` (
   `name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL DEFAULT 'Cliente',
-  `email` varchar(45) NOT NULL
+  `email` varchar(45) NOT NULL,
+  `idRol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`) VALUES
-(1, 'Horacio', '1234', 'Cliente', 'nose@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -237,12 +271,26 @@ ALTER TABLE `mascotas`
   ADD KEY `fk_mascotas_usuarios1` (`usuarios_id`);
 
 --
+-- Indices de la tabla `modulo`
+--
+ALTER TABLE `modulo`
+  ADD PRIMARY KEY (`idmodulo`);
+
+--
 -- Indices de la tabla `opiniones`
 --
 ALTER TABLE `opiniones`
   ADD PRIMARY KEY (`idopiniones`),
   ADD KEY `fk_opiniones_productos1` (`productos_idproductos`),
   ADD KEY `fk_opiniones_usuarios1` (`usuarios_id`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`idpermiso`),
+  ADD KEY `idRol` (`idRol`),
+  ADD KEY `moduloid` (`moduloid`);
 
 --
 -- Indices de la tabla `productos`
@@ -259,6 +307,12 @@ ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`idproveedores`);
 
 --
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`idRol`);
+
+--
 -- Indices de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
@@ -270,7 +324,8 @@ ALTER TABLE `transaccion`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idRol` (`idRol`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -289,10 +344,22 @@ ALTER TABLE `imagenes`
   MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `modulo`
+--
+ALTER TABLE `modulo`
+  MODIFY `idmodulo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `idproductos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
@@ -304,7 +371,7 @@ ALTER TABLE `transaccion`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -343,6 +410,13 @@ ALTER TABLE `opiniones`
   ADD CONSTRAINT `fk_opiniones_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`),
+  ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulo` (`idmodulo`);
+
+--
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -354,6 +428,12 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `transaccion`
   ADD CONSTRAINT `fk_transaccion_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
