@@ -62,6 +62,7 @@
                 }else {
                 ?>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Mis pedidos</a></li>
                 <?php }?>
                 <li><hr class="dropdown-divider"></li>
                 <a href="<?=base_url().'logout'?>" class="dropdown-item"> Logout</a>

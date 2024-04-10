@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2024 a las 06:45:26
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 10-04-2024 a las 23:29:05
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE database if not exists tienda_mascotas2;
+use tienda_mascotas2;
 --
 -- Estructura de tabla para la tabla `categoria`
 --
@@ -238,16 +239,18 @@ CREATE TABLE `users` (
   `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL DEFAULT 'Cliente',
   `email` varchar(45) NOT NULL,
-  `idRol` int(11) NOT NULL DEFAULT 4
+  `idRol` int(11) NOT NULL DEFAULT 4,
+  `last_login` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`) VALUES
-(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4),
-(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3);
+INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`) VALUES
+(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-10 15:10:08'),
+(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-10 15:22:43'),
+(7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06');
 
 --
 -- Índices para tablas volcadas
@@ -387,7 +390,7 @@ ALTER TABLE `transaccion`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
