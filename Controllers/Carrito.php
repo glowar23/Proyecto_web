@@ -15,6 +15,11 @@
 			
 			$this->views->getView($this,"carrito",$data);
 		}
+		public function agragarCarrito(){
+			
+			echo $_POST['myData']; 
+
+		}
 
 	}
  ?>

@@ -27,7 +27,7 @@
                             <div class="card-body">
                             <h5 class="card-title"><?=$arrProductos[$intProd]['nombre_producto']?></h5>
                             <p class="card-text"><?='$'.$arrProductos[$intProd]['precio']?></p>
-                            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                            <a href="#" class="btn btn-primary" data-product="<?=$arrProductos[$intProd]['idproductos']?>">Añadir al carrito</a>
                             </div>
                         </div>
                         <?php 
@@ -72,7 +72,7 @@
                                         <p class="price">
                                         <?=$arrProductos[$i]['precio']?>
                                         </p>
-                                        <button> Añadir al carrito</button>
+                                        <button class="boton" data-product="<?=$arrProductos[$i]['idproductos']?>"> Añadir al carrito</button>
                                     </h2>
                                 </div>
                             </div>

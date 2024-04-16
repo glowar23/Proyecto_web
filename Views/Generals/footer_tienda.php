@@ -46,6 +46,44 @@
       </ul>
     </div>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+
+// Cuando el documento esté listo
+$(document).ready(function(){
+    
+  // Asignar un controlador de eventos al elemento HTML con id 'ajaxButton'
+  var productId =0;
+  $('.btn').click(function(){
+        // Realizar la solicitud Ajax al servidor
+         productId = $(this).data('product');
+        //console.log(productId);
+        $.ajax({
+            url: 'http://localhost/Proyecto_web/Carrito/agragarCarrito', // URL a la que enviar los datos
+            method: 'POST', // Método HTTP
+            data: {myData: productId}, // Datos a enviar
+            success: function(response){ // Manejar la respuesta del servidor
+                // Mostrar la respuesta en el elemento HTML correspondiente
+                console.log(response);
+            }
+        });
+    });
+    $('.boton').click(function(){
+        // Realizar la solicitud Ajax al servidor
+        productId = $(this).data('product');
+        $.ajax({
+            url: 'http://localhost/Proyecto_web/Carrito/agragarCarrito', // URL a la que enviar los datos
+            method: 'POST', // Método HTTP
+            data: {myData: productId}, // Datos a enviar
+            success: function(response){ // Manejar la respuesta del servidor
+                // Mostrar la respuesta en el elemento HTML correspondiente
+                console.log(response);
+            }
+        });
+    });
+    
+});
+</script>
 </div>
 </body>
 </html>
