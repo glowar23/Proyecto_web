@@ -36,7 +36,9 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
         </form>
+        <a href="">
         <i class="fa-solid fa-basket-shopping m-3 " ></i> 
+        </a>
         <div class="text-end">
         <div class="dropdown">
           <a href="#" style="margin-top: 0px;" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
