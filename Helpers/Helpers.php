@@ -82,6 +82,17 @@
         $cantidad = number_format($cantidad,2,SPD,SPM);
         return $cantidad;
     }
+    function sessionUser(int $idpersona){
+        require_once ("Models/LoginModel.php");
+        $objLogin = new LoginModel();
+        $request = $objLogin->sessionLogin($idpersona);
+        return $request;
+    }
+    function getModal(string $nameModal, $data)
+    {
+        $view_modal = "Views/Generals/Modals/{$nameModal}.php";
+        require_once $view_modal;        
+    }
     
 
  ?>

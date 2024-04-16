@@ -29,6 +29,7 @@
                 $_SESSION['idUser'] = $requestUser['id'];
                 $_SESSION['tipoUsuario'] = $requestUser['tipo_usuario'];
                 $_SESSION['login'] = true;
+                $this->model->sessionLogin($requestUser['id']);
                 echo json_encode(array("success" => 1));
 
             } else {
