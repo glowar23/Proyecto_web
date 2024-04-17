@@ -14,7 +14,7 @@
 		{
 			$data['page_id'] = 3;
             $data['page_title']='Carrito';
-			
+			$data['prods']=$this->getProductosCarrito($_SESSION['arrIdProductos']);
 			$this->views->getView($this,"carrito",$data);
 		}
 		public function agragarCarrito(){
@@ -32,10 +32,11 @@
 		}
 		public function procesarPago()
 		{
-			$data['page_id'] = 3;
+			$data['page_id'] = 4;
             $data['page_title']='Realizar pedido';
 			
 			$this->views->getView($this,"procesarTransaccion",$data);
+			//header("location:".base_url().'carrito/procesarPago');
 		}
 
 	}
