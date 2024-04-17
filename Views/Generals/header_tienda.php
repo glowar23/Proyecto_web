@@ -37,7 +37,14 @@
           <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
         </form>
         <a href="">
-        <i class="fa-solid fa-basket-shopping m-3 " ></i> 
+        <i class="fa-solid fa-basket-shopping m-3 " ></i>
+        <sub style="
+              margin-left: -14px;
+              color: white;
+              font-weight: 800;
+          " id="car"><?php
+            if(isset($_SESSION['arrIdProductos'])) 
+          echo count($_SESSION['arrIdProductos']); ?></sub>
         </a>
         <div class="text-end">
         <div class="dropdown">

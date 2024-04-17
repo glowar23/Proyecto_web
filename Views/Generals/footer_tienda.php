@@ -63,8 +63,9 @@ $(document).ready(function(){
             method: 'POST', // Método HTTP
             data: {myData: productId}, // Datos a enviar
             success: function(response){ // Manejar la respuesta del servidor
-                // Mostrar la respuesta en el elemento HTML correspondiente
-                console.log(response);
+                // Mostrar la respuesta 
+                $("#car").html(response.lentgth);
+                location.href = "<?=base_url()?>";
             }
         });
     });
@@ -78,6 +79,8 @@ $(document).ready(function(){
             success: function(response){ // Manejar la respuesta del servidor
                 // Mostrar la respuesta en el elemento HTML correspondiente
                 console.log(response);
+                $("#car").html(response.lentgth);
+                location.href = "<?=base_url()?>";
             }
         });
     });
