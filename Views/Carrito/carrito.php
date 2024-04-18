@@ -26,6 +26,7 @@
                 <?php 
                   $subtotal=0;
                     //echo json_encode($productos);
+                    if(empty($productosdi)) {
                     foreach ($productos as $p) {  
                       $subtotal+=$p['precio'];
                 ?>
@@ -60,6 +61,7 @@
                   </div>
                 </div>
                     <?php }
+                    }
                       $_SESSION['pedido']['subtotal']=$subtotal;
                       for ($i=0; $i <count($_SESSION['pedido']['productos']) ; $i++) { 
                         $_SESSION['pedido']['productos'][$i]['cantidad']=1;
