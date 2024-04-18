@@ -1,9 +1,9 @@
 <?php 
 	require_once("Models/TraitProducto.php");
-	
+	require_once("Models/TraitTransaccion.php");
 	require_once("Models/TraitClientes.php");
 	class Carrito extends Controllers{
-		use TraitClientes, TraitProducto;
+		use TraitClientes, TraitProducto,TraitTransaccion;
 		public function __construct()
 		{
 			parent::__construct();
@@ -18,9 +18,16 @@
 			$this->views->getView($this,"carrito",$data);
 		}
 		public function finT(){
+			$resultado1=$this->insertTransaccion($_SESSION['idUser'],$_SESSION['pedido']['subtotal']);
+			if($resultado1!=0){
+				foreach ($_SESSION['pedido']['productos']as $p) {
+					$resultado2=$this->insertDetalleTransaccion($p['idproductos'],intval($resultado1),$p['cantidad']);
+				}
+			}
+			$_SESSION['arrIdProductos']=array();
 			header("Location:".base_url());
 
-		}
+		}	
 		public function agragarCarrito(){
 			session_start();
 			if (!isset($_SESSION['arrIdProductos'])) {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2024 a las 23:29:05
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 18-04-2024 a las 04:14:35
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,8 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-CREATE database if not exists tienda_mascotas2;
-use tienda_mascotas2;
+
 --
 -- Estructura de tabla para la tabla `categoria`
 --
@@ -54,8 +53,18 @@ CREATE TABLE `detalles_transaccion` (
   `productos_idproductos` int(11) NOT NULL,
   `transaccion_idtransaccion` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `descuento` double DEFAULT NULL
+  `descuento` double DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalles_transaccion`
+--
+
+INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`) VALUES
+(2, 6, 1, 0),
+(3, 6, 1, 0),
+(5, 7, 1, 0),
+(6, 7, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -222,10 +231,24 @@ INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcion`, `status`) VALUES
 
 CREATE TABLE `transaccion` (
   `idtransaccion` int(11) NOT NULL,
-  `fecha_hora` datetime DEFAULT NULL,
+  `fecha_hora` datetime DEFAULT current_timestamp(),
   `total` double DEFAULT NULL,
-  `usuarios_id` int(11) NOT NULL
+  `usuarios_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Esperando Pago'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `transaccion`
+--
+
+INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`, `status`) VALUES
+(1, '2024-04-17 19:56:11', 749, 4, 'Esperando Pago'),
+(2, '2024-04-17 19:57:59', 749, 4, 'Esperando Pago'),
+(3, '2024-04-17 19:58:09', 749, 4, 'Esperando Pago'),
+(4, '2024-04-17 20:03:02', 749, 4, 'Esperando Pago'),
+(5, '2024-04-17 20:05:20', 749, 4, 'Esperando Pago'),
+(6, '2024-04-17 20:12:56', 749, 4, 'Esperando Pago'),
+(7, '2024-04-17 20:14:06', 300, 4, 'Esperando Pago');
 
 -- --------------------------------------------------------
 
@@ -248,8 +271,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`) VALUES
-(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-10 15:10:08'),
-(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-10 15:22:43'),
+(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-17 19:23:28'),
+(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-10 20:12:19'),
 (7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06');
 
 --
@@ -384,7 +407,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
