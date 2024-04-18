@@ -19,6 +19,7 @@
         </div>
         
     </header>
+
     <div class="container">
     <div class="row">
   <div class="col-md-8 mb-4">
@@ -71,12 +72,6 @@
           </div>
 
           <!-- Checkbox -->
-          <div class="form-check d-flex justify-content-center mb-2">
-            <input class="form-check-input me-2" type="checkbox" value="" id="form7Example8" checked />
-            <label class="form-check-label" for="form7Example8">
-              Create an account?
-            </label>
-          </div>
         </form>
       </div>
     </div>
@@ -85,13 +80,54 @@
   <div class="col-md-4 mb-4">
     <div class="card mb-4">
       <div class="card-header py-3">
-        <h5 class="mb-0">Summary</h5>
+        <h5 class="mb-0">Datos de tarjeta</h5>
+      </div>
+      <div class="card-body">
+                    
+                    <form class="mt-4">
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                          placeholder="Cardholder's Name" />
+                        <label class="form-label" for="typeName">Titular de la tarjeta</label>
+                      </div>
+
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                          placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                        <label class="form-label" for="typeText">Numero de tarjeta</label>
+                      </div>
+
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <div data-mdb-input-init class="form-outline form-white">
+                            <input type="text" id="typeExp" class="form-control form-control-lg"
+                              placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+                            <label class="form-label" for="typeExp">Expiracion</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div data-mdb-input-init class="form-outline form-white">
+                            <input type="password" id="typeText" class="form-control form-control-lg"
+                              placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                            <label class="form-label" for="typeText">Cvv</label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3">
+    <div class="card mb-4">
+      <div class="card-header py-3">
+        <h5 class="mb-0">Resumen</h5>
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-            Products
-            <span>$53.98</span>
+            Total antes de envio
+            <span>$<?=$_SESSION['pedido']['subtotal']?></span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center px-0">
             Enivo
@@ -99,21 +135,22 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
             <div>
-              <strong>Total amount</strong>
+              <strong>Total a pagar</strong>
               <strong>
                 
               </strong>
             </div>
-            <span><strong>$53.98</strong></span>
+            <span><strong>$<?=$_SESSION['pedido']['subtotal']?></strong></span>
           </li>
         </ul>
 
-        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
+        <a href="<?=base_url().'carrito/finT'?>" type="button" class="btn btn-primary btn-lg btn-block">
           Realizar Pedido
-        </button>
+        </a>
       </div>
     </div>
   </div>
+  
 </div>
     </div>
 

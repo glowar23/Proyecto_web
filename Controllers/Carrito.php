@@ -14,8 +14,12 @@
 		{
 			$data['page_id'] = 3;
             $data['page_title']='Carrito';
-			$data['prods']=$this->getProductosCarrito($_SESSION['arrIdProductos']);
+			$data['prods']=isset($_SESSION['arrIdProductos'])?$this->getProductosCarrito($_SESSION['arrIdProductos']):array();
 			$this->views->getView($this,"carrito",$data);
+		}
+		public function finT(){
+			header("Location:".base_url());
+
 		}
 		public function agragarCarrito(){
 			session_start();
@@ -32,6 +36,7 @@
 		}
 		public function procesarPago()
 		{
+			if (!isset($_SESSION['login'])) header("Location:".base_url().'Login');
 			$data['page_id'] = 4;
             $data['page_title']='Realizar pedido';
 			
