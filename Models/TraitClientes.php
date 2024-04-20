@@ -33,6 +33,19 @@ trait TraitClientes{
 	    $return = $request_insert;
 	    return $return;
 	}
+	public function insertCard(int $idUser, string $titular, string $no_tarjeta, string $exp, int $cvv){
+		$this->con = new Mysql();
+		$query_insert  = "INSERT INTO tarjetas(titular, no_tarjeta, expiracion, cvv, id_usuarios) 
+							  VALUES(?,?,?,sha256(?),?)";
+		$arrData = array($titular,
+						$no_tarjeta,
+						$exp,
+						$cvv,
+						$idUser);
+		$request_insert = $this->con->insert($query_insert,$arrData);
+	    $return = $request_insert;
+	    return $return;
+	}
 }
     
 ?>
