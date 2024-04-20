@@ -83,6 +83,11 @@
                         <img src="<?=media().'/images/continue.png'?>" alt="" style="height:105px">
                     </a>
                   </div>
+                  <div class="seleccionar-direccion">
+                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>">
+                      <button>Selecciona tu dirección</button>
+                    </a>
+                  </div>
                 </div>
 
               </div>    

@@ -24,13 +24,14 @@
             return $result;    
         }
 
-        public function getDomicilios(int $idUser){
+        public function selectDomicilios(int $idUser){
             $this->conn =new Mysql();
             $sql="SELECT * FROM `domicilio` WHERE `usuarios_id` = $idUser";
             $result=$this->conn->select_all($sql);
-            echo $result;
+            
             return $result;    
         }
     }
     
 ?>
+

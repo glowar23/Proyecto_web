@@ -51,6 +51,14 @@
 			$this->views->getView($this,"procesarTransaccion",$data);
 			//header("location:".base_url().'carrito/procesarPago');
 		}
+		public function seleccionarDomicilio(){
+			
+				$idUser = $_SESSION['idUser'];
+				$data['page_title']='Seleccionar destino';
+				$data['domicilios'] = $this->selectDomicilios($idUser);
+				$this->views->getView($this,"domicilio",$data);
+			
+		}
 		public function postDomicilio () { 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// Obtener los datos del formulario
