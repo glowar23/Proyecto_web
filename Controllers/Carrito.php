@@ -56,27 +56,25 @@ class Carrito extends Controllers
 		//header("location:".base_url().'carrito/procesarPago');
 	}
 	public function procesarPagoo()
-{
-	dep($_GET['id-tarjeta']);
-	dep($_GET['domicilio']);
-    if(isset($_GET['id-tarjeta']) && isset($_GET['domicilio'])) {
-        // Recuperar los valores de los parámetros
-        $id_tarjeta = $_GET['id_tarjeta'];
-        $domicilio = $_GET['domicilio'];
-        
-        // Suponiendo que estas funciones hacen consultas a la base de datos para recuperar datos
-        $data['domiclio'] = $this->selectDomicilio($domicilio); // Asegúrate de que 'domiclio' es intencional y no un error tipográfico de 'domicilio'
-        $data['tarjeta'] = $this->selectTarjeta($id_tarjeta);
-        
-        $data['page_id'] = 4;
-        $data['page_title'] = 'Realizar pedido';
-        
-        // Cargar la vista correspondiente
-        $this->views->getView($this, "procesarTransaccion", $data);
-    } else {
-        // Si no se recibieron los parámetros esperados, puedes devolver un error o realizar otra acción según tu lógica de negocio
-        echo "Error: Parámetros faltantes en la solicitud.";
-    }
+	{
+		if(isset($_POST['id_tarjeta']) && isset($_POST['domicilio'])) {
+			// Recuperar los valores de los parámetros
+			$id_tarjeta = $_POST['id_tarjeta'];
+			$domicilio = $_POST['domicilio'];
+			// Suponiendo que estas funciones hacen consultas a la base de datos para recuperar datos
+			$data['domicilio'] = $this->selectDomicilio($domicilio); // Asegúrate de que 'domiclio' es intencional y no un error tipográfico de 'domicilio'
+			$data['tarjeta'] = $this->selectTarjeta($id_tarjeta);
+			$data['page_id'] = 4;
+			$data['page_title'] = 'Realizar pedido';
+			echo json_encode($data['tarjeta']);
+			echo json_encode($data['domicilio']);
+			// Cargar la vista correspondiente
+			$_SESSION['domicilio']=$data['domicilio'];
+			$_SESSION['tarjeta']=$data['tarjeta'];
+		} else {
+			// Si no se recibieron los parámetros esperados, puedes devolver un error o realizar otra acción según tu lógica de negocio
+			echo "Error: Parámetros faltantes en la solicitud.";
+		}
 }
 
 
@@ -126,6 +124,7 @@ class Carrito extends Controllers
 		$data['page_title'] = 'Seleccionar Tarjeta';
 		$data['tarjetas'] = $this->getCards();
 		$data['domicilio'] = $id_domicilio;
+		#echo $id_domicilio;
 		$this->views->getView($this, "tarjeta", $data);
 
 	}

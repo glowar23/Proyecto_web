@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE database tienda_mascotas2;
+use tienda_mascotas2;
 --
 -- Estructura de tabla para la tabla `categoria`
 --

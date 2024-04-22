@@ -28,7 +28,6 @@
   $domicilio = $data['domicilio'];
   $tarjetas = $data['tarjetas'];
   //dep($data);
-  
   foreach ($tarjetas as $t) {
     $no_tarjeta = $t['no_tarjeta'];
     $exp = $t['expiracion'];
@@ -64,7 +63,7 @@
                 <h5 class="mb-0"></h5>
               </div>
 
-              <a href="#" class="procesarPagoLink" data-id-tarjeta="<?= intval($t['id_tarjeta']) ?>"
+              <a href="#" class="procesarPagoLink" data-idtarjeta="<?= intval($t['id_tarjeta']) ?>"
                 data-domicilio="<?= intval($data['domicilio']) ?>" 
                 style="width: 50px; height: 50px;">
                 <i class="fa-solid fa-arrow-right-long" style="padding: 30%;"></i>
@@ -97,18 +96,21 @@
 $(document).ready(function () {
   $('.procesarPagoLink').click(function (event) {
     event.preventDefault();
-    var idTarjeta = $(this).data('id-tarjeta'); // Asegúrate de que el nombre coincide con el data attribute
-    var domicilio = $(this).data('domicilio'); // Asegúrate de que el nombre coincide con el data attribute
+    var idTarjeta = $(this).data('idtarjeta'); // Asegúrate de que el nombre coincide con el data attribute
+    var domicilio = $(this).data('domicilio');
+     // Asegúrate de que el nombre coincide con el data attribute
+     console.log(idTarjeta + domicilio)
     console.log("hola mundo");
     $.ajax({
       url: 'http://localhost/Proyecto_web/Carrito/procesarPagoo',
-      type: 'GET',
+      type: 'POST',
       data: {
         domicilio: domicilio,
         id_tarjeta: idTarjeta
       },
       success: function (response) {
-        window.location.href = 'http://localhost/Proyecto_web/Carrito/procesarPagoo';
+        window.location.href = 'http://localhost/Proyecto_web/Carrito/procesarPago';
+        console.log(response)
       },
       error: function (xhr, status, error) {
         console.error("Error al procesar el pago: " + error);

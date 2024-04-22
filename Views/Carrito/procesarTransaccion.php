@@ -23,8 +23,8 @@
 
   </header>
 <?php 
-  $domicilio = $data['domicilio'];
-  $tarjeta = $data['tarjeta'];
+  $domicilio = $_SESSION['domicilio'];
+  $tarjeta = $_SESSION['tarjeta'];
 ?>
   <div class="container">
     <div class="row">
