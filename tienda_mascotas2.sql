@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2024 a las 04:14:35
+-- Tiempo de generación: 22-04-2024 a las 09:24:45
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,10 +61,10 @@ CREATE TABLE `detalles_transaccion` (
 --
 
 INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`) VALUES
-(2, 6, 1, 0),
-(3, 6, 1, 0),
-(5, 7, 1, 0),
-(6, 7, 1, 0);
+(2, 26, 1, 0),
+(3, 27, 1, 0),
+(3, 28, 1, 0),
+(3, 29, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -82,6 +82,13 @@ CREATE TABLE `domicilio` (
   `numero_interior` int(11) DEFAULT NULL,
   `referencia` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `domicilio`
+--
+
+INSERT INTO `domicilio` (`idDomicilio`, `usuarios_id`, `calle`, `colonia`, `codigo_postal`, `numero_exterior`, `numero_interior`, `referencia`) VALUES
+(1, 8, 'del valle', 'sisi', 'sisi', 109, 20, 'una casota');
 
 -- --------------------------------------------------------
 
@@ -118,6 +125,13 @@ CREATE TABLE `mascotas` (
   `tipo_animal` varchar(45) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `mascotas`
+--
+
+INSERT INTO `mascotas` (`usuarios_id`, `nombre`, `tipo_animal`, `fecha_nacimiento`) VALUES
+(8, NULL, 'cat', NULL);
 
 -- --------------------------------------------------------
 
@@ -226,6 +240,28 @@ INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcion`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tarjetas`
+--
+
+CREATE TABLE `tarjetas` (
+  `id_tarjeta` int(11) NOT NULL,
+  `titular` varchar(45) NOT NULL,
+  `no_tarjeta` varchar(20) NOT NULL,
+  `expiracion` varchar(15) NOT NULL COMMENT 'fecha de expiración de la tarjeta',
+  `cvv` int(11) NOT NULL,
+  `id_usuarios` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tarjetas`
+--
+
+INSERT INTO `tarjetas` (`id_tarjeta`, `titular`, `no_tarjeta`, `expiracion`, `cvv`, `id_usuarios`) VALUES
+(1, 'omar', '12361521', '05/2020', 123, 8);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `transaccion`
 --
 
@@ -248,7 +284,15 @@ INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`
 (4, '2024-04-17 20:03:02', 749, 4, 'Esperando Pago'),
 (5, '2024-04-17 20:05:20', 749, 4, 'Esperando Pago'),
 (6, '2024-04-17 20:12:56', 749, 4, 'Esperando Pago'),
-(7, '2024-04-17 20:14:06', 300, 4, 'Esperando Pago');
+(7, '2024-04-17 20:14:06', 300, 4, 'Esperando Pago'),
+(15, '2024-04-17 21:14:54', 300, 4, 'Esperando Pago'),
+(23, '2024-04-17 22:46:32', 650, 8, 'Esperando Pago'),
+(24, '2024-04-18 10:19:51', 650, 8, 'Esperando Pago'),
+(25, '2024-04-18 10:20:12', 749, 8, 'Esperando Pago'),
+(26, '2024-04-19 18:04:55', 650, 8, 'Esperando Pago'),
+(27, '2024-04-19 18:45:51', 99, 8, 'Esperando Pago'),
+(28, '2024-04-19 18:49:14', 99, 8, 'Esperando Pago'),
+(29, '2024-04-19 18:56:15', 99, 8, 'Esperando Pago');
 
 -- --------------------------------------------------------
 
@@ -273,7 +317,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`) VALUES
 (4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-17 19:23:28'),
 (5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-10 20:12:19'),
-(7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06');
+(7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06'),
+(8, 'aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-22 00:39:41');
 
 --
 -- Índices para tablas volcadas
@@ -355,6 +400,13 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`idRol`);
 
 --
+-- Indices de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD PRIMARY KEY (`id_tarjeta`),
+  ADD KEY `id_usuarios` (`id_usuarios`);
+
+--
 -- Indices de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
@@ -378,6 +430,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categoria`
   MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `domicilio`
+--
+ALTER TABLE `domicilio`
+  MODIFY `idDomicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
@@ -404,16 +462,22 @@ ALTER TABLE `rol`
   MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -464,6 +528,12 @@ ALTER TABLE `permisos`
 ALTER TABLE `productos`
   ADD CONSTRAINT `fk_productos_categoria1` FOREIGN KEY (`categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_productos_proveedores1` FOREIGN KEY (`proveedores_idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD CONSTRAINT `tarjetas_ibfk_1` FOREIGN KEY (`id_usuarios`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `transaccion`
