@@ -24,10 +24,19 @@
             return $result;    
         }
 
-        public function selectDomicilios(int $idUser){
+        public function selectDomicilios(){
             $this->conn =new Mysql();
+            $idUser = $_SESSION['idUser'];
             $sql="SELECT * FROM `domicilio` WHERE `usuarios_id` = $idUser";
             $result=$this->conn->select_all($sql);
+            
+            return $result;    
+        }
+        public function selectDomicilio($id_domicilio){
+            $this->conn =new Mysql();
+            $idUser = $_SESSION['idUser'];
+            $sql="SELECT * FROM domicilio WHERE idDomicilio = $id_domicilio AND usuarios_id = $idUser";
+            $result=$this->conn->select($sql);
             
             return $result;    
         }

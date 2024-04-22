@@ -46,6 +46,22 @@ trait TraitClientes{
 	    $return = $request_insert;
 	    return $return;
 	}
+	public function getCards(){
+		$this->con = new Mysql();
+		$idUser = $_SESSION['idUser'];
+		$query = "SELECT * FROM tarjetas WHERE id_usuarios = $idUser";
+		$request = $this->con->select_all($query);
+		$return = $request;
+		return  $return;
+	}
+	public function selectTarjeta(int $id_tarjeta){
+		$this->con = new Mysql();
+		$idUser = $_SESSION['idUser'];
+		$query = "SELECT * FROM tarjetas WHERE id_tarjeta = $id_tarjeta AND id_usuarios = $idUser";
+		$request = $this->con->select($query);
+		$return = $request;
+		return  $return;
+	}
 }
     
 ?>

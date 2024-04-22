@@ -22,7 +22,10 @@
     </div>
 
   </header>
-
+<?php 
+  $domicilio = $data['domicilio'];
+  $tarjeta = $data['tarjeta'];
+?>
   <div class="container">
     <div class="row">
       <div class="col-md-8 mb-4">
