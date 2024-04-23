@@ -52,6 +52,30 @@ class Carrito extends Controllers
 		header('Location:'.base_url().'carrito');
 
 	}
+	public function sumarCantidad($id){
+		$arreglo=$_SESSION['arrIdProductos'];
+		foreach ($arreglo as $indice => $elemento) {
+			if ($elemento['id'] === $id) {
+				$arreglo[$indice]['cantidad']+=1;
+				break; // Detener el bucle una vez que se elimine el elemento
+			}
+		}
+		$_SESSION['arrIdProductos']=$arreglo;
+		
+		header('Location:'.base_url().'carrito');
+	}
+	public function restarCantidad($id){
+
+		$arreglo=$_SESSION['arrIdProductos'];
+		foreach ($arreglo as $indice => $elemento) {
+			if ($elemento['id'] === $id) {
+				if ($arreglo[$indice]['cantidad']>1)$arreglo[$indice]['cantidad']-=1;
+				break; // Detener el bucle una vez que se elimine el elemento
+			}
+		}
+		$_SESSION['arrIdProductos']=$arreglo;
+		header('Location:'.base_url().'carrito');
+	}
 	public function agragarCarrito()
 	{
 		session_start();
@@ -109,6 +133,7 @@ class Carrito extends Controllers
 
 	public function seleccionarDomicilio()
 	{
+		if (!isset($_SESSION['login'])) header("Location:".base_url().'login');
 		$data['page_title'] = 'Seleccionar destino';
 		$data['domicilios'] = $this->selectDomicilios();
 		$this->views->getView($this, "domicilio", $data);

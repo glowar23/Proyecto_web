@@ -40,7 +40,7 @@
                     //echo json_encode($productos);
                     
                     foreach ($_SESSION['pedido']['productos'] as $p) {  
-                      $subtotal+=$p['precio'];
+                      $subtotal+=$p['precio']*$p['cantidad'];
                 ?>
                 <div class="card mb-3">
                   <div class="card-body">
@@ -62,7 +62,9 @@
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div style="width: 50px;">
+                            <a href="<?=base_url().'carrito/sumarCantidad/'.$p['idproductos']?>"><i class="fa-solid fa-plus"></i></a>
                           <h5 class="fw-normal mb-0"><?=$p['cantidad']?> </h5>
+                            <a href="<?=base_url().'carrito/restarCantidad/'.$p['idproductos']?>"><i class="fa-solid fa-minus"></i></a>
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">$ <?=$p['precio']?></h5>
