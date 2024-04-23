@@ -16,7 +16,15 @@ class Carrito extends Controllers
 	{
 		$data['page_id'] = 3;
 		$data['page_title'] = 'Carrito';
-		$data['prods'] = isset($_SESSION['arrIdProductos']) ? $this->getProductosCarrito($_SESSION['arrIdProductos']) : array();
+		if (isset($_SESSION['arrIdProductos']) && count($_SESSION['arrIdProductos'])!=0){
+			
+			$idsUnicos = [];
+			$items=array_values($_SESSION['arrIdProductos']);
+			foreach ($items as $item) {
+				$idsUnicos[] = intval($item['id']);
+			}
+			$data['prods'] = isset($_SESSION['arrIdProductos']) ? $this->getProductosCarrito($idsUnicos) : array();	
+		}
 		$this->views->getView($this, "carrito", $data);
 	}
 	public function finT()
@@ -31,6 +39,19 @@ class Carrito extends Controllers
 		header("Location:" . base_url());
 
 	}
+	public function eliminarProducto($id){
+		$arreglo=$_SESSION['arrIdProductos'];
+		foreach ($arreglo as $indice => $elemento) {
+			if ($elemento['id'] === $id) {
+				unset($arreglo[$indice]);
+				break; // Detener el bucle una vez que se elimine el elemento
+			}
+		}
+		$_SESSION['arrIdProductos']=$arreglo;
+		
+		header('Location:'.base_url().'carrito');
+
+	}
 	public function agragarCarrito()
 	{
 		session_start();
@@ -39,10 +60,17 @@ class Carrito extends Controllers
 			$_SESSION['arrIdProductos'] = [];
 		}
 		$array = $_SESSION['arrIdProductos'];
-		if (!in_array($_POST['myData'], $array))
-			array_push($array, $_POST['myData']);
-		$_SESSION['arrIdProductos'] = $array;
-		echo json_encode($array);
+		$item =["id"=>$_POST['myData'], "cantidad"=>1];
+		array_push($array, $item);
+		$itemsAgrupados = [];
+		foreach ($array as $item) {
+			if (isset($itemsAgrupados[$item['id']])) {
+				$itemsAgrupados[$item['id']]['cantidad'] += $item['cantidad'];
+			} else {
+				$itemsAgrupados[$item['id']] = $item;
+			}
+		}
+		$_SESSION['arrIdProductos'] = $itemsAgrupados;
 
 	}
 	public function procesarPago()

@@ -21,9 +21,11 @@
         <h1 class="title text-center">MyPets</h1>
       </a>
     </div>
-
   </header>
-
+  <div class="container">
+      <div class="row">
+      <div class="col-md-9">
+        
   <?php
   $domicilio = $data['domicilio'];
   $tarjetas = $data['tarjetas'];
@@ -36,7 +38,7 @@
     ?>
 
     
-      <div class="card mb-3" style="margin-right: 25%; margin-left: 25%;">
+      <div class="card mb-3" style="margin-right: 5%; ">
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="d-flex flex-row align-items-center">
@@ -76,13 +78,55 @@
       </div>
     <?php } ?>
 
-    <div class="card mb-3" style="margin-right: 25%; margin-left: 25%; border:  #000;">
+    <div class="card mb-3" style="margin-right: 5%;  border:  #000;">
       <div class="card-body">
         <div class="d-flex justify-content-between">
           AGREGAR TARJETA
         </div>
       </div>
     </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Resumen</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Total antes de envio
+                <span>$<?= $_SESSION['pedido']['subtotal'] ?></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Enivo
+                <span><?php if ($_SESSION['pedido']['subtotal']>200) {echo 'Gratis'; $envio=0; }else {echo '$100'; $envio=100;} ?></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Total a pagar</strong>
+                  <strong>
+
+                  </strong>
+                </div>
+                <span><strong>$<?= $_SESSION['pedido']['subtotal']+$envio; ?></strong></span>
+              </li>
+            </ul>
+
+            <a href="<?= base_url() . 'carrito/finT' ?>" type="submit" class="btn btn-primary btn-lg btn-block"
+              id="btn-comprar">
+              Realizar Pedido
+            </a>
+          </div>
+          <div  id="domicilioResult">
+                
+          </div>
+        </div>
+      </div>          
+      </div>
+
+    
+    
+    
 
 
 </body>
@@ -109,7 +153,7 @@ $(document).ready(function () {
         id_tarjeta: idTarjeta
       },
       success: function (response) {
-        window.location.href = 'http://localhost/Proyecto_web/Carrito/procesarPago';
+        //window.location.href = 'http://localhost/Proyecto_web/Carrito/procesarPago';
         console.log(response)
       },
       error: function (xhr, status, error) {
