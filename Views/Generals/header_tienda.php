@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>css/styleProduct.css">
-    <link rel="stylesheet" type="text/css" href="<?media().'css/vendor.css'?>">
-    <link rel="stylesheet" type="text/css" href="<?=media().'css/style2.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?=media(); ?> css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="<?=media(); ?>css/style2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
@@ -22,6 +22,8 @@
 	  <meta property="og:type"        content="website" />
     <meta property="og:site_name"	content="MyPets0"/>
 </head>
+
+<body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
       <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -86,7 +88,6 @@
 
     </defs>
   </svg>
-<body>
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -107,7 +108,7 @@
           <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
         </form>
         <a href="<?=base_url().'carrito'?>">
-        <i class="fa-solid fa-basket-shopping m-3 fa-lg " ></i>
+        <i class="fa-solid fa-basket-shopping m-3 fa-lg " style="color:white"></i>
         <sub style="
               margin-left: -14px;
               color: white;

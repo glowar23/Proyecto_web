@@ -15,9 +15,8 @@
                 <img src="<?=media().'images/banner-img.png'?>" class="img-fluid">
               </div>
               <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    pets</span>
+                <div class="secondary-font text-primary text-uppercase mb-4">Productos</div>
+                <h2 class="banner-title display-1 fw-normal">Los mejores productos para <span class="text-primary">tus mascotas</span>
                 </h2>
                 <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
@@ -31,12 +30,11 @@
           <div class="swiper-slide py-5">
             <div class="row banner-content align-items-center">
               <div class="img-wrapper col-md-5">
-                <img src="<?media().'images//banner-img3.png'?>" class="img-fluid">
+                <img src="<?=media().'images//banner-img3.png'?>" class="img-fluid">
               </div>
               <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    pets</span>
+                <div class="secondary-font text-primary text-uppercase mb-4">Consitenlo con </div>
+                <h2 class="banner-title display-1 fw-normal">Los mejores productos para <span class="text-primary">tu Gato</span>
                 </h2>
                 <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
@@ -77,34 +75,29 @@
   <section id="categories">
     <div class="container my-3 py-5">
       <div class="row my-5">
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:bowl-food"></iconify-icon>
-            <h5>Foodies</h5>
-          </a>
-        </div>
+        
         <div class="col text-center">
           <a href="#" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:bird"></iconify-icon>
-            <h5>Bird Shop</h5>
+            <h5>Aves</h5>
           </a>
         </div>
         <div class="col text-center">
           <a href="#" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
-            <h5>Dog Shop</h5>
+            <h5>Perros</h5>
           </a>
         </div>
         <div class="col text-center">
           <a href="#" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:fish"></iconify-icon>
-            <h5>Fish Shop</h5>
+            <h5>Peces</h5>
           </a>
         </div>
         <div class="col text-center">
           <a href="#" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
-            <h5>Cat Shop</h5>
+            <h5>Gatos</h5>
           </a>
         </div>
       </div>
