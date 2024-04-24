@@ -76,8 +76,7 @@ class Carrito extends Controllers
 		$_SESSION['arrIdProductos']=$arreglo;
 		header('Location:'.base_url().'carrito');
 	}
-	public function agragarCarrito()
-	{
+	public function agragarCarrito(){
 		session_start();
 		if (!isset($_SESSION['arrIdProductos'])) {
 			// Si no existe, inicializarla como un arreglo vacío

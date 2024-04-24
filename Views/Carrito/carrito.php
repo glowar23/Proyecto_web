@@ -82,15 +82,15 @@
               
               <div class="col-lg-5">
 
-                <div class="card bg-primary text-white rounded-3">
+                <div class="card bg-primary text-white rounded-3 p-2">
                   <div class="card-body">
-                    <hr class="my-4">
                     <div class="d-flex justify-content-between">
                       <h2 class="mb-2">Subtotal</h2>
                       <h2 class="mb-2">$<?=$subtotal?></h2>
                     </div>
-                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="" >
-                        <img src="<?=media().'/images/continue.png'?>" alt="" style="height:105px">
+                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="" style="" >
+                        <h1><i class="fa-solid fa-shield-cat"></i></h1>
+                        
                     </a>
                   </div>
                 </div>

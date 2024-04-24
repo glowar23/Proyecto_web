@@ -47,8 +47,12 @@
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  
+    <script src="<?=media().'js/plugins.js'?>"></script>
+  <script src="<?=media().'js/script.js'?>"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script>
 // Cuando el documento esté listo
 $(document).ready(function(){
     
@@ -87,6 +91,5 @@ $(document).ready(function(){
     
 });
 </script>
-</div>
 </body>
 </html>
