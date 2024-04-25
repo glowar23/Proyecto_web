@@ -18,7 +18,7 @@
                 <div class="secondary-font text-primary text-uppercase mb-4">Productos</div>
                 <h2 class="banner-title display-1 fw-normal">Los mejores productos para <span class="text-primary">tus mascotas</span>
                 </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="<?=base_url().'/tienda/categoria/2'?>" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
                   <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                     <use xlink:href="#arrow-right"></use>
@@ -36,7 +36,7 @@
                 <div class="secondary-font text-primary text-uppercase mb-4">Consitenlo con </div>
                 <h2 class="banner-title display-1 fw-normal">Los mejores productos para <span class="text-primary">tu Gato</span>
                 </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="<?=base_url().'/tienda/categoria/1'?>" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
                   <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                     <use xlink:href="#arrow-right"></use>
@@ -77,25 +77,25 @@
       <div class="row my-5">
         
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a href="<?=base_url().'/tienda/categoria/3'?>" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:bird"></iconify-icon>
             <h5>Aves</h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a href="<?=base_url().'/tienda/categoria/2'?>" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
             <h5>Perros</h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a href="<?=base_url().'/tienda/categoria/4'?>" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:fish"></iconify-icon>
             <h5>Peces</h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a href="<?=base_url().'/tienda/categoria/1'?>" class="categories-item">
             <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
             <h5>Gatos</h5>
           </a>
@@ -127,7 +127,7 @@
                             <div class="card-body">
                             <h5 class="card-title"><?=$arrProductos[$intProd]['nombre_producto']?></h5>
                             <p class="card-text"><?='$'.$arrProductos[$intProd]['precio']?></p>
-                            <button class="btn btn-primary" data-product="<?=$arrProductos[$intProd]['idproductos']?>">Añadir al carrito</button>
+                            <button class="btn btn-primary car" data-product="<?=$arrProductos[$intProd]['idproductos']?>">Añadir al carrito</button>
                             
                             </div>
                         </div>
@@ -149,7 +149,8 @@
             </button>
         </div>
     </div>
-    <div class="container-items">    
+    <br>
+    <div class="container-items container">    
             <?php
             if (count($arrProductos)==0){
                 echo '<h1>No hay productos</h1>';

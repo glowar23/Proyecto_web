@@ -88,14 +88,23 @@
                       <h2 class="mb-2">Subtotal</h2>
                       <h2 class="mb-2">$<?=$subtotal?></h2>
                     </div>
-                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="" style="" >
-                        <h1><i class="fa-solid fa-shield-cat"></i></h1>
-                        
+                    
+                    <br>
+                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="btn btn-secondary" style="" >  
+                      <p>Elegir domicilio <i class="fa-solid fa-shield-cat fa-lg"></i> <i class="fa-solid fa-arrow-right"></i></p>
                     </a>
+                  </div>
+                </div>
+                <br>
+                <div class="card bg-secondary text-black rounded-3 p-1">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <p class="font-weight-light">!En la compra de mas de $200 de producto el envio es gratis¡</p>
                   </div>
                 </div>
 
               </div>   
+              
               <?php }?> 
 
             </div>

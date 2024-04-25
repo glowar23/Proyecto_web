@@ -59,7 +59,7 @@ $(document).ready(function(){
     
   // Asignar un controlador de eventos al elemento HTML con id 'ajaxButton'
   var productId =0;
-  $('.btn').click(function(){
+  $('.car').click(function(){
         // Realizar la solicitud Ajax al servidor
          productId = $(this).data('product');
         //console.log(productId);
