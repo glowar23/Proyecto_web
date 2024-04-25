@@ -217,3 +217,23 @@ cart-total h3{
       height: 11em;
     }
   }
+  .card{
+    border-color: black;
+  }
+  ul {
+    list-style-type: none;
+  }
+  
+  li:before {
+    position: absolute;
+    font-family: none;
+            /*  Use the Name of the Font Awesome free font, e.g.:
+             - 'Font Awesome 5 Free' for Regular and Solid symbols;
+             - 'Font Awesome 5 Brand' for Brands symbols.
+             - 'Font Awesome 5 Pro' for Regular and Solid symbols (Professional License);
+            */
+    content: none; /* Unicode value of the icon to use: */
+    font-weight: none; /* This is important, change the value according to the font family name
+                         used above. See the link below  */
+    color: none;
+  }

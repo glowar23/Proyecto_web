@@ -1,7 +1,18 @@
 <?php 
     require_once('Views/Generals/header_tienda.php');
-    $productos =($data['prods'])  ;
-    $_SESSION['pedido']['productos']=$data['prods'];
+    if(isset($data['prods'])){
+      $_SESSION['pedido']['productos']=$data['prods'];
+      $arreglo2=$_SESSION['arrIdProductos'];
+      $c=0;
+      foreach ($_SESSION['pedido']['productos'] as $indice => $elemento) {
+        if ($elemento['idproductos'] == $arreglo2[$elemento['idproductos']]['id']) {  
+          $_SESSION['pedido']['productos'][$indice]['cantidad']=$arreglo2[$elemento['idproductos']]['cantidad'];   
+        }
+      }
+      //for ($i=0; $i <count($_SESSION['pedido']['productos']) ; $i++) { 
+      //  if(!isset($_SESSION['pedido']['productos'][$i]['cantidad']))$_SESSION['pedido']['productos'][$i]['cantidad']=1;
+      //}
+    }
 ?>
 	<section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container py-5 h-100">
@@ -20,14 +31,16 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
                     <p class="mb-1">Carrito de compras</p>
-                    <p class="mb-0">Usted tiene <?=count($_SESSION['arrIdProductos'])?> en su carrito </p>
+                    <p class="mb-0">Usted tiene <?=isset($_SESSION['arrIdProductos'])?count($_SESSION['arrIdProductos']):0?> productos en su carrito </p>
                   </div>
                 </div>
                 <?php 
                   $subtotal=0;
+                  if (isset($data['prods'])){
                     //echo json_encode($productos);
-                    foreach ($productos as $p) {  
-                      $subtotal+=$p['precio'];
+                    
+                    foreach ($_SESSION['pedido']['productos'] as $p) {  
+                      $subtotal+=$p['precio']*$p['cantidad'];
                 ?>
                 <div class="card mb-3">
                   <div class="card-body">
@@ -49,43 +62,41 @@
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">1</h5>
+                            <a href="<?=base_url().'carrito/sumarCantidad/'.$p['idproductos']?>"><i class="fa-solid fa-plus"></i></a>
+                          <h5 class="fw-normal mb-0"><?=$p['cantidad']?> </h5>
+                            <a href="<?=base_url().'carrito/restarCantidad/'.$p['idproductos']?>"><i class="fa-solid fa-minus"></i></a>
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">$ <?=$p['precio']?></h5>
                         </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                        <a href="<?=base_url().'carrito/eliminarProducto/'.$p['idproductos']?>"  style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>
                 </div>
                     <?php }
                       $_SESSION['pedido']['subtotal']=$subtotal;
-                      for ($i=0; $i <count($_SESSION['pedido']['productos']) ; $i++) { 
-                        $_SESSION['pedido']['productos'][$i]['cantidad']=1;
-                      }
+                      
                     ?>            
               </div>
+              
               <div class="col-lg-5">
 
-                <div class="card bg-primary text-white rounded-3">
+                <div class="card bg-primary text-white rounded-3 p-2">
                   <div class="card-body">
-                    
-                    
-
-                    <hr class="my-4">
-
                     <div class="d-flex justify-content-between">
                       <h2 class="mb-2">Subtotal</h2>
                       <h2 class="mb-2">$<?=$subtotal?></h2>
                     </div>
-                    <a href="<?=base_url().'carrito/procesarPago'?>" class="" >
-                        <img src="<?=media().'/images/continue.png'?>" alt="" style="height:105px">
+                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="" style="" >
+                        <h1><i class="fa-solid fa-shield-cat"></i></h1>
+                        
                     </a>
                   </div>
                 </div>
 
-              </div>    
+              </div>   
+              <?php }?> 
 
             </div>
 
