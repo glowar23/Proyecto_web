@@ -52,7 +52,11 @@
             <div style="width: 80px;">
               <h5 class="mb-0"></h5>
             </div>
+<<<<<<< HEAD
             <a href="<?=base_url().'carrito/seleccionarTarjeta/'.$d['idDomicilio']?>" style="width: 50px; height: 50px;  "><i class="fa-solid fa-arrow-right-long" style="padding: 30%;"></i></a>
+=======
+            <a href="<?=base_url().'carrito/seleccionarTarjeta/'?>" style="width: 50px; height: 50px;  "><?php $_SESSION['idDomicilio']=$d['idDomicilio'];?><i class="fa-solid fa-arrow-right-long" style="padding: 30%;"></i></a>
+>>>>>>> origin/NUEVA
           </div>
         </div>
       </div>
