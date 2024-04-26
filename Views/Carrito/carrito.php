@@ -88,16 +88,10 @@
                       <h2 class="mb-2">Subtotal</h2>
                       <h2 class="mb-2">$<?=$subtotal?></h2>
                     </div>
-<<<<<<< HEAD
                     
                     <br>
                     <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="btn btn-secondary" style="" >  
                       <p>Elegir domicilio <i class="fa-solid fa-shield-cat fa-lg"></i> <i class="fa-solid fa-arrow-right"></i></p>
-=======
-                    <a href="<?=base_url().'carrito/seleccionarDomicilio'?>" class="" style="" >
-                        <h1><i class="fa-solid fa-shield-cat"></i></h1>
-                        
->>>>>>> origin/NUEVA
                     </a>
                   </div>
                 </div>
@@ -110,10 +104,6 @@
                 </div>
 
               </div>   
-<<<<<<< HEAD
-              
-=======
->>>>>>> origin/NUEVA
               <?php }?> 
 
             </div>

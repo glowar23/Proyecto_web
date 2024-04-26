@@ -24,19 +24,12 @@
   </header>
   <div class="container">
       <div class="row">
-<<<<<<< HEAD
-      <div class="col-md-9">
-        
-  <?php
-  $domicilio = $data['domicilio'];
-=======
     
       <div class="col-md-9">
       <ul id = "lista-tarjeta" data-idtarjeta="<?=intval($t['id_tarjeta']); ?>"
                 data-domicilio="<?= intval($_SESSION['idDomicilio']) ?>">  
   <?php
   $domicilio = $_SESSION['idDomicilio'];
->>>>>>> origin/NUEVA
   $tarjetas = $data['tarjetas'];
   //dep($data);
   foreach ($tarjetas as $t) {
@@ -45,13 +38,8 @@
     $titular = $t['titular'];
 
     ?>
-<<<<<<< HEAD
-
-    
-=======
       <li>
       <i class="fa-regular fa-square-check"></i>
->>>>>>> origin/NUEVA
       <div class="card mb-3" style="margin-right: 5%; ">
         <div class="card-body">
           <div class="d-flex justify-content-between">
@@ -59,11 +47,7 @@
               <div>
                 <img style="width: 45px; height: 50px;" src="<?= media() . 'images/pet_card.png' ?>">
               </div>
-<<<<<<< HEAD
-              <div class="ms-3" data-id-tarjeta="<?= intval($t['id_tarjeta']) ?>">
-=======
               <div class="ms-3"  >
->>>>>>> origin/NUEVA
                 <h5>Tarjeta: <br>
                   <?php
 
@@ -83,15 +67,9 @@
                 <h5 class="mb-0"></h5>
               </div>
 
-<<<<<<< HEAD
-              <a href="#" class="procesarPagoLink" data-idtarjeta="<?= intval($t['id_tarjeta']) ?>"
-                data-domicilio="<?= intval($data['domicilio']) ?>" 
-                style="width: 50px; height: 50px;">
-=======
               <a href="#" class="procesarPagoLink" data-idtarjeta="<?=intval($t['id_tarjeta']); ?>"
                 data-domicilio="<?= intval($_SESSION['idDomicilio']) ?>" 
                 style="width: 50px; height: 50px;"><?php  $_SESSION['idTarjeta']=$t['id_tarjeta']; ?>
->>>>>>> origin/NUEVA
                 <i class="fa-solid fa-arrow-right-long" style="padding: 30%;"></i>
               </a>
 
@@ -100,13 +78,9 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-    <?php } ?>
-=======
       </li>
     <?php } ?>
     </ul>
->>>>>>> origin/NUEVA
 
     <div class="card mb-3" style="margin-right: 5%;  border:  #000;">
       <div class="card-body">
@@ -167,33 +141,6 @@
 <script src="<?= media() . 'js/domicilio.js' ?>"></script>
 <!-- enviar documentos por ajax -->
 <script>
-<<<<<<< HEAD
-$(document).ready(function () {
-  $('.procesarPagoLink').click(function (event) {
-    event.preventDefault();
-    var idTarjeta = $(this).data('idtarjeta'); // Asegúrate de que el nombre coincide con el data attribute
-    var domicilio = $(this).data('domicilio');
-     // Asegúrate de que el nombre coincide con el data attribute
-     console.log(idTarjeta + domicilio)
-    console.log("hola mundo");
-    $.ajax({
-      url: 'http://localhost/Proyecto_web/Carrito/procesarPagoo',
-      type: 'POST',
-      data: {
-        domicilio: domicilio,
-        id_tarjeta: idTarjeta
-      },
-      success: function (response) {
-        //window.location.href = 'http://localhost/Proyecto_web/Carrito/procesarPago';
-        console.log(response)
-      },
-      error: function (xhr, status, error) {
-        console.error("Error al procesar el pago: " + error);
-      }
-    });
-  });
-});
-=======
 let idTarjetaSeleccionada = null;
 let domicilioSeleccionado = null;
 $('#lista-tarjeta').on('click', '.card', function() {
@@ -248,13 +195,8 @@ $('#btn-comprar').click(function() {
     }
 });
 
->>>>>>> origin/NUEVA
 </script>
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/NUEVA
 </html>

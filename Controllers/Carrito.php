@@ -29,12 +29,9 @@ class Carrito extends Controllers
 	}
 	public function finT()
 	{
-<<<<<<< HEAD
-=======
 			$domicilio = $_SESSION['iddomicilio'];
 			$tarjeta = $_SESSION['idTarjeta'];
 			
->>>>>>> origin/NUEVA
 		$resultado1 = $this->insertTransaccion($_SESSION['idUser'], $_SESSION['pedido']['subtotal']);
 		if ($resultado1 != 0) {
 			foreach ($_SESSION['pedido']['productos'] as $p) {
@@ -177,18 +174,10 @@ class Carrito extends Controllers
 		}
 	}
 
-<<<<<<< HEAD
-	public function seleccionarTarjeta($id_domicilio)
-	{
-		$data['page_title'] = 'Seleccionar Tarjeta';
-		$data['tarjetas'] = $this->getCards();
-		$data['domicilio'] = $id_domicilio;
-=======
 	public function seleccionarTarjeta()
 	{
 		$data['page_title'] = 'Seleccionar Tarjeta';
 		$data['tarjetas'] = $this->getCards();
->>>>>>> origin/NUEVA
 		#echo $id_domicilio;
 		$this->views->getView($this, "tarjeta", $data);
 
