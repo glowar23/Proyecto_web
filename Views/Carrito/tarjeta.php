@@ -24,10 +24,19 @@
   </header>
   <div class="container">
       <div class="row">
+<<<<<<< HEAD
       <div class="col-md-9">
         
   <?php
   $domicilio = $data['domicilio'];
+=======
+    
+      <div class="col-md-9">
+      <ul id = "lista-tarjeta" data-idtarjeta="<?=intval($t['id_tarjeta']); ?>"
+                data-domicilio="<?= intval($_SESSION['idDomicilio']) ?>">  
+  <?php
+  $domicilio = $_SESSION['idDomicilio'];
+>>>>>>> origin/NUEVA
   $tarjetas = $data['tarjetas'];
   //dep($data);
   foreach ($tarjetas as $t) {
@@ -36,8 +45,13 @@
     $titular = $t['titular'];
 
     ?>
+<<<<<<< HEAD
 
     
+=======
+      <li>
+      <i class="fa-regular fa-square-check"></i>
+>>>>>>> origin/NUEVA
       <div class="card mb-3" style="margin-right: 5%; ">
         <div class="card-body">
           <div class="d-flex justify-content-between">
@@ -45,7 +59,11 @@
               <div>
                 <img style="width: 45px; height: 50px;" src="<?= media() . 'images/pet_card.png' ?>">
               </div>
+<<<<<<< HEAD
               <div class="ms-3" data-id-tarjeta="<?= intval($t['id_tarjeta']) ?>">
+=======
+              <div class="ms-3"  >
+>>>>>>> origin/NUEVA
                 <h5>Tarjeta: <br>
                   <?php
 
@@ -65,9 +83,15 @@
                 <h5 class="mb-0"></h5>
               </div>
 
+<<<<<<< HEAD
               <a href="#" class="procesarPagoLink" data-idtarjeta="<?= intval($t['id_tarjeta']) ?>"
                 data-domicilio="<?= intval($data['domicilio']) ?>" 
                 style="width: 50px; height: 50px;">
+=======
+              <a href="#" class="procesarPagoLink" data-idtarjeta="<?=intval($t['id_tarjeta']); ?>"
+                data-domicilio="<?= intval($_SESSION['idDomicilio']) ?>" 
+                style="width: 50px; height: 50px;"><?php  $_SESSION['idTarjeta']=$t['id_tarjeta']; ?>
+>>>>>>> origin/NUEVA
                 <i class="fa-solid fa-arrow-right-long" style="padding: 30%;"></i>
               </a>
 
@@ -76,7 +100,13 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
     <?php } ?>
+=======
+      </li>
+    <?php } ?>
+    </ul>
+>>>>>>> origin/NUEVA
 
     <div class="card mb-3" style="margin-right: 5%;  border:  #000;">
       <div class="card-body">
@@ -137,6 +167,7 @@
 <script src="<?= media() . 'js/domicilio.js' ?>"></script>
 <!-- enviar documentos por ajax -->
 <script>
+<<<<<<< HEAD
 $(document).ready(function () {
   $('.procesarPagoLink').click(function (event) {
     event.preventDefault();
@@ -162,8 +193,68 @@ $(document).ready(function () {
     });
   });
 });
+=======
+let idTarjetaSeleccionada = null;
+let domicilioSeleccionado = null;
+$('#lista-tarjeta').on('click', '.card', function() {
+        // Toggle de la clase selected para resaltar visualmente la tarjeta seleccionada
+        $(this).toggleClass('selected').siblings().removeClass('selected');
+
+        // Recuperar datos de la tarjeta seleccionada
+        idTarjetaSeleccionada = $(this).find('.procesarPagoLink').data('idtarjeta');
+        domicilioSeleccionad = $(this).find('.procesarPagoLink').data('domicilio');
+
+        // Opcional: Mostrar en consola los datos seleccionados
+        console.log("ID de Tarjeta: " + idTarjetaSeleccionada + ", Domicilio: " + domicilioSeleccionado);
+
+        // Aquí puedes añadir más código para realizar acciones con estos datos,
+        // como preparar datos para un formulario de pago, etc.
+    });
+$('.procesarPagoLink').click(function(e) {
+    e.preventDefault(); // Prevenir la acción por defecto del enlace
+    
+    // Remover la clase 'selected' de todos los elementos, y añadirla solo al actual clickeado
+    $('.card').removeClass('selected');
+    $(this).closest('.card').addClass('selected');
+    
+    // Almacenar los datos necesarios
+    idTarjetaSeleccionada = $(this).data('idtarjeta');
+    domicilioSeleccionado = $(this).data('domicilio');
+    console.log("ID de Tarjeta: " + idTarjetaSeleccionada + ", Domicilio: " + domicilioSeleccionado);
+
+    // Habilitar el botón de Realizar Pedido
+    $('#btn-comprar').prop('disabled', false);
+});
+
+$('#btn-comprar').click(function() {
+    if (idTarjetaSeleccionada && domicilioSeleccionado) {
+        // Realizar la acción para enviar los datos
+        $.ajax({
+            url: 'http://localhost/Proyecto_web/carrito/finT',
+            method: 'POST',
+            data: {
+                idTarjeta: idTarjetaSeleccionada,
+                domicilio: domicilioSeleccionado
+            },
+            success: function(response) {
+                window.location.href = 'http://localhost/Proyecto_web';
+            },
+            error: function() {
+                alert('Error al procesar el pedido. Por favor, intenta nuevamente.');
+            }
+        });
+    } else {
+        alert('Por favor, selecciona una tarjeta antes de realizar el pedido.');
+    }
+});
+
+>>>>>>> origin/NUEVA
 </script>
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/NUEVA
 </html>
