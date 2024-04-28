@@ -1,12 +1,17 @@
+var tableRoles;
+var divLoading = document.querySelector("#divLoading");
 $(document).ready(function(){
-    $('#tableRoles').DataTable({
+    tableRoles=$('#tableRoles').DataTable({
         "aProcessing":true,
         "aServerSide":true,
+        "language": {
+        	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+        },
         "ajax":{
             "url": ""+base_url+"/Roles/getRoles",
             "dataSrc":""
         },
-        "colums":[
+        "columns":[
             {"data":"idRol"},
             {"data":"nombreRol"},
             {"data":"descripcion"},
@@ -19,6 +24,66 @@ $(document).ready(function(){
         "order":[[0,"desc"]] 
 
     });
+    var formRol = document.querySelector("#formRol");
+    formRol.onsubmit = function(e) {
+        e.preventDefault();
+
+        var intIdRol = document.querySelector('#idRol').value;
+        var strNombre = document.querySelector('#txtNombre').value;
+        var strDescripcion = document.querySelector('#txtDescripcion').value;
+        var intStatus = document.querySelector('#listStatus').value;        
+        if(strNombre == '' || strDescripcion == '' || intStatus == '')
+        {
+            Swal.fire({
+                title: 'Atenicon',
+                text: "¡Datos faltantes!",
+                icon: 'succes',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok!'
+              })
+            return false;
+        }
+        divLoading.style.display = "flex";
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Roles/setRol'; 
+        var formData = new FormData(formRol);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function(){
+           if(request.readyState == 4 && request.status == 200){
+                
+                var objData = JSON.parse(request.responseText);
+                if(objData.status)
+                {
+                    $('#modalFormRol').modal("hide");
+                    formRol.reset();
+                    Swal.fire({
+                        title: 'Exito',
+                        text: "¡Datos cargados!",
+                        icon: 'succes',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      })
+                      
+                    tableRoles.ajax.reload();
+                    
+                }else{
+                    Swal.fire({
+                        title: 'Atenicon',
+                        text: "¡Error en la respuesta del servidor!",
+                        icon: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      })
+                }              
+            } 
+            divLoading.style.display = "none";
+            return false;
+        }
+
+        
+    }
+
 });
 
 function openModal(){

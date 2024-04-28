@@ -28,7 +28,7 @@
 
 					if($arrData[$i]['status'] == 1)
 					{
-						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+						$arrData[$i]['status'] = '<span class="badge badge-success text-black">Activo</span>';
 					}else{
 						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
 					}
@@ -37,7 +37,7 @@
 						//$btnView = '<button class="btn btn-secondary btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos"><i class="fas fa-key"></i></button>';
 						//$btnEdit = '<button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idrol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
 					
-						$btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idrol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
+						$btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idRol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
 					</div>';
 					
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
@@ -46,6 +46,27 @@
 			
 			die();
 		}
+		public function setRol(){
+			$intIdrol = intval($_POST['idRol']);
+			$strRol =  strClean($_POST['txtNombre']);
+			$strDescipcion = strClean($_POST['txtDescripcion']);
+			$intStatus = intval($_POST['listStatus']);
+			$request_rol = "";
+		
+				//Crear
+				
+					$request_rol = $this->model->insertRol($strRol, $strDescipcion,$intStatus);
+					$option = 1;
+			
+
+			if($request_rol > 0 )
+			{
+				$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+			}
+			echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+		die();
+	
 
 	}
+}
  ?>

@@ -17,7 +17,6 @@
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<?= base_url(); ?>usuarios"><i class="fa-regular fa-circle m-1"></i></i> Usuarios</a></li>
                 <li><a class="treeview-item" href="<?= base_url(); ?>roles"><i class="fa-regular fa-circle m-1"></i></i> Roles</a></li>
-                <li><a class="treeview-item" href="<?= base_url(); ?>permisos"><i class="fa-regular fa-circle m-1"></i> Permisos</a></li>
             </ul>
         </li>
         <li>

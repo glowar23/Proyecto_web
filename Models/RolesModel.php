@@ -32,5 +32,11 @@
 			$request = $this->select($sql);
 			return $request;
 		}
+		public function insertRol($nombre,$desc,$status){
+			$sql="INSERT INTO rol(nombreRol,descripcion,status) VALUES(?,?,?)";
+			$request=$this->insert($sql,array($nombre,$desc,$status));
+			return $request;
+
+		}
     }
 ?>
