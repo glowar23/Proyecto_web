@@ -4,17 +4,21 @@
     {
         private $conn; 
         
-        public function insertTransaccion(int $idUser, $total){
+        public function insertTransaccion(int $idUser, $total, $tarjeta,$domicilio){
             $this->conn =new Mysql();
             $sql="INSERT INTO `transaccion`(    
                 `total`,    
-                `usuarios_id`
+                `usuarios_id`,
+                `id_tarjeta`,
+                `id_domicilio`
             )
             VALUES(
                 ?,
+                ?,
+                ?,
                 ?
             )";
-            $result=$this->conn->insert($sql,array($total,$idUser));
+            $result=$this->conn->insert($sql,array($total,$idUser,$tarjeta,$domicilio));
             return $result;    
         }
         public function insertDetalleTransaccion(int $idProducto, $idTransaccion , $cantidad){

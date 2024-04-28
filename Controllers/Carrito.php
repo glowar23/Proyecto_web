@@ -29,7 +29,7 @@ class Carrito extends Controllers
 	}
 	public function finT()
 	{
-		$resultado1 = $this->insertTransaccion($_SESSION['idUser'], $_SESSION['pedido']['subtotal']);
+		$resultado1 = $this->insertTransaccion($_SESSION['idUser'], $_SESSION['pedido']['subtotal'],$_SESSION['idTarjeta'],$_SESSION['idDomicilio']);
 		if ($resultado1 != 0) {
 			foreach ($_SESSION['pedido']['productos'] as $p) {
 				$resultado2 = $this->insertDetalleTransaccion($p['idproductos'], intval($resultado1), $p['cantidad']);
@@ -164,7 +164,7 @@ class Carrito extends Controllers
 
 
 			// Devolver resultado
-			echo $result;
+			return $result;
 		} else {
 			http_response_code(405); // Método no permitido
 			echo "Método no permitido";
@@ -185,8 +185,8 @@ class Carrito extends Controllers
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Obtener los datos del formulario
 			$idUser = $_SESSION['idUser'];  // Asegúrate de recibir este dato si es necesario
-			$titular = $_POST['tarjeta']['nombreTitular'] ?? '';
-			$numero = $_POST['tarjeta']['numeroTarjeta'] ?? '';
+			$titular = $_POST['tarjeta']['titular'] ?? '';
+			$numero = $_POST['tarjeta']['numero'] ?? '';
 			$exp = $_POST['tarjeta']['expiracion'] ?? ''; //fecha de expiracion de la tarjeta
 			$cvv = $_POST['tarjeta']['cvv'] ?? '';
 
@@ -195,12 +195,11 @@ class Carrito extends Controllers
 				echo "-1"; // ´para verificar si están vacios
 				return;
 			}
-
 			// Intentar insertar los datos usando el método del trait
 			$result = $this->insertCard($idUser, $titular, $numero, $exp, $cvv);
 
 			// Devolver resultado
-			echo $result;
+			return $result;
 		} else {
 			http_response_code(405); // Método no permitido
 			echo "Método no permitido";

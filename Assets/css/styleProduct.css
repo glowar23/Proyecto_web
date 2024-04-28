@@ -220,3 +220,50 @@ cart-total h3{
   .card{
     border-color: black;
   }
+  .form-overlay1 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Gris translúcido */
+    z-index: 8; /* Menor que el formulario para que aparezca detrás */
+    cursor: pointer;
+}
+
+.form-popup1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+.form-container1 {
+    max-width: 300px;
+    padding: 20px;
+    background-color: white;
+}
+
+.btn1, .cancel1 {
+    background-color: #0B5ED7;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.btn1:hover, .cancel1:hover {
+    opacity: 1;
+}
+
+.cancel1 {
+    background-color: red;
+}
+
