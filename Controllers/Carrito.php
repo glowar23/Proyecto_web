@@ -171,11 +171,10 @@ class Carrito extends Controllers
 		}
 	}
 
-	public function seleccionarTarjeta($id_domicilio)
+	public function seleccionarTarjeta()
 	{
 		$data['page_title'] = 'Seleccionar Tarjeta';
 		$data['tarjetas'] = $this->getCards();
-		$data['domicilio'] = $id_domicilio;
 		#echo $id_domicilio;
 		$this->views->getView($this, "tarjeta", $data);
 
