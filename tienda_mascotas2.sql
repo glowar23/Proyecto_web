@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2024 a las 09:24:45
+-- Tiempo de generación: 28-04-2024 a las 20:35:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -22,8 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-CREATE database tienda_mascotas2;
-use tienda_mascotas2;
+
 --
 -- Estructura de tabla para la tabla `categoria`
 --
@@ -62,10 +61,9 @@ CREATE TABLE `detalles_transaccion` (
 --
 
 INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`) VALUES
-(2, 26, 1, 0),
-(3, 27, 1, 0),
-(3, 28, 1, 0),
-(3, 29, 1, 0);
+(2, 35, 1, 0),
+(2, 36, 1, 0),
+(2, 37, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -89,7 +87,10 @@ CREATE TABLE `domicilio` (
 --
 
 INSERT INTO `domicilio` (`idDomicilio`, `usuarios_id`, `calle`, `colonia`, `codigo_postal`, `numero_exterior`, `numero_interior`, `referencia`) VALUES
-(1, 8, 'del valle', 'sisi', 'sisi', 109, 20, 'una casota');
+(1, 8, 'del valle', 'sisi', 'sisi', 109, 20, 'una casota'),
+(11, 8, 'Michoacán', 'LAZARO CARDENA', '58570', 75, 0, 'una casota'),
+(12, 8, 'Pruebita street', 'Nuevo', '2222', 20, 0, 'tonaiiiiiig we are younngggg'),
+(13, 5, 'Calle del admin', 'Centro', '58000', 1, 0, 'Casa del admin apoco no');
 
 -- --------------------------------------------------------
 
@@ -258,7 +259,10 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id_tarjeta`, `titular`, `no_tarjeta`, `expiracion`, `cvv`, `id_usuarios`) VALUES
-(1, 'omar', '12361521', '05/2020', 123, 8);
+(1, 'omar', '12361521', '05/2020', 123, 8),
+(2, 'Omar Garcia Lara', '1234-1234-1235-1234', '05/2020', 40, 8),
+(3, 'ALANA LA RANA', '2020-0202-2323-2323', '05/2023', 40, 8),
+(4, 'Admin de la Tienda', '1234 1234 1234 1234', '02/2032', 40, 5);
 
 -- --------------------------------------------------------
 
@@ -271,29 +275,19 @@ CREATE TABLE `transaccion` (
   `fecha_hora` datetime DEFAULT current_timestamp(),
   `total` double DEFAULT NULL,
   `usuarios_id` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL DEFAULT 'Esperando Pago'
+  `status` varchar(50) NOT NULL DEFAULT 'Esperando Pago',
+  `id_tarjeta` int(11) DEFAULT NULL,
+  `id_domicilio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `transaccion`
 --
 
-INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`, `status`) VALUES
-(1, '2024-04-17 19:56:11', 749, 4, 'Esperando Pago'),
-(2, '2024-04-17 19:57:59', 749, 4, 'Esperando Pago'),
-(3, '2024-04-17 19:58:09', 749, 4, 'Esperando Pago'),
-(4, '2024-04-17 20:03:02', 749, 4, 'Esperando Pago'),
-(5, '2024-04-17 20:05:20', 749, 4, 'Esperando Pago'),
-(6, '2024-04-17 20:12:56', 749, 4, 'Esperando Pago'),
-(7, '2024-04-17 20:14:06', 300, 4, 'Esperando Pago'),
-(15, '2024-04-17 21:14:54', 300, 4, 'Esperando Pago'),
-(23, '2024-04-17 22:46:32', 650, 8, 'Esperando Pago'),
-(24, '2024-04-18 10:19:51', 650, 8, 'Esperando Pago'),
-(25, '2024-04-18 10:20:12', 749, 8, 'Esperando Pago'),
-(26, '2024-04-19 18:04:55', 650, 8, 'Esperando Pago'),
-(27, '2024-04-19 18:45:51', 99, 8, 'Esperando Pago'),
-(28, '2024-04-19 18:49:14', 99, 8, 'Esperando Pago'),
-(29, '2024-04-19 18:56:15', 99, 8, 'Esperando Pago');
+INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`, `status`, `id_tarjeta`, `id_domicilio`) VALUES
+(35, '2024-04-27 22:49:47', 650, 8, 'Esperando Pago', 2, 12),
+(36, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13),
+(37, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13);
 
 -- --------------------------------------------------------
 
@@ -317,9 +311,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`) VALUES
 (4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-17 19:23:28'),
-(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-10 20:12:19'),
+(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-28 10:49:47'),
 (7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06'),
-(8, 'aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-22 00:39:41');
+(8, 'aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-27 22:07:22');
 
 --
 -- Índices para tablas volcadas
@@ -436,7 +430,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `domicilio`
 --
 ALTER TABLE `domicilio`
-  MODIFY `idDomicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idDomicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
@@ -466,13 +460,13 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
