@@ -205,6 +205,7 @@ $tarjetas = $data['tarjetas'];
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--Cargar el formulario de manera bonita-->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll('.card');
@@ -227,7 +228,7 @@ $tarjetas = $data['tarjetas'];
 
 </script>
 
-<!-- Fscript de las funciones del formulario -->
+<!-- script de las funciones del formulario -->
 <script>
   $(document).ready(function () {
     $('#toggleFormButton, #formOverlay1').click(function () {
