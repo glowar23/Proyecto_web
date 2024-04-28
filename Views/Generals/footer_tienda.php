@@ -49,6 +49,7 @@
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="<?=media()?>js/jquery-1.11.0.min.js"></script>
     <script src="<?=media().'js/plugins.js'?>"></script>
   <script src="<?=media().'js/script.js'?>"></script>
@@ -70,7 +71,19 @@ $(document).ready(function(){
             success: function(response){ // Manejar la respuesta del servidor
                 // Mostrar la respuesta 
                 $("#car").html(response.lentgth);
-                location.href = "<?=base_url()?>";
+                Swal.fire({
+                        title: 'Listo',
+                        text: "¡Articulo agragado!",
+                        icon: 'succes',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                            document.querySelector("#car").innerHTML=response;
+                            console.log(response);
+                            $("#car").text(response.lentgth);
+                          }
+                        })
             }
         });
     });
@@ -83,9 +96,20 @@ $(document).ready(function(){
             data: {myData: productId}, // Datos a enviar
             success: function(response){ // Manejar la respuesta del servidor
                 // Mostrar la respuesta en el elemento HTML correspondiente
-                console.log(response);
-                $("#car").html(response.lentgth);
-                location.href = "<?=base_url()?>";
+                Swal.fire({
+                        title: 'Listo',
+                        text: "¡Articulo agragado!",
+                        icon: 'succes',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                            document.querySelector("#car").innerHTML=response;
+                            console.log(response);
+                            $("#car").text(response.lentgth);
+                          }
+                        })
+                
             }
         });
     });

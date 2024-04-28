@@ -80,7 +80,6 @@ class Carrito extends Controllers
 		header('Location:'.base_url().'carrito');
 	}
 	public function agragarCarrito(){
-		session_start();
 		if (!isset($_SESSION['arrIdProductos'])) {
 			// Si no existe, inicializarla como un arreglo vacío
 			$_SESSION['arrIdProductos'] = [];
@@ -97,6 +96,7 @@ class Carrito extends Controllers
 			}
 		}
 		$_SESSION['arrIdProductos'] = $itemsAgrupados;
+		echo json_encode(count($_SESSION['arrIdProductos']));
 
 	}
 	public function procesarPago()
