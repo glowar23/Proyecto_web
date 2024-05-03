@@ -36,7 +36,7 @@ class Carrito extends Controllers
 			}
 		}
 		$_SESSION['arrIdProductos'] = array();
-		header("Location:" . base_url());
+		//header("Location:" . base_url());
 
 	}
 	public function eliminarProducto($id){

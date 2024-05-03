@@ -96,3 +96,99 @@ function openModal(){
     document.querySelector("#formRol").reset();
 	$('#modalFormRol').modal('show');
 }
+function fntEditRol(){
+    var btnEditRol = document.querySelectorAll(".btnEditRol");
+    btnEditRol.forEach(function(btnEditRol) {
+        btnEditRol.addEventListener('click', function(){
+
+            document.querySelector('#titleModal').innerHTML ="Actualizar Rol";
+            document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnText').innerHTML ="Actualizar";
+
+            var idrol = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl  = base_url+'/Roles/getRol/'+idrol;
+            request.open("GET",ajaxUrl ,true);
+            request.send();
+
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.status)
+                    {
+                        
+                        document.querySelector("#idRol").value = objData.data.idRol;
+                        document.querySelector("#txtNombre").value = objData.data.nombreRol;
+                        document.querySelector("#txtDescripcion").value = objData.data.descripcion;
+
+                        if(objData.data.status == 1)
+                        {
+                            var optionSelect = '<option value="1" selected class="notBlock">Activo</option>';
+                        }else{
+                            var optionSelect = '<option value="2" selected class="notBlock">Inactivo</option>';
+                        }
+                        var htmlSelect = `${optionSelect}
+                                          <option value="1">Activo</option>
+                                          <option value="2">Inactivo</option>
+                                        `;
+                        document.querySelector("#listStatus").innerHTML = htmlSelect;
+                        console.log(objData.data.idRol);
+                        $('#modalFormRol').modal('show');
+                    }else{
+                        swal("Error", objData.msg , "error");
+                    }
+                }
+            }
+            
+        });
+    });
+}
+function fntDelRol(){
+    var btnDelRol = document.querySelectorAll(".btnDelRol");
+    btnDelRol.forEach(function(btnDelRol) {
+        btnDelRol.addEventListener('click', function(){
+            var idrol = this.getAttribute("rl");
+            swal({
+                title: "Eliminar Rol",
+                text: "¿Realmente quiere eliminar el Rol?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function(isConfirm) {
+
+                if (isConfirm)
+                {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url+'/Roles/delRol/';
+                    var strData = "idrol="+idrol;
+                    request.open("POST",ajaxUrl,true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
+                    request.onreadystatechange = function(){
+                        if(request.readyState == 4 && request.status == 200){
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.status)
+                            {
+                                swal("Eliminar!", objData.msg , "success");
+                                tableRoles.api().ajax.reload(function(){
+                                    fntEditRol();
+                                    fntDelRol();
+                                    fntPermisos();
+                                });
+                            }else{
+                                swal("Atención!", objData.msg , "error");
+                            }
+                        }
+                    }
+                }
+
+            });
+
+        });
+    });
+}

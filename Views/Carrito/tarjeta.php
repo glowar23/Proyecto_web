@@ -140,7 +140,7 @@ $tarjetas = $data['tarjetas'];
               </li>
             </ul>
 
-            <a href="<?= base_url() . 'carrito/finT' ?>" type="submit" class="btn btn-primary btn-lg btn-block"
+            <a type="submit" class="btn btn-primary btn-lg btn-block"
               id="btn-comprar">
               Realizar Pedido
             </a>
@@ -201,6 +201,7 @@ $tarjetas = $data['tarjetas'];
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -299,13 +300,26 @@ $tarjetas = $data['tarjetas'];
       $.ajax({
         url: 'http://localhost/Proyecto_web/carrito/finT',
         method: 'POST',
+        
         data: {
           idTarjeta: idTarjetaSeleccionada,
           domicilio: domicilioSeleccionado
         },
         success: function (response) {
-          alert("Se realizó la operación con éxito!");
-          window.location.href = 'http://localhost/Proyecto_web';
+          console.log(response);
+          Swal.fire({
+                        title: 'Listo',
+                        text: "¡Compra generada!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.location.href ='http://localhost/Proyecto_web';
+                          }
+                        })
+          
+
         },
         error: function () {
           alert('Error al procesar el pedido. Por favor, intenta nuevamente.');

@@ -74,7 +74,7 @@ $(document).ready(function(){
                 Swal.fire({
                         title: 'Listo',
                         text: "¡Articulo agragado!",
-                        icon: 'succes',
+                        icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Ok!'
                       }).then((result) => {
