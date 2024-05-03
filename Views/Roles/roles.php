@@ -1,6 +1,7 @@
 <?php require_once('Views/Generals/header_admin.php');
   getModal('modalRoles',$data);
 ?>
+<div id="contentAjax"></div> 
   <main class="app-content">
       <div class="app-title">
         <div>
