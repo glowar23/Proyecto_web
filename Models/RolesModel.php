@@ -60,11 +60,11 @@
 		public function deleteRol(int $idrol)
 		{
 			$this->intIdrol = $idrol;
-			$sql = "SELECT * FROM persona WHERE rolid = $this->intIdrol";
+			$sql = "SELECT * FROM users WHERE idRol = $this->intIdrol";
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
-				$sql = "UPDATE rol SET status = ? WHERE idrol = $this->intIdrol ";
+				$sql = "UPDATE rol SET status = ? WHERE idRol = $this->intIdrol ";
 				$arrData = array(0);
 				$request = $this->update($sql,$arrData);
 				if($request)

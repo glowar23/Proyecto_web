@@ -1,4 +1,4 @@
-var tableRoles;
+    var tableRoles;
 var divLoading = document.querySelector("#divLoading");
 $(document).ready(function(){
     tableRoles=$('#tableRoles').DataTable({
@@ -37,7 +37,7 @@ $(document).ready(function(){
             Swal.fire({
                 title: 'Atenicon',
                 text: "¡Datos faltantes!",
-                icon: 'succes',
+                icon: 'success',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Ok!'
               })
@@ -60,7 +60,7 @@ $(document).ready(function(){
                     Swal.fire({
                         title: 'Exito',
                         text: "¡Datos cargados!",
-                        icon: 'succes',
+                        icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Ok!'
                       })
@@ -146,9 +146,9 @@ function fntEditRol(){
     });
 }
 window.addEventListener('load', function() {
-    fntEditRol();
-    fntDelRol();
-    fntPermisos();
+    // fntEditRol();
+    // fntDelRol();
+    // fntPermisos();
 }, false);
 function fntDelRol(){
     var btnDelRol = document.querySelectorAll(".btnDelRol");
@@ -180,11 +180,12 @@ function fntDelRol(){
                             if(objData.status)
                             {
                                 swal("Eliminar!", objData.msg , "success");
-                                tableRoles.api().ajax.reload(function(){
+                                tableRoles.ajax.reload(function(){
                                     fntEditRol();
                                     fntDelRol();
                                     fntPermisos();
                                 });
+                                
                             }else{
                                 swal("Atención!", objData.msg , "error");
                             }
@@ -197,26 +198,93 @@ function fntDelRol(){
         });
     });
 }
-function fntPermisos(){
-    var btnPermisosRol = document.querySelectorAll(".btnPermisosRol");
-    btnPermisosRol.forEach(function(btnPermisosRol) {
-        btnPermisosRol.addEventListener('click', function(){
-
-            var idrol = this.getAttribute("rl");
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Permisos/getPermisosRol/'+idrol;
-            request.open("GET",ajaxUrl,true);
-            request.send();
-
+function fntDelRol(idrol){
+    var idrol = idrol;
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Lógica para eliminar el ítem
+          // Por ejemplo, llamar a una función de eliminación o enviar una solicitud AJAX
+          var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Roles/delRol/';
+            var strData = "idrol="+idrol;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
             request.onreadystatechange = function(){
                 if(request.readyState == 4 && request.status == 200){
-                    document.querySelector('#contentAjax').innerHTML = request.responseText;
-                    $('.modalPermisos').modal('show');
-                    document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.status)
+                    {
+                        Swal.fire("Eliminar!", objData.msg , "success");
+                        tableRoles.ajax.reload();
+                    }else{
+                        Swal.fire("Atención!", objData.msg , "error");
+                    }
+                }
+            }      
+        }
+      })
+}
+function fntPermisos(idrol){
+    var btnPermisosRol = document.querySelectorAll(".btnPermisosRol");
+    var idrol = idrol;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Permisos/getPermisosRol/'+idrol;
+    request.open("GET",ajaxUrl,true);
+    request.send();
+
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            document.querySelector('#contentAjax').innerHTML = request.responseText;
+            $('.modalPermisos').modal('show');
+            document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
+        }
+    }
+    function fntSavePermisos(evnet){
+        evnet.preventDefault();
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Permisos/setPermisos'; 
+        var formElement = document.querySelector("#formPermisos");
+        var formData = new FormData(formElement);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+    
+        request.onreadystatechange = function(){
+            if(request.readyState == 4 && request.status == 200){
+                var objData = JSON.parse(request.responseText);
+                if(objData.status)
+                {
+                    Swal.fire({
+                        title: 'Exito',
+                        text: "¡Permisos actualizados!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      })
+                }else{
+                    Swal.fire({
+                        title: 'Error',
+                        text: "¡Datos cargados!",
+                        icon: 'warning',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok!'
+                      })
                 }
             }
+        }
+        
+    }
 
 
-        });
-    });
+        
+    
 }

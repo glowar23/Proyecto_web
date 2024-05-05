@@ -139,11 +139,11 @@
               if(isset($_SESSION['login']))
               { ?>
                 <li><p class="dropdown-item-text title">Bienvenido <?=$_SESSION['name']?></p></li>  
-                <?php if ($_SESSION['tipoUsuario'] === 'Admin'){echo '<li><a class="dropdown-item" href="'.base_url().'dashboard">Administrar Sitio</a></li>';
+                <?php if ($_SESSION['userData']['idRol'] === 3){echo '<li><a class="dropdown-item" href="'.base_url().'dashboard">Administrar Sitio</a></li>';
                 }else {
                 ?>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Mis pedidos</a></li>
+                <li><a class="dropdown-item" href="<?=base_url().'pedidos'?>">Mis pedidos</a></li>
                 <?php }?>
                 <li><hr class="dropdown-divider"></li>
                 <a href="<?=base_url().'logout'?>" class="dropdown-item"> Logout</a>

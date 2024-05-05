@@ -24,17 +24,17 @@
             return $result;    
         }
 
-        public function selectDomicilios(){
+        public function selectDomicilios($idU=null){
             $this->conn =new Mysql();
-            $idUser = $_SESSION['idUser'];
+            $idUser = $idU==null?$_SESSION['idUser']:$idU;
             $sql="SELECT * FROM `domicilio` WHERE `usuarios_id` = $idUser";
             $result=$this->conn->select_all($sql);
             
             return $result;    
         }
-        public function selectDomicilio($id_domicilio){
+        public function selectDomicilio($id_domicilio,$idU=null){
             $this->conn =new Mysql();
-            $idUser = $_SESSION['idUser'];
+            $idUser = $idU==null?$_SESSION['idUser']:$idU;
             $sql="SELECT * FROM domicilio WHERE idDomicilio = $id_domicilio AND usuarios_id = $idUser";
             $result=$this->conn->select($sql);
             

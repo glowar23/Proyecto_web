@@ -4,7 +4,7 @@
 		public function __construct()
 		{
 			session_start();
-			if($_SESSION['tipoUsuario']!='Admin')
+			if($_SESSION['userData']['idRol'] != 3)
 			{
 				header('Location: '.base_url());
 				die();

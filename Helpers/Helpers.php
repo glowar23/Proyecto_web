@@ -10,6 +10,26 @@
     {
         return BASE_URL."Assets/";
     }
+    function headerAdmin($data="")
+    {
+        $view_header = "Views/Generals/header_admin.php";
+        require_once ($view_header);
+    }
+    function footerAdmin($data="")
+    {
+        $view_footer = "Views/Generals/footer_admin.php";
+        require_once ($view_footer);        
+    }
+    function headerTienda($data="")
+    {
+        $view_header = "Views/Generals/header_tienda.php";
+        require_once ($view_header);
+    }
+    function footerTienda($data="")
+    {
+        $view_footer = "Views/Generals/footer_tienda.php";
+        require_once ($view_footer);        
+    }
     
 	//Muestra información formateada
 	function dep($data)
@@ -82,6 +102,13 @@
         $cantidad = number_format($cantidad,2,SPD,SPM);
         return $cantidad;
     }
+    function getFile(string $url, $data)
+    {
+        ob_start();
+        require_once("Views/{$url}.php");
+        $file = ob_get_clean();
+        return $file;        
+    }
     function sessionUser(int $idpersona){
         require_once ("Models/LoginModel.php");
         $objLogin = new LoginModel();
@@ -93,6 +120,21 @@
         $view_modal = "Views/Generals/Modals/{$nameModal}.php";
         require_once $view_modal;        
     }
-    
+    function getPermisos(int $idmodulo){
+        require_once ("Models/PermisosModel.php");
+        $objPermisos = new PermisosModel();
+        if(!empty($_SESSION['userData'])){
+            $idrol = $_SESSION['userData']['idRol'];
+            $arrPermisos = $objPermisos->permisosModulo($idrol);
+            $permisos = '';
+            $permisosMod = '';
+            if(count($arrPermisos) > 0 ){
+                $permisos = $arrPermisos;
+                $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+            }
+            $_SESSION['permisos'] = $permisos;
+            $_SESSION['permisosMod'] = $permisosMod;
+        }
+    }
 
  ?>

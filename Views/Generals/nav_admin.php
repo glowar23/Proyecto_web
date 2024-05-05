@@ -20,12 +20,6 @@
             </ul>
         </li>
         <li>
-            <a class="app-menu__item" href="<?= base_url(); ?>/clientes">
-                <i class="app-menu__icon fa fa-user" aria-hidden="true"></i>
-                <span class="app-menu__label">Clientes</span>
-            </a>
-        </li>
-        <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/pedidos">
                 <i class="app-menu__icon fa fa-shopping-cart" aria-hidden="true"></i>
                 <span class="app-menu__label">Pedidos</span>

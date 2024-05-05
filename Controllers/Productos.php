@@ -4,6 +4,7 @@
 		public function __construct()
 		{
 			parent::__construct();
+			session_start();
 		}
 
 		public function productos()
@@ -12,7 +13,7 @@
 			$data['page_tag'] = "Productos";
 			$data['page_title'] = "Productos en venta";
 			$data['page_name'] = "productos";
-			$this->views->getView($this,"productos",$data);
+			if($_SESSION['userData']['idRol']==3)$this->views->getView($this,"productosAdmin",$data);
 		}
 
 	}
