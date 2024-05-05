@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2024 a las 20:35:18
+-- Tiempo de generación: 05-05-2024 a las 07:29:17
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.1.25
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -16,8 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-CREATE database tienda_mascotas2;
-use tienda_mascotas2;
+
 --
 -- Base de datos: `tienda_mascotas2`
 --
@@ -62,9 +61,24 @@ CREATE TABLE `detalles_transaccion` (
 --
 
 INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`) VALUES
+(1, 38, 2, 0),
+(1, 39, 2, 0),
+(1, 42, 1, 0),
+(1, 44, 1, 0),
 (2, 35, 1, 0),
 (2, 36, 1, 0),
-(2, 37, 1, 0);
+(2, 37, 1, 0),
+(2, 42, 1, 0),
+(2, 44, 1, 0),
+(2, 45, 2, 0),
+(3, 40, 1, 0),
+(3, 41, 1, 0),
+(3, 43, 1, 0),
+(3, 44, 1, 0),
+(3, 45, 2, 0),
+(4, 44, 1, 0),
+(5, 44, 1, 0),
+(6, 44, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -91,7 +105,8 @@ INSERT INTO `domicilio` (`idDomicilio`, `usuarios_id`, `calle`, `colonia`, `codi
 (1, 8, 'del valle', 'sisi', 'sisi', 109, 20, 'una casota'),
 (11, 8, 'Michoacán', 'LAZARO CARDENA', '58570', 75, 0, 'una casota'),
 (12, 8, 'Pruebita street', 'Nuevo', '2222', 20, 0, 'tonaiiiiiig we are younngggg'),
-(13, 5, 'Calle del admin', 'Centro', '58000', 1, 0, 'Casa del admin apoco no');
+(13, 5, 'Calle del admin', 'Centro', '58000', 1, 0, 'Casa del admin apoco no'),
+(14, 4, 'asfdasfsa', 'fsadfas', '234234', 23, 0, 'fsdfasfda');
 
 -- --------------------------------------------------------
 
@@ -149,6 +164,18 @@ CREATE TABLE `modulo` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `modulo`
+--
+
+INSERT INTO `modulo` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
+(1, 'Dashboard', 'Dashboard', 1),
+(2, 'Usuarios', 'Usuarios del sistema', 1),
+(3, 'Clientes', 'Clientes de tienda', 1),
+(4, 'Productos', 'Todos los productos', 1),
+(5, 'Pedidos', 'Pedidos', 1),
+(6, 'Caterogías', 'Caterogías Productos', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -177,6 +204,48 @@ CREATE TABLE `permisos` (
   `u` int(11) NOT NULL DEFAULT 0,
   `d` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`idpermiso`, `idRol`, `moduloid`, `r`, `w`, `u`, `d`) VALUES
+(49, 7, 1, 0, 0, 0, 0),
+(50, 7, 2, 0, 0, 0, 0),
+(51, 7, 3, 0, 0, 0, 0),
+(52, 7, 4, 1, 1, 1, 1),
+(53, 7, 5, 0, 0, 0, 0),
+(54, 7, 6, 0, 0, 0, 0),
+(55, 6, 1, 0, 0, 0, 0),
+(56, 6, 2, 0, 0, 0, 0),
+(57, 6, 3, 1, 0, 0, 0),
+(58, 6, 4, 1, 0, 0, 1),
+(59, 6, 5, 0, 0, 0, 0),
+(60, 6, 6, 0, 0, 0, 0),
+(157, 4, 1, 0, 0, 0, 0),
+(158, 4, 2, 0, 0, 0, 0),
+(159, 4, 3, 0, 0, 0, 0),
+(160, 4, 4, 1, 0, 0, 0),
+(161, 4, 5, 1, 1, 1, 0),
+(162, 4, 6, 1, 0, 0, 0),
+(210, 11, 1, 0, 0, 0, 0),
+(211, 11, 2, 0, 0, 0, 0),
+(212, 11, 3, 0, 0, 0, 0),
+(213, 11, 4, 1, 1, 1, 1),
+(214, 11, 5, 0, 0, 0, 0),
+(215, 11, 6, 0, 0, 0, 0),
+(216, 5, 1, 0, 0, 0, 0),
+(217, 5, 2, 0, 0, 0, 0),
+(218, 5, 3, 1, 1, 0, 0),
+(219, 5, 4, 0, 0, 0, 0),
+(220, 5, 5, 1, 0, 1, 0),
+(221, 5, 6, 0, 0, 0, 0),
+(228, 3, 1, 1, 1, 1, 1),
+(229, 3, 2, 1, 1, 1, 1),
+(230, 3, 3, 1, 1, 1, 1),
+(231, 3, 4, 1, 1, 1, 1),
+(232, 3, 5, 1, 1, 1, 1),
+(233, 3, 6, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +307,14 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcion`, `status`) VALUES
 (3, 'Admin', 'Libre de modifiar todo el sistema', 1),
-(4, 'Cliente', 'Cliente en general', 1);
+(4, 'Cliente', 'Cliente en general', 1),
+(5, 'Supervisor', 'Supervisa a los empleados', 1),
+(6, 'Adminrante', 'admira', 0),
+(7, 'Taquero', 'hace tacos', 0),
+(8, 'Ejemplo 6', 'fsafwsdfa', 0),
+(9, 'Ejemplo 6', 'sdfasfd', 0),
+(10, 'Ejemplo 6', 'gsdfgsdf', 0),
+(11, 'Taquero', 'Hace tacos', 1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +339,8 @@ INSERT INTO `tarjetas` (`id_tarjeta`, `titular`, `no_tarjeta`, `expiracion`, `cv
 (1, 'omar', '12361521', '05/2020', 123, 8),
 (2, 'Omar Garcia Lara', '1234-1234-1235-1234', '05/2020', 40, 8),
 (3, 'ALANA LA RANA', '2020-0202-2323-2323', '05/2023', 40, 8),
-(4, 'Admin de la Tienda', '1234 1234 1234 1234', '02/2032', 40, 5);
+(4, 'Admin de la Tienda', '1234 1234 1234 1234', '02/2032', 40, 5),
+(5, 'fasdsdf', '1234 1234 1233 1231', '1231215', 40, 4);
 
 -- --------------------------------------------------------
 
@@ -288,7 +365,15 @@ CREATE TABLE `transaccion` (
 INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`, `status`, `id_tarjeta`, `id_domicilio`) VALUES
 (35, '2024-04-27 22:49:47', 650, 8, 'Esperando Pago', 2, 12),
 (36, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13),
-(37, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13);
+(37, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13),
+(38, '2024-04-28 12:49:21', 1398, 4, 'Esperando pago', 5, 14),
+(39, '2024-04-28 12:49:21', 1398, 4, 'Esperando Pago', 5, 14),
+(40, '2024-04-28 12:52:05', 99, 4, 'Esperando Pago', 5, 14),
+(41, '2024-04-28 12:52:05', 99, 4, 'Completo', 5, 14),
+(42, '2024-05-02 19:38:25', 1349, 4, 'Esperando Pago', 5, 14),
+(43, '2024-05-04 17:53:22', 99, 4, 'Esperando Pago', 5, 14),
+(44, '2024-05-04 20:32:03', 2498, 4, 'Entregado', 5, 14),
+(45, '2024-05-04 20:33:05', 1498, 4, 'Esperando Pago', 5, 14);
 
 -- --------------------------------------------------------
 
@@ -303,18 +388,24 @@ CREATE TABLE `users` (
   `tipo_usuario` varchar(45) NOT NULL DEFAULT 'Cliente',
   `email` varchar(45) NOT NULL,
   `idRol` int(11) NOT NULL DEFAULT 4,
-  `last_login` datetime DEFAULT current_timestamp()
+  `last_login` datetime DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`) VALUES
-(4, 'Edgar Josué ', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-04-17 19:23:28'),
-(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-04-28 10:49:47'),
-(7, 'Horacio', '1234', 'Cliente', 'horacio@gmial.com', 4, '2024-04-10 15:22:06'),
-(8, 'aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-27 22:07:22');
+INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`, `status`) VALUES
+(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-04 21:06:29', 1),
+(4, 'Edgar Josué', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-05-04 21:02:53', 1),
+(5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-05-03 18:58:54', 1),
+(7, 'Horacio', '1234', 'Cliente', 'horacio0@gmial.com', 4, '2024-04-10 15:22:06', 0),
+(8, 'Aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-27 22:07:22', 1),
+(9, 'Horacion', '2452142efe30f19350b3a64e7259aa603c755851b1cd3', 'Cliente', 'nose23@gmail.com', 5, '2024-05-04 11:31:16', 0),
+(10, 'Mauricio', 'd348358535401c8b29c17d192bb93cd6d76fae5cca2be', 'Cliente', 'nose2333@gmail.com', 11, '2024-05-04 11:32:53', 0),
+(11, 'José', '42c4c03f580715890c43672b2d49deffb899a47dd7dee', 'Cliente', 'eagdgsa@gmail.com', 4, '2024-05-04 11:33:17', 0),
+(12, 'Omarcin', 'e9439300ab082b03d8c34de28b637f1e18e3f9ee826f2', 'Cliente', 'ofsadf@gmail.com', 3, '2024-05-04 14:12:45', 0);
 
 --
 -- Índices para tablas volcadas
@@ -431,7 +522,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `domicilio`
 --
 ALTER TABLE `domicilio`
-  MODIFY `idDomicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idDomicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
@@ -443,7 +534,13 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `idmodulo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idmodulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -455,25 +552,25 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
