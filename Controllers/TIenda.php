@@ -52,6 +52,25 @@
 			}
 
         }
+		public function producto($params){
+			if(empty($params)){
+				header("Location:".base_url());
+			}else{
+				$arrParams = explode(",",$params);
+				$idproducto = intval($arrParams[0]);
+				$ruta = strClean($arrParams[1]);
+				$infoProducto = $this->getProductoT($idproducto,$ruta);
+				if(empty($infoProducto)){
+					header("Location:".base_url());
+				}
+				$data['page_tag'] = NOMBRE_EMPESA." - ".$infoProducto['nombre'];
+				$data['page_title'] = $infoProducto['nombre'];
+				$data['page_name'] = "producto";
+				$data['producto'] = $infoProducto;
+				$data['productos'] = $this->getProductosRandom($infoProducto['categoriaid'],8,"r");
+				$this->views->getView($this,"producto",$data);
+			}
+		}
        
 
 	}

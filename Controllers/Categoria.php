@@ -59,6 +59,19 @@
 			}
 			die();
 		}
+		public function getSelectCategorias(){
+			$htmlOptions = "";
+			$arrData = $this->model->selectCategorias();
+			if(count($arrData) > 0 ){
+				for ($i=0; $i < count($arrData); $i++) {
+					if($arrData[$i]['status'] == 1 ){
+					$htmlOptions .= '<option value="'.$arrData[$i]['idcategoria'].'">'.$arrData[$i]['nombre'].'</option>';
+					}
+				}
+			}
+			echo $htmlOptions;
+			die();
+		}
         public function setCategoria(){
 			if($_POST){
 				if(empty($_POST['txtNombre']) ||  empty($_POST['listStatus']) )
