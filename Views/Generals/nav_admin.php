@@ -36,7 +36,7 @@
                 <li><a class="treeview-item" href="<?= base_url(); ?>/productos"><i class="icon fa fa-circle-o"></i> Productos</a></li>
                 
                 
-                <li><a class="treeview-item" href="<?= base_url(); ?>/categorias"><i class="icon fa fa-circle-o"></i> Categorías</a></li>
+                <li><a class="treeview-item" href="<?= base_url(); ?>/categoria"><i class="icon fa fa-circle-o"></i> Categorías</a></li>
                 
             </ul>
         </li>
