@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2024 a las 07:29:17
+-- Tiempo de generación: 06-05-2024 a las 20:53:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tienda_mascotas2`
 --
+CREATE DATABASE IF NOT EXISTS `tienda_mascotas2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `tienda_mascotas2`;
 
 -- --------------------------------------------------------
 
@@ -30,6 +32,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
+  `status` int(11) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -37,11 +40,11 @@ CREATE TABLE `categoria` (
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`idcategoria`, `nombre`, `parent_id`) VALUES
-(1, 'Gatos', 0),
-(2, 'Perros', 0),
-(3, 'Pajaros', 0),
-(4, 'Peces', 0);
+INSERT INTO `categoria` (`idcategoria`, `nombre`, `status`, `parent_id`) VALUES
+(1, 'Gatos', 1, 0),
+(2, 'Perros', 1, 0),
+(3, 'Pajaros', 1, 0),
+(4, 'Pescados', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -240,12 +243,12 @@ INSERT INTO `permisos` (`idpermiso`, `idRol`, `moduloid`, `r`, `w`, `u`, `d`) VA
 (219, 5, 4, 0, 0, 0, 0),
 (220, 5, 5, 1, 0, 1, 0),
 (221, 5, 6, 0, 0, 0, 0),
-(228, 3, 1, 1, 1, 1, 1),
-(229, 3, 2, 1, 1, 1, 1),
-(230, 3, 3, 1, 1, 1, 1),
-(231, 3, 4, 1, 1, 1, 1),
-(232, 3, 5, 1, 1, 1, 1),
-(233, 3, 6, 1, 1, 1, 1);
+(264, 3, 1, 1, 1, 1, 1),
+(265, 3, 2, 1, 1, 1, 1),
+(266, 3, 3, 1, 1, 1, 1),
+(267, 3, 4, 1, 1, 1, 1),
+(268, 3, 5, 1, 1, 1, 1),
+(269, 3, 6, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -260,6 +263,8 @@ CREATE TABLE `productos` (
   `precio` double DEFAULT NULL,
   `SKU` varchar(45) DEFAULT NULL,
   `stock` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `ruta` varchar(255) NOT NULL,
   `proveedores_idproveedores` int(11) DEFAULT NULL,
   `categoria_idcategoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -268,13 +273,13 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`idproductos`, `nombre_producto`, `Descripcion`, `precio`, `SKU`, `stock`, `proveedores_idproveedores`, `categoria_idcategoria`) VALUES
-(1, 'Croquetas Felix', NULL, 699, 'ABCDASDR14', 24, NULL, 1),
-(2, 'Croquetas Pedigree', NULL, 650, 'ABHDASDR14', 20, NULL, 2),
-(3, 'Hueso para perro', NULL, 99, 'BBCDASDR14', 20, NULL, 2),
-(4, 'Rascador para gato', NULL, 750, 'ABCDAHDR14', 200, NULL, 1),
-(5, 'Alimento para Ave Prestige', NULL, 150, 'A2CDASDR14', 200, NULL, 3),
-(6, 'Cepillo para gato', NULL, 150, 'ABVDSG12', 100, NULL, 1);
+INSERT INTO `productos` (`idproductos`, `nombre_producto`, `Descripcion`, `precio`, `SKU`, `stock`, `status`, `ruta`, `proveedores_idproveedores`, `categoria_idcategoria`) VALUES
+(1, 'Croquetas Felix', NULL, 699, 'ABCDASDR14', 24, 1, '', NULL, 1),
+(2, 'Croquetas Pedigree', NULL, 650, 'ABHDASDR14', 20, 1, '', NULL, 2),
+(3, 'Hueso para perro', NULL, 99, 'BBCDASDR14', 20, 1, '', NULL, 2),
+(4, 'Rascador para gato', NULL, 750, 'ABCDAHDR14', 200, 1, '', NULL, 1),
+(5, 'Alimento para Ave Prestige', NULL, 150, 'A2CDASDR14', 200, 1, '', NULL, 3),
+(6, 'Cepillo para gato', NULL, 150, 'ABVDSG12', 100, 1, '', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -371,9 +376,9 @@ INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`
 (40, '2024-04-28 12:52:05', 99, 4, 'Esperando Pago', 5, 14),
 (41, '2024-04-28 12:52:05', 99, 4, 'Completo', 5, 14),
 (42, '2024-05-02 19:38:25', 1349, 4, 'Esperando Pago', 5, 14),
-(43, '2024-05-04 17:53:22', 99, 4, 'Esperando Pago', 5, 14),
+(43, '2024-05-04 17:53:22', 99, 4, 'Aprobado', 5, 14),
 (44, '2024-05-04 20:32:03', 2498, 4, 'Entregado', 5, 14),
-(45, '2024-05-04 20:33:05', 1498, 4, 'Esperando Pago', 5, 14);
+(45, '2024-05-04 20:33:05', 1498, 4, 'Aprobado', 5, 14);
 
 -- --------------------------------------------------------
 
@@ -397,7 +402,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`, `status`) VALUES
-(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-04 21:06:29', 1),
+(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-06 10:28:08', 1),
 (4, 'Edgar Josué', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-05-04 21:02:53', 1),
 (5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-05-03 18:58:54', 1),
 (7, 'Horacio', '1234', 'Cliente', 'horacio0@gmial.com', 4, '2024-04-10 15:22:06', 0),
@@ -540,7 +545,7 @@ ALTER TABLE `modulo`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
