@@ -238,3 +238,45 @@ function fntInputFile(){
         });
     });
 }
+function fntViewInfo(idProducto){
+    let request = (window.XMLHttpRequest) ? 
+                    new XMLHttpRequest() : 
+                    new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto;
+    request.open("GET",ajaxUrl,true);
+    request.send();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                let htmlImage = "";
+                let objProducto = objData.data;
+                let estadoProducto = objProducto.status == 1 ? 
+                '<span class="badge badge-success">Activo</span>' : 
+                '<span class="badge badge-danger">Inactivo</span>';
+
+                document.querySelector("#celCodigo").innerHTML = objProducto.SKU;
+                document.querySelector("#celNombre").innerHTML = objProducto.nombre_producto;
+                document.querySelector("#celPrecio").innerHTML = objProducto.precio;
+                document.querySelector("#celStock").innerHTML = objProducto.stock;
+                document.querySelector("#celCategoria").innerHTML = objProducto.categoria;
+                document.querySelector("#celStatus").innerHTML = estadoProducto;
+                document.querySelector("#celDescripcion").innerHTML = objProducto.descripcion;
+
+                if(objProducto.images.length > 0){
+                    let objProductos = objProducto.images;
+                    for (let p = 0; p < objProductos.length; p++) {
+                        htmlImage +=`<img src="${objProductos[p].url_image}" style="height:120px"></img>`;
+                    }
+                }
+                document.querySelector("#celFotos").innerHTML = htmlImage;
+                $('#modalViewProducto').modal('show');
+
+            }else{
+                Swal.fire("Error", objData.msg , "error");
+            }
+        }
+    } 
+}
+
