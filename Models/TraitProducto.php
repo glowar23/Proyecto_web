@@ -33,6 +33,25 @@
             return $request;   
 
         }
+        public function getProducto($id){
+            $this->conn =new Mysql();
+            $sql="SELECT * FROM `productos` WHERE idproductos = $id";
+            $request = $this->conn->select($sql);
+            if ($request){
+                    $intIdProducto = $request["idproductos"];    
+                    $sqlImg= "SELECT ruta from imagenes where productos_idproductos= $intIdProducto";
+                    $arrImagenes = $this->conn->select_all($sqlImg);
+                    if (count($arrImagenes)>0){
+                        for ($i=0; $i < count($arrImagenes) ; $i++) { 
+                            $arrImagenes[$i]['url_image']= media().'/images'.'/'.$arrImagenes[$i]['ruta'];
+                            
+                        }
+                    }
+                    $request['images']=$arrImagenes;    
+                }
+            return $request;   
+
+        }
         public function getProductosCarrito($arrProd){
             $ids="";
             foreach ($arrProd as $p) {
