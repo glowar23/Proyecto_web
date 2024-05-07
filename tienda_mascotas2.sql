@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2024 a las 20:53:52
+-- Tiempo de generación: 07-05-2024 a las 02:26:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,8 +43,8 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`idcategoria`, `nombre`, `status`, `parent_id`) VALUES
 (1, 'Gatos', 1, 0),
 (2, 'Perros', 1, 0),
-(3, 'Pajaros', 1, 0),
-(4, 'Pescados', 1, 0);
+(3, 'Aves', 1, 0),
+(4, 'Peces', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,12 @@ INSERT INTO `imagenes` (`idimagenes`, `ruta`, `productos_idproductos`) VALUES
 (3, 'felix_croquetas.jpg', 1),
 (4, 'hueso_perro.jpg', 3),
 (5, 'pedigree.jpg', 2),
-(6, 'rascador_gato.jpeg', 4);
+(6, 'rascador_gato.jpeg', 4),
+(9, 'pro_9edba961a11c324e2a8ecc3b68e3d80f.jpg', 6),
+(10, 'pro_c7fb42fbb03d86741a21500958b9f592.jpg', 12),
+(13, 'pro_25495f1266c2bf99de2c06c21b3f17b3.jpg', 13),
+(14, 'pro_865765a658ed8193a7c4ab7f7f6503c6.jpg', 19),
+(15, 'pro_45b7af75a83a374177686f55a2afbf6d.jpg', 8);
 
 -- --------------------------------------------------------
 
@@ -243,12 +248,12 @@ INSERT INTO `permisos` (`idpermiso`, `idRol`, `moduloid`, `r`, `w`, `u`, `d`) VA
 (219, 5, 4, 0, 0, 0, 0),
 (220, 5, 5, 1, 0, 1, 0),
 (221, 5, 6, 0, 0, 0, 0),
-(264, 3, 1, 1, 1, 1, 1),
-(265, 3, 2, 1, 1, 1, 1),
-(266, 3, 3, 1, 1, 1, 1),
-(267, 3, 4, 1, 1, 1, 1),
-(268, 3, 5, 1, 1, 1, 1),
-(269, 3, 6, 1, 1, 1, 1);
+(276, 3, 1, 1, 1, 1, 1),
+(277, 3, 2, 1, 1, 1, 1),
+(278, 3, 3, 1, 1, 1, 1),
+(279, 3, 4, 1, 1, 1, 1),
+(280, 3, 5, 1, 1, 1, 1),
+(281, 3, 6, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -274,12 +279,24 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproductos`, `nombre_producto`, `Descripcion`, `precio`, `SKU`, `stock`, `status`, `ruta`, `proveedores_idproveedores`, `categoria_idcategoria`) VALUES
-(1, 'Croquetas Felix', NULL, 699, 'ABCDASDR14', 24, 1, '', NULL, 1),
-(2, 'Croquetas Pedigree', NULL, 650, 'ABHDASDR14', 20, 1, '', NULL, 2),
-(3, 'Hueso para perro', NULL, 99, 'BBCDASDR14', 20, 1, '', NULL, 2),
-(4, 'Rascador para gato', NULL, 750, 'ABCDAHDR14', 200, 1, '', NULL, 1),
-(5, 'Alimento para Ave Prestige', NULL, 150, 'A2CDASDR14', 200, 1, '', NULL, 3),
-(6, 'Cepillo para gato', NULL, 150, 'ABVDSG12', 100, 1, '', NULL, 1);
+(1, 'Croquetas Felix', ' ', 699, 'ABCDASDR14', 24, 1, '', NULL, 1),
+(2, 'Croquetas Pedigree', ' ', 650, 'ABHDASDR14', 20, 1, '', NULL, 2),
+(3, 'Hueso para perro', '', 99, 'BBCDASDR14', 20, 1, 'hueso-para-perro', NULL, 2),
+(4, 'Rascador para gato', ' ', 750, 'ABCDAHDR14', 200, 1, '', NULL, 1),
+(5, 'Alimento para Ave Prestige', ' ', 150, 'A2CDASDR14', 200, 1, '', NULL, 3),
+(6, 'Cepillo para gato', '', 150, 'ABVDSG12', 100, 0, 'cepillo-para-gato', NULL, 1),
+(8, 'Pecera', '<p>Es una pecera muy grannde&nbsp;</p> <ul> <li>Le caben 20 peces</li> </ul>', 300, 'DHFSLKf323', 50, 1, 'pecera', NULL, 2),
+(9, 'Sobresito de pato', '', 400, 'fasdfsdfsad', 5, 1, 'sobresito-de-pato', NULL, 1),
+(10, 'Raton de juguete', '', 75, 'fsdsfs', 5, 1, 'raton-de-juguete', NULL, 1),
+(11, 'Alimento surtido para pajaros', '', 88, 'rfsafsaffsadf', 66, 1, 'alimento-surtido-para-pajaros', NULL, 3),
+(12, 'Cepillo', '', 95, 'fsadfdsfsad', 50, 1, 'cepillo', NULL, 1),
+(13, 'Jaula para pajaros', '', 100, 'fasdfsdfsadf', 345, 1, 'jaula-para-pajaros', NULL, 3),
+(14, 'Sobresito de pavo', '', 400, 'DHFSLKf3231', 345, 1, 'sobresito-de-pavo', NULL, 1),
+(15, 'Alimento en cemillas', '', 50, 'AHFSLKf323', 500, 1, 'alimento-en-cemillas', NULL, 3),
+(16, 'Esponja', '', 40, 'FHFSLKf323', 21, 1, 'esponja', NULL, 4),
+(17, 'Filtro', '<p>Es un filto bien chingon tiene:</p> <ul> <li>color</li> <li>tamanio</li> <li>y ya</li> </ul>', 50, 'YHFSLKf323', 345, 1, 'filtro', NULL, 4),
+(18, 'Collar para perro', '<p>Color Azul</p>', 100, 'DHFALKf323', 51, 1, 'collar-para-perro', NULL, 2),
+(19, 'Collar para gato', '<p>Color rosa</p> <ul> <li>Muy elastico</li> </ul>', 150, 'FHFSLLf323', 40, 1, 'collar-para-gato', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -319,7 +336,8 @@ INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcion`, `status`) VALUES
 (8, 'Ejemplo 6', 'fsafwsdfa', 0),
 (9, 'Ejemplo 6', 'sdfasfd', 0),
 (10, 'Ejemplo 6', 'gsdfgsdf', 0),
-(11, 'Taquero', 'Hace tacos', 1);
+(11, 'Taquero', 'Hace tacos', 1),
+(12, 'Croquetero', 'Croqueteas', 1);
 
 -- --------------------------------------------------------
 
@@ -376,7 +394,7 @@ INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`
 (40, '2024-04-28 12:52:05', 99, 4, 'Esperando Pago', 5, 14),
 (41, '2024-04-28 12:52:05', 99, 4, 'Completo', 5, 14),
 (42, '2024-05-02 19:38:25', 1349, 4, 'Esperando Pago', 5, 14),
-(43, '2024-05-04 17:53:22', 99, 4, 'Aprobado', 5, 14),
+(43, '2024-05-04 17:53:22', 99, 4, 'Esperando pago', 5, 14),
 (44, '2024-05-04 20:32:03', 2498, 4, 'Entregado', 5, 14),
 (45, '2024-05-04 20:33:05', 1498, 4, 'Aprobado', 5, 14);
 
@@ -402,11 +420,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`, `status`) VALUES
-(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-06 10:28:08', 1),
-(4, 'Edgar Josué', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-05-04 21:02:53', 1),
+(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-06 16:45:32', 1),
+(4, 'Edgar Josué', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-05-06 14:18:16', 1),
 (5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-05-03 18:58:54', 1),
 (7, 'Horacio', '1234', 'Cliente', 'horacio0@gmial.com', 4, '2024-04-10 15:22:06', 0),
-(8, 'Aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-27 22:07:22', 1),
+(8, 'Aaa', '1234', 'Cliente', 'omar@gmail.com', 12, '2024-04-27 22:07:22', 1),
 (9, 'Horacion', '2452142efe30f19350b3a64e7259aa603c755851b1cd3', 'Cliente', 'nose23@gmail.com', 5, '2024-05-04 11:31:16', 0),
 (10, 'Mauricio', 'd348358535401c8b29c17d192bb93cd6d76fae5cca2be', 'Cliente', 'nose2333@gmail.com', 11, '2024-05-04 11:32:53', 0),
 (11, 'José', '42c4c03f580715890c43672b2d49deffb899a47dd7dee', 'Cliente', 'eagdgsa@gmail.com', 4, '2024-05-04 11:33:17', 0),
@@ -533,7 +551,7 @@ ALTER TABLE `domicilio`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `modulo`
@@ -545,19 +563,19 @@ ALTER TABLE `modulo`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproductos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idproductos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjetas`
