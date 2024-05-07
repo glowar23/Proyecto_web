@@ -39,6 +39,9 @@
         $format .= print_r('</pre>');
         return $format;
     }
+    function deleteFile(string $name){
+        unlink('Assets/images/'.$name);
+    }
     //Elimina exceso de espacios entre palabras
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
@@ -119,6 +122,12 @@
     {
         $view_modal = "Views/Generals/Modals/{$nameModal}.php";
         require_once $view_modal;        
+    }
+    function uploadImage(array $data, string $name){
+        $url_temp = $data['tmp_name'];
+        $destino    = 'Assets/images/'.$name;        
+        $move = move_uploaded_file($url_temp, $destino);
+        return $move;
     }
     function getPermisos(int $idmodulo){
         require_once ("Models/PermisosModel.php");

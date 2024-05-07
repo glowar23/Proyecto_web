@@ -6,15 +6,17 @@
 		{
 			parent::__construct();
 			session_start();
+			getPermisos(MPRODUCTOS);
 		}
 
 		public function productos()
 		{
-			$data['page_id'] = 2;
 			$data['page_tag'] = "Productos";
-			$data['page_title'] = "Productos en venta";
+			$data['page_title'] = "PRODUCTOS <small>Tienda Virtual</small>";
 			$data['page_name'] = "productos";
+			$data['page_functions_js'] = "functions_productos.js";
 			if($_SESSION['userData']['idRol']==3)$this->views->getView($this,"productosAdmin",$data);
+			else $this->views->getView($this,"productos",$data);
 		}
 		public function producto($id){
             if(empty($id)){

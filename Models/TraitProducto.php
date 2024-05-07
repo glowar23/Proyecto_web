@@ -13,7 +13,7 @@
         private $strRutaCategoria;
         public function getProductosT(){
             $this->conn =new Mysql();
-            $sql="SELECT * FROM `productos` LIMIT 9";
+            $sql="SELECT * FROM `productos` where status !=0 LIMIT 9";
             $request = $this->conn->select_all($sql);
             if ($request>0){
                 for ($c=0; $c <count($request) ; $c++) { 
@@ -103,7 +103,7 @@
                         FROM productos p 
                         INNER JOIN categoria c
                         ON p.categoria_idcategoria = c.idcategoria
-                        WHERE p.categoria_idcategoria = $this->intIdcategoria
+                        WHERE p.categoria_idcategoria = $this->intIdcategoria and p.status =1
                         ORDER BY p.idproductos DESC ".$where;
                         $request = $this->conn->select_all($sql);
                         if(count($request) > 0){
@@ -140,6 +140,42 @@
             $total_registro = $result_register;
             return $total_registro;
     
+        }
+        public function getProductoT(int $idproducto, string $ruta){
+            $this->con = new Mysql();
+            $this->intIdProducto = $idproducto;
+            $this->strRuta = $ruta;
+            $sql = "SELECT p.idproducto,
+                            p.codigo,
+                            p.nombre,
+                            p.descripcion,
+                            p.categoriaid,
+                            c.nombre as categoria,
+                            c.ruta as ruta_categoria,
+                            p.precio,
+                            p.ruta,
+                            p.stock
+                    FROM producto p 
+                    INNER JOIN categoria c
+                    ON p.categoriaid = c.idcategoria
+                    WHERE p.status != 0 AND p.idproducto = '{$this->intIdProducto}' AND p.ruta = '{$this->strRuta}' ";
+                    $request = $this->con->select($sql);
+                    if(!empty($request)){
+                        $intIdProducto = $request['idproducto'];
+                        $sqlImg = "SELECT img
+                                FROM imagen
+                                WHERE productoid = $intIdProducto";
+                        $arrImg = $this->con->select_all($sqlImg);
+                        if(count($arrImg) > 0){
+                            for ($i=0; $i < count($arrImg); $i++) { 
+                                $arrImg[$i]['url_image'] = media().'/images/uploads/'.$arrImg[$i]['img'];
+                            }
+                        }else{
+                            $arrImg[0]['url_image'] = media().'/images/uploads/product.png';
+                        }
+                        $request['images'] = $arrImg;
+                    }
+            return $request;
         }
 
     }

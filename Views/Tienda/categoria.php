@@ -22,7 +22,7 @@
                 <?php 
                     foreach ($categorias as $cat) {
                         $url=base_url().'/tienda/categoria/'.$cat['idcategoria'];
-                        echo '<a href="'.$url.'"><li class="list-group-item btn btn-secondary text-start">'.$cat['nombre'].'</li></a>';
+                        if ($cat['status']==1)echo '<a href="'.$url.'"><li class="list-group-item btn btn-secondary text-start">'.$cat['nombre'].'</li></a>';
                     }
                 ?>
         </ul>
