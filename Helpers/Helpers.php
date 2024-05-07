@@ -39,6 +39,9 @@
         $format .= print_r('</pre>');
         return $format;
     }
+    function deleteFile(string $name){
+        unlink('Assets/images/'.$name);
+    }
     //Elimina exceso de espacios entre palabras
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
@@ -122,7 +125,7 @@
     }
     function uploadImage(array $data, string $name){
         $url_temp = $data['tmp_name'];
-        $destino    = 'Assets/images/uploads/'.$name;        
+        $destino    = 'Assets/images/'.$name;        
         $move = move_uploaded_file($url_temp, $destino);
         return $move;
     }

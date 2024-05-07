@@ -98,12 +98,13 @@ window.addEventListener('load', function() {
                     let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
-                        swal("", objData.msg ,"success");
+                        Swal.fire("", objData.msg ,"success");
                         document.querySelector("#idProducto").value = objData.idproducto;
                         document.querySelector("#containerGallery").classList.remove("notblock");
-
+                        $('#modalFormProductos').modal("hide");
                         if(rowTable == ""){
                             tableProductos.api().ajax.reload();
+                            
                         }else{
                            htmlStatus = intStatus == 1 ? 
                             '<span class="badge badge-success">Activo</span>' : 
@@ -111,9 +112,10 @@ window.addEventListener('load', function() {
                             rowTable.cells[1].textContent = intCodigo;
                             rowTable.cells[2].textContent = strNombre;
                             rowTable.cells[3].textContent = intStock;
-                            rowTable.cells[4].textContent = smony+strPrecio;
+                            rowTable.cells[4].textContent = '$'+strPrecio;
                             rowTable.cells[5].innerHTML =  htmlStatus;
                             rowTable = ""; 
+                            
                         }
                     }else{
                         swal("Error", objData.msg , "error");
@@ -145,10 +147,10 @@ window.addEventListener('load', function() {
     fntInputFile();
     fntCategorias();
 }, false);
-function openModal()
+function openModal()    
 {
     rowTable = "";  
-    document.querySelector('#idProducto').value=-1;
+    document.querySelector('#idProducto').value="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
     document.querySelector('#btnText').innerHTML ="Guardar";
@@ -262,7 +264,7 @@ function fntViewInfo(idProducto){
                 document.querySelector("#celStock").innerHTML = objProducto.stock;
                 document.querySelector("#celCategoria").innerHTML = objProducto.categoria;
                 document.querySelector("#celStatus").innerHTML = estadoProducto;
-                document.querySelector("#celDescripcion").innerHTML = objProducto.descripcion;
+                document.querySelector("#celDescripcion").innerHTML = objProducto.Descripcion;
 
                 if(objProducto.images.length > 0){
                     let objProductos = objProducto.images;
@@ -279,4 +281,115 @@ function fntViewInfo(idProducto){
         }
     } 
 }
+function fntEditInfo(element,idProducto){
+    rowTable = element.parentNode.parentNode.parentNode;
+    document.querySelector('#titleModal').innerHTML ="Actualizar Producto";
+    document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnText').innerHTML ="Actualizar";
+    let request = (window.XMLHttpRequest) ? 
+                    new XMLHttpRequest() : 
+                    new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto;
+    request.open("GET",ajaxUrl,true);
+    request.send();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                let htmlImage = "";
+                let objProducto = objData.data;
+                document.querySelector("#idProducto").value = objProducto.idproductos;
+                document.querySelector("#txtNombre").value = objProducto.nombre_producto;
+                document.querySelector("#txtDescripcion").value = objProducto.Descripcion;
+                document.querySelector("#txtCodigo").value = objProducto.SKU;
+                document.querySelector("#txtPrecio").value = objProducto.precio;
+                document.querySelector("#txtStock").value = objProducto.stock;
+                document.querySelector("#listCategoria").value = objProducto.categoria_idcategoria;
+                console.log(objProducto.categoria_idcategoria);
+                document.querySelector("#listStatus").value = objProducto.status;
+                tinymce.activeEditor.setContent(objProducto.Descripcion); 
+                $('#listCategoria').selectpicker('refresh');
+                $('#listStatus').selectpicker('refresh');
 
+                if(objProducto.images.length > 0){
+                    let objProductos = objProducto.images;
+                    for (let p = 0; p < objProductos.length; p++) {
+                        let key = Date.now()+p;
+                        htmlImage +=`<div id="div${key}">
+                            <div class="prevImage">
+                            <img src="${objProductos[p].url_image}" style="height: 170px;
+                            "></img>
+                            </div>
+                            <button type="button" class="btnDeleteImage" onclick="fntDelItem('#div${key}')" imgname="${objProductos[p].img}">
+                            <i class="fas fa-trash-alt"></i></button></div>`;
+                    }
+                }
+                document.querySelector("#containerImages").innerHTML = htmlImage; 
+                document.querySelector("#containerGallery").classList.remove("notblock");           
+                $('#modalFormProductos').modal('show');
+            }else{
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
+}
+function fntDelItem(element){
+    let nameImg = document.querySelector(element+' .btnDeleteImage').getAttribute("imgname");
+    let idProducto = document.querySelector("#idProducto").value;
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Productos/delFile'; 
+
+    let formData = new FormData();
+    formData.append('idproducto',idProducto);
+    formData.append("file",nameImg);
+    request.open("POST",ajaxUrl,true);
+    request.send(formData);
+    request.onreadystatechange = function(){
+        if(request.readyState != 4) return;
+        if(request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                let itemRemove = document.querySelector(element);
+                itemRemove.parentNode.removeChild(itemRemove);
+            }else{
+                swal("", objData.msg , "error");
+            }
+        }
+    }
+}
+function fntDelInfo(idProducto){
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) { 
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Productos/delProducto';
+            let strData = "idProducto="+idProducto;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status)
+                    {
+                        Swal.fire("Eliminar!", objData.msg , "success");
+                        tableProductos.api().ajax.reload();
+                    }else{
+                        swal("Atención!", objData.msg , "error");
+                    }
+                }
+            }
+        }
+      });
+}

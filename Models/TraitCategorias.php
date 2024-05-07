@@ -13,7 +13,7 @@ trait TraitCategoria{
 
 	public function getCategorias(){
 		$this->con = new Mysql();
-		$sql = "SELECT c.idcategoria, c.nombre, count(p.categoria_idcategoria) AS cantidad
+		$sql = "SELECT c.idcategoria, c.nombre, count(p.categoria_idcategoria)  AS cantidad, c.status
 				FROM productos p 
 				INNER JOIN categoria c
 				ON p.categoria_idcategoria = c.idcategoria

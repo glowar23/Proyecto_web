@@ -13,7 +13,7 @@
         private $strRutaCategoria;
         public function getProductosT(){
             $this->conn =new Mysql();
-            $sql="SELECT * FROM `productos` LIMIT 9";
+            $sql="SELECT * FROM `productos` where status !=0 LIMIT 9";
             $request = $this->conn->select_all($sql);
             if ($request>0){
                 for ($c=0; $c <count($request) ; $c++) { 
@@ -84,7 +84,7 @@
                         FROM productos p 
                         INNER JOIN categoria c
                         ON p.categoria_idcategoria = c.idcategoria
-                        WHERE p.categoria_idcategoria = $this->intIdcategoria
+                        WHERE p.categoria_idcategoria = $this->intIdcategoria and p.status =1
                         ORDER BY p.idproductos DESC ".$where;
                         $request = $this->conn->select_all($sql);
                         if(count($request) > 0){
