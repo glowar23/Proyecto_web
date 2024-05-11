@@ -1,7 +1,7 @@
 <?php 
 	
 	
-	const BASE_URL = "https://localhost/Proyecto_web/";
+	const BASE_URL = "http://localhost/Proyecto_web/";
 
 	//Zona horaria
 	date_default_timezone_set('America/Mexico_city');
@@ -39,6 +39,7 @@
 	const WEB_EMPRESA = "www.mypets.com";
 
 	const STATUS = array('Completo','Aprobado','Cancelado','Reembolsado','Esperando pago','Entregado');
+	const ANIMALES = array('cat','dog','bird','fish','otro');
 
 	//Datos Empresa
 	const DIRECCION = "Avenida el infierno Zona 13, Mexico";

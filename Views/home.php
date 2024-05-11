@@ -123,7 +123,7 @@
                                 else{
                                     $img=media().'images/default-image.jpg';
                                 }                           
-                            echo $img;  ?>" class="card-img-top" alt="...">
+                            echo $img;?>" class="w-100 h-95" alt="...">
                             <div class="card-body">
                             <h5 class="card-title"><?=$arrProductos[$intProd]['nombre_producto']?></h5>
                             <p class="card-text"><?='$'.$arrProductos[$intProd]['precio']?></p>
@@ -150,41 +150,34 @@
         </div>
     </div>
     <br>
-    <div class="container-items container">    
-            <?php
-            if (count($arrProductos)==0){
-                echo '<h1>No hay productos</h1>';
-            }else {
-                $arrPr=[];
-                for ($i=0; $i <count($arrProductos) ; $i++) {
-                    if (count($arrProductos[$i]['images'])>0){
-                        $portada = $arrProductos[$i]['images'][0]['url_image'];
-                    }
-                    else{
-                        $portada=media().'images/default-image.jpg';
-                    } ?> 
-                        <div class="item">
-                            <figure>
-                                <img src="<?=$portada?>" alt="producto"> 
-                            </figure>
-                            <div>
-                                <div class="info-product">
-                                    <h2>
-                                        <?=$arrProductos[$i]['nombre_producto']?>
-                                        <p class="price">
-                                        <?=$arrProductos[$i]['precio']?>
-                                        </p>
-                                        <button class="boton" data-product="<?=$arrProductos[$i]['idproductos']?>"> Añadir al carrito</button>
-                                    </h2>
-                                </div>
-                            </div>
+    <div class="container">
+    <?php if (count($arrProductos)==0): ?>
+        <h1>No hay productos</h1>
+    <?php else: ?>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <?php foreach ($arrProductos as $producto): ?>
+                <?php 
+                if (count($producto['images']) > 0) {
+                    $portada = $producto['images'][0]['url_image'];
+                } else {
+                    $portada = media().'images/default-image.jpg';
+                }
+                ?>
+                <div class="item col">
+                    <div class="card h-100">
+                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto">
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$producto['nombre_producto']?></h5>
+                            <p class="card-text price"><?='$'.$producto['precio']?></p>
+                            <button class="btn btn-primary boton" data-product="<?=$producto['idproductos']?>">Añadir al carrito</button>
                         </div>
-                    <?php } ?>
-                    
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
 
-            <?php } ?>
-    
-    </div>
     
 <?php require_once('Views/Generals/footer_tienda.php');?>
     

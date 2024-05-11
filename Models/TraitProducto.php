@@ -158,6 +158,38 @@
                     }
             return $request;
         }
+        public function getProdSearch($busqueda, $desde,$porpagina){
+            $this->conn = new Mysql();
+            $sql = "SELECT p.idproductos,
+                                p.nombre_producto,
+                                p.Descripcion,
+                                p.categoria_idcategoria,
+                                c.nombre as categoria,
+                                p.precio,
+                                p.stock
+                        FROM productos p 
+                        INNER JOIN categoria c
+                        ON p.categoria_idcategoria = c.idcategoria
+                        WHERE  p.status =1
+                        AND p.nombre_producto LIKE '%$busqueda%' ORDER BY p.idproductos DESC LIMIT $desde,$porpagina";
+                        $request = $this->conn->select_all($sql);
+                        if(count($request) > 0){
+                            for ($c=0; $c < count($request) ; $c++) { 
+                                $intIdProducto = $request[$c]['idproductos'];
+                                $sqlImg = "SELECT ruta
+                                        FROM imagenes
+                                        WHERE productos_idproductos = $intIdProducto ";
+                                $arrImg = $this->con->select_all($sqlImg);
+                                if(count($arrImg) > 0){
+                                    for ($i=0; $i < count($arrImg); $i++) { 
+                                        $arrImg[$i]['url_image'] = media().'/images/'.$arrImg[$i]['ruta'];
+                                    }
+                                }
+                                $request[$c]['images'] = $arrImg;
+                            }
+                        }
+                return $request;
+        }
 
     }
     

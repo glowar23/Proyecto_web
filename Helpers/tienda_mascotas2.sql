@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2024 a las 00:07:29
+-- Tiempo de generación: 06-05-2024 a las 20:53:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -56,17 +56,32 @@ CREATE TABLE `detalles_transaccion` (
   `productos_idproductos` int(11) NOT NULL,
   `transaccion_idtransaccion` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `descuento` double DEFAULT 0,
-  `precio` double NOT NULL DEFAULT 0
+  `descuento` double DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `detalles_transaccion`
 --
 
-INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`, `precio`) VALUES
-(2, 1, 1, 0, 650),
-(4, 2, 1, 0, 750);
+INSERT INTO `detalles_transaccion` (`productos_idproductos`, `transaccion_idtransaccion`, `cantidad`, `descuento`) VALUES
+(1, 38, 2, 0),
+(1, 39, 2, 0),
+(1, 42, 1, 0),
+(1, 44, 1, 0),
+(2, 35, 1, 0),
+(2, 36, 1, 0),
+(2, 37, 1, 0),
+(2, 42, 1, 0),
+(2, 44, 1, 0),
+(2, 45, 2, 0),
+(3, 40, 1, 0),
+(3, 41, 1, 0),
+(3, 43, 1, 0),
+(3, 44, 1, 0),
+(3, 45, 2, 0),
+(4, 44, 1, 0),
+(5, 44, 1, 0),
+(6, 44, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +141,6 @@ INSERT INTO `imagenes` (`idimagenes`, `ruta`, `productos_idproductos`) VALUES
 --
 
 CREATE TABLE `mascotas` (
-  `idmascota` int(11) NOT NULL,
   `usuarios_id` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `tipo_animal` varchar(45) NOT NULL,
@@ -137,14 +151,8 @@ CREATE TABLE `mascotas` (
 -- Volcado de datos para la tabla `mascotas`
 --
 
-INSERT INTO `mascotas` (`idmascota`, `usuarios_id`, `nombre`, `tipo_animal`, `fecha_nacimiento`) VALUES
-(1, 8, NULL, 'cat', NULL),
-(2, 8, 'fasdf', 'cat', NULL),
-(3, 8, 'Romino', 'dog', NULL),
-(4, 8, 'Leo', 'fish', NULL),
-(5, 8, 'panfilo', 'dog', NULL),
-(6, 4, 'Rodolfo', 'bird', NULL),
-(10, 4, 'Musa la enterna', 'cat', NULL);
+INSERT INTO `mascotas` (`usuarios_id`, `nombre`, `tipo_animal`, `fecha_nacimiento`) VALUES
+(8, NULL, 'cat', NULL);
 
 -- --------------------------------------------------------
 
@@ -251,7 +259,7 @@ INSERT INTO `permisos` (`idpermiso`, `idRol`, `moduloid`, `r`, `w`, `u`, `d`) VA
 CREATE TABLE `productos` (
   `idproductos` int(11) NOT NULL,
   `nombre_producto` varchar(45) NOT NULL,
-  `Descripcion` text DEFAULT '<p></p>',
+  `Descripcion` text DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `SKU` varchar(45) DEFAULT NULL,
   `stock` int(11) NOT NULL,
@@ -266,12 +274,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproductos`, `nombre_producto`, `Descripcion`, `precio`, `SKU`, `stock`, `status`, `ruta`, `proveedores_idproveedores`, `categoria_idcategoria`) VALUES
-(1, 'Croquetas Felix', ' ', 699, 'ABCDASDR14', 24, 1, '', NULL, 1),
-(2, 'Croquetas Pedigree', '<p>Comida para perro</p>', 150, 'ABHDASDR14', 20, 1, 'croquetas-pedigree', NULL, 2),
-(3, 'Hueso para perro', ' ', 99, 'BBCDASDR14', 20, 1, '', NULL, 2),
-(4, 'Rascador para gato', '<p>fsdfsdaf</p>', 750, 'ABCDAHDR14', 200, 1, 'rascador-para-gato', NULL, 1),
-(5, 'Alimento para Ave Prestige', ' ', 150, 'A2CDASDR14', 200, 1, '', NULL, 3),
-(6, 'Cepillo para gato', ' ', 150, 'ABVDSG12', 100, 1, '', NULL, 1);
+(1, 'Croquetas Felix', NULL, 699, 'ABCDASDR14', 24, 1, '', NULL, 1),
+(2, 'Croquetas Pedigree', NULL, 650, 'ABHDASDR14', 20, 1, '', NULL, 2),
+(3, 'Hueso para perro', NULL, 99, 'BBCDASDR14', 20, 1, '', NULL, 2),
+(4, 'Rascador para gato', NULL, 750, 'ABCDAHDR14', 200, 1, '', NULL, 1),
+(5, 'Alimento para Ave Prestige', NULL, 150, 'A2CDASDR14', 200, 1, '', NULL, 3),
+(6, 'Cepillo para gato', NULL, 150, 'ABVDSG12', 100, 1, '', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -360,8 +368,17 @@ CREATE TABLE `transaccion` (
 --
 
 INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`, `status`, `id_tarjeta`, `id_domicilio`) VALUES
-(1, '2024-05-10 18:51:33', 650, 4, 'Esperando Pago', 5, 14),
-(2, '2024-05-11 12:14:28', 750, 8, 'Esperando Pago', 3, 12);
+(35, '2024-04-27 22:49:47', 650, 8, 'Esperando Pago', 2, 12),
+(36, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13),
+(37, '2024-04-28 11:12:48', 650, 5, 'Esperando Pago', 4, 13),
+(38, '2024-04-28 12:49:21', 1398, 4, 'Esperando pago', 5, 14),
+(39, '2024-04-28 12:49:21', 1398, 4, 'Esperando Pago', 5, 14),
+(40, '2024-04-28 12:52:05', 99, 4, 'Esperando Pago', 5, 14),
+(41, '2024-04-28 12:52:05', 99, 4, 'Completo', 5, 14),
+(42, '2024-05-02 19:38:25', 1349, 4, 'Esperando Pago', 5, 14),
+(43, '2024-05-04 17:53:22', 99, 4, 'Aprobado', 5, 14),
+(44, '2024-05-04 20:32:03', 2498, 4, 'Entregado', 5, 14),
+(45, '2024-05-04 20:33:05', 1498, 4, 'Aprobado', 5, 14);
 
 -- --------------------------------------------------------
 
@@ -372,7 +389,7 @@ INSERT INTO `transaccion` (`idtransaccion`, `fecha_hora`, `total`, `usuarios_id`
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `password` varchar(256) NOT NULL,
+  `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL DEFAULT 'Cliente',
   `email` varchar(45) NOT NULL,
   `idRol` int(11) NOT NULL DEFAULT 4,
@@ -385,11 +402,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`, `status`) VALUES
-(1, 'Administrador', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'admin0@gmail.com', 3, '2024-05-11 13:54:59', 1),
-(4, 'Edgar Josué', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'nose@gmail.com', 4, '2024-05-11 15:14:43', 1),
+(1, 'Administrador', '1234', 'Cliente', 'admin0@gmail.com', 3, '2024-05-06 10:28:08', 1),
+(4, 'Edgar Josué', '1234', 'Cliente', 'nose@gmail.com', 4, '2024-05-04 21:02:53', 1),
 (5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-05-03 18:58:54', 1),
 (7, 'Horacio', '1234', 'Cliente', 'horacio0@gmial.com', 4, '2024-04-10 15:22:06', 0),
-(8, 'Aaa', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'omar@gmail.com', 4, '2024-05-11 13:59:24', 1),
+(8, 'Aaa', '1234', 'Cliente', 'omar@gmail.com', 4, '2024-04-27 22:07:22', 1),
 (9, 'Horacion', '2452142efe30f19350b3a64e7259aa603c755851b1cd3', 'Cliente', 'nose23@gmail.com', 5, '2024-05-04 11:31:16', 0),
 (10, 'Mauricio', 'd348358535401c8b29c17d192bb93cd6d76fae5cca2be', 'Cliente', 'nose2333@gmail.com', 11, '2024-05-04 11:32:53', 0),
 (11, 'José', '42c4c03f580715890c43672b2d49deffb899a47dd7dee', 'Cliente', 'eagdgsa@gmail.com', 4, '2024-05-04 11:33:17', 0),
@@ -430,7 +447,6 @@ ALTER TABLE `imagenes`
 -- Indices de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  ADD PRIMARY KEY (`idmascota`),
   ADD KEY `fk_mascotas_usuarios1` (`usuarios_id`);
 
 --
@@ -520,12 +536,6 @@ ALTER TABLE `imagenes`
   MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `mascotas`
---
-ALTER TABLE `mascotas`
-  MODIFY `idmascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
@@ -559,7 +569,7 @@ ALTER TABLE `tarjetas`
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idtransaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
