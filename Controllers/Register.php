@@ -43,6 +43,7 @@
                 echo json_encode(array("success" => 0,"error"=> "Email existente"));
                 exit;
             }
+            
             echo json_encode(array("success"=> 1));
             
             

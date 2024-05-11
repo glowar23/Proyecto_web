@@ -18,7 +18,7 @@
             
 
             $username = $_POST['txtEmail'] ?? '';
-            $password = $_POST['txtPassword'] ?? '';
+            $password= hash("SHA256",$_POST['txtPassword']);
             $requestUser = $this->model->loginUsers($username, $password);
             // Aquí implementarías la lógica para validar las credenciales contra una base de datos o fuente de datos.
             // A modo de ejemplo, usaremos credenciales estáticas:

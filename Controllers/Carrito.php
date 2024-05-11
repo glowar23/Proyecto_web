@@ -32,7 +32,7 @@ class Carrito extends Controllers
 		$resultado1 = $this->insertTransaccion($_SESSION['idUser'], $_SESSION['pedido']['subtotal'],$_SESSION['idTarjeta'],$_SESSION['idDomicilio']);
 		if ($resultado1 != 0) {
 			foreach ($_SESSION['pedido']['productos'] as $p) {
-				$resultado2 = $this->insertDetalleTransaccion($p['idproductos'], intval($resultado1), $p['cantidad']);
+				$resultado2 = $this->insertDetalleTransaccion($p['idproductos'], intval($resultado1), $p['cantidad'],$p['precio']);
 			}
 		}
 		$_SESSION['arrIdProductos'] = array();

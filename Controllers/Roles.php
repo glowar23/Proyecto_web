@@ -6,6 +6,7 @@
 		{
 			parent::__construct();
 			session_start();
+			getPermisos(MUSUARIOS);
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
@@ -14,7 +15,7 @@
 			if(empty($_SESSION['permisosMod']['r'])){
 				header("Location:".base_url());
 			}
-			getPermisos(MUSUARIOS);
+			
 			//echo json_encode($_SESSION['permisos']);
 		}
 		
