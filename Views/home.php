@@ -154,12 +154,11 @@ require_once ('Views/Generals/header_tienda.php');
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+    </button> 
   </div>
 </div>
 <br>
-<div class="container-items container">
-
+<div class="container-items container col">
     <?php
     if (count($arrProductos) == 0) {
       echo '<h1>No hay productos</h1>';
@@ -173,7 +172,7 @@ require_once ('Views/Generals/header_tienda.php');
         } ?>
         
         <div class="item">
-        <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$intProd]['idproductos']; ?>">
+        <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$i]['idproductos']; ?>">
           <figure>
             <img src="<?= $portada ?>" alt="producto">
           </figure>

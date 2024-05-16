@@ -2,6 +2,7 @@
 	require_once("Models/TraitProducto.php");
 	class Productos extends Controllers{
 		use TraitProducto;
+		
 		public function __construct()
 		{
 			parent::__construct();
@@ -24,9 +25,11 @@
                 //header("Location:".base_url());
 			}else{
 				$data['producto'] = $this->getProducto($id);
+				$p = $data['producto'];
 				$data['page_tag'] = NOMBRE_EMPESA." - ".$data['producto']['nombre_producto'];
 				$data['page_title'] = NOMBRE_EMPESA." - ".$data['producto']['nombre_producto'];
 				$data['page_name'] = "producto";
+				$data['related_products'] = $this -> getProductosCategoriaT($p['categoria_idcategoria']);
 				$this->views->getView($this,"producto",$data);
 			}
 

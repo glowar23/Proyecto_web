@@ -112,7 +112,7 @@
                                 $sqlImg = "SELECT ruta
                                         FROM imagenes
                                         WHERE productos_idproductos = $intIdProducto";
-                                $arrImg = $this->con->select_all($sqlImg);
+                                $arrImg = $this->conn->select_all($sqlImg);
                                 if(count($arrImg) > 0){
                                     for ($i=0; $i < count($arrImg); $i++) { 
                                         $arrImg[$i]['url_image'] = media().'/images/'.$arrImg[$i]['ruta'];
