@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2024 a las 00:07:29
+-- Tiempo de generación: 16-05-2024 a las 23:28:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -144,7 +144,8 @@ INSERT INTO `mascotas` (`idmascota`, `usuarios_id`, `nombre`, `tipo_animal`, `fe
 (4, 8, 'Leo', 'fish', NULL),
 (5, 8, 'panfilo', 'dog', NULL),
 (6, 4, 'Rodolfo', 'bird', NULL),
-(10, 4, 'Musa la enterna', 'cat', NULL);
+(10, 4, 'Musa la enterna', 'cat', NULL),
+(11, 4, 'Mario', 'bird', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,19 +171,6 @@ INSERT INTO `modulo` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
 (4, 'Productos', 'Todos los productos', 1),
 (5, 'Pedidos', 'Pedidos', 1),
 (6, 'Caterogías', 'Caterogías Productos', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `opiniones`
---
-
-CREATE TABLE `opiniones` (
-  `idopiniones` int(11) NOT NULL,
-  `productos_idproductos` int(11) NOT NULL,
-  `usuarios_id` int(11) NOT NULL,
-  `descripcion` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -385,8 +373,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `tipo_usuario`, `email`, `idRol`, `last_login`, `status`) VALUES
-(1, 'Administrador', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'admin0@gmail.com', 3, '2024-05-11 13:54:59', 1),
-(4, 'Edgar Josué', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'nose@gmail.com', 4, '2024-05-11 15:14:43', 1),
+(1, 'Administrador', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'admin0@gmail.com', 3, '2024-05-16 15:25:41', 1),
+(4, 'Edgar Josué', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'nose@gmail.com', 4, '2024-05-16 15:24:41', 1),
 (5, 'Admin', 'admin1234', 'Admin', 'admin@gmail.com', 3, '2024-05-03 18:58:54', 1),
 (7, 'Horacio', '1234', 'Cliente', 'horacio0@gmial.com', 4, '2024-04-10 15:22:06', 0),
 (8, 'Aaa', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Cliente', 'omar@gmail.com', 4, '2024-05-11 13:59:24', 1),
@@ -438,14 +426,6 @@ ALTER TABLE `mascotas`
 --
 ALTER TABLE `modulo`
   ADD PRIMARY KEY (`idmodulo`);
-
---
--- Indices de la tabla `opiniones`
---
-ALTER TABLE `opiniones`
-  ADD PRIMARY KEY (`idopiniones`),
-  ADD KEY `fk_opiniones_productos1` (`productos_idproductos`),
-  ADD KEY `fk_opiniones_usuarios1` (`usuarios_id`);
 
 --
 -- Indices de la tabla `permisos`
@@ -523,7 +503,7 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
-  MODIFY `idmascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idmascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `modulo`
@@ -595,13 +575,6 @@ ALTER TABLE `imagenes`
 --
 ALTER TABLE `mascotas`
   ADD CONSTRAINT `fk_mascotas_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `opiniones`
---
-ALTER TABLE `opiniones`
-  ADD CONSTRAINT `fk_opiniones_productos1` FOREIGN KEY (`productos_idproductos`) REFERENCES `productos` (`idproductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_opiniones_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `permisos`

@@ -4,7 +4,7 @@
 		public function __construct()
 		{
 			session_start();
-			if($_SESSION['userData']['idRol'] != 3)
+			if($_SESSION['userData']['idRol'] == 4)
 			{
 				header('Location: '.base_url());
 				die();
@@ -20,6 +20,10 @@
 			$data['page_title'] = "Página administrativa";
 			$data['page_name'] = "home";
 			$data['page_content'] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, quis. Perspiciatis repellat perferendis accusamus, ea natus id omnis, ratione alias quo dolore tempore dicta cum aliquid corrupti enim deserunt voluptas.";
+			$data['productosVendidos']=$this->model->getCantidadTotalProductos();
+			$data['ingresos']=$this->model->getIngresoTotal();
+			$data['ntransacciones']=$this->model->getNumeroTransacciones();
+			$data['pedMean']=$this->model->getPromedioProductosPorTransaccion();
             
 			$this->views->getView($this,"dashboard",$data);
 		}

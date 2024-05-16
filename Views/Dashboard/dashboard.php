@@ -7,18 +7,49 @@
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="bi bi-speedometer"></i> Blank Page</h1>
-          <p>Start a beautiful journey here</p>
+          
+          <h1><i class="bi bi-speedometer"></i> Dashboard</h1>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="bi bi-house-door fs-6"></i></li>
-          <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
-        </ul>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">Create a beautiful dashboard</div>
+        <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small primary coloured-icon"><i class="icon bi bi-bag-check-fill"></i>
+            <div class="info">
+              <h4>Productos vendidos totales</h4>
+              <p><b><?=($data['productosVendidos']['total_productos_vendidos'])?></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa-solid fa-cash-register"></i>
+            <div class="info">
+              <h4>Ingresos totales</h4>
+              <p><b>$<?=$data['ingresos']['ingreso_total']?></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon bi bi-calendar2-check"></i>
+            <div class="info">
+              <h4>Numero de Pedidos</h4>
+              <p><b><?=$data['ntransacciones']['numero_transacciones']?></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small danger coloured-icon"><i class="icon bi bi-activity"></i>
+            <div class="info">
+              <h4>Promedio de productos por pedido</h4>
+              <p><b><?=$data['pedMean']['promedio_transaccion']?></b></p>
+            </div>
+          </div>
+        </div>
+      </div>  
+        <div class="tile">
+          <p></p>
+            
           </div>
         </div>
       </div>
