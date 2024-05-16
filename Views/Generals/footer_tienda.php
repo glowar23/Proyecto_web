@@ -50,11 +50,13 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
   <script src="<?=media()?>js/jquery-1.11.0.min.js"></script>
     <script src="<?=media().'js/plugins.js'?>"></script>
   <script src="<?=media().'js/script.js'?>"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script>
+  const base_url="<?=base_url()?>";
 // Cuando el documento esté listo
 $(document).ready(function(){
     
@@ -65,7 +67,7 @@ $(document).ready(function(){
          productId = $(this).data('product');
         //console.log(productId);
         $.ajax({
-            url: 'http://localhost/Proyecto_web/Carrito/agragarCarrito', // URL a la que enviar los datos
+            url: base_url+'Carrito/agragarCarrito', // URL a la que enviar los datos
             method: 'POST', // Método HTTP
             data: {myData: productId}, // Datos a enviar
             success: function(response){ // Manejar la respuesta del servidor
@@ -91,7 +93,7 @@ $(document).ready(function(){
         // Realizar la solicitud Ajax al servidor
         productId = $(this).data('product');
         $.ajax({
-            url: 'http://localhost/Proyecto_web/Carrito/agragarCarrito', // URL a la que enviar los datos
+            url: base_url+'Carrito/agragarCarrito', // URL a la que enviar los datos
             method: 'POST', // Método HTTP
             data: {myData: productId}, // Datos a enviar
             success: function(response){ // Manejar la respuesta del servidor

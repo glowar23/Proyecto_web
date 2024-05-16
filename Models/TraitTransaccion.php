@@ -21,19 +21,19 @@
             $result=$this->conn->insert($sql,array($total,$idUser,$tarjeta,$domicilio));
             return $result;    
         }
-        public function insertDetalleTransaccion(int $idProducto, $idTransaccion , $cantidad){
+        public function insertDetalleTransaccion(int $idProducto, $idTransaccion , $cantidad,$precio){
             $this->conn =new Mysql();
             $sql="INSERT INTO `detalles_transaccion`(
                 `productos_idproductos`,
                 `transaccion_idtransaccion`,
-                `cantidad`
+                `cantidad`,`precio`
             )
             VALUES(
                 ?,
                 ?,
-                ?
+                ?,?
             )";
-            $result=$this->conn->insert($sql,array($idProducto, $idTransaccion , $cantidad));
+            $result=$this->conn->insert($sql,array($idProducto, $idTransaccion , $cantidad,$precio));
             return $result;     
         }
         public function selectPedidos($idpersona = null){
@@ -77,7 +77,7 @@
 				$requestcliente = $this->conn->select($sql_cliente);
 				$sql_detalle = "SELECT p.idproductos,
 											p.nombre_producto as producto,
-											p.precio,
+											d.precio,
 											d.cantidad
 									FROM detalles_transaccion d
 									INNER JOIN productos p

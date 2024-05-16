@@ -47,14 +47,14 @@
 				$intIdcategoria = intval($idcategoria);
 				if($intIdcategoria > 0)
 				{
-					$arrData = $this->model->selectCategoria($intIdcategoria);
-					if(empty($arrData))
-					{
-						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-					}else{
-						$arrResponse = array('status' => true, 'data' => $arrData);
-					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+						$arrData = $this->model->selectCategoria($intIdcategoria);
+						if(empty($arrData))
+						{
+							$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+						}else{
+							$arrResponse = array('status' => true, 'data' => $arrData);
+						}
+						echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 				}
 			}
 			die();

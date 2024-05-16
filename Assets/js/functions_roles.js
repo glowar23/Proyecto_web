@@ -165,7 +165,6 @@ function fntDelRol(){
                 closeOnConfirm: false,
                 closeOnCancel: true
             }, function(isConfirm) {
-
                 if (isConfirm)
                 {
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

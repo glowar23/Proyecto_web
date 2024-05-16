@@ -71,6 +71,17 @@
 				$this->views->getView($this,"producto",$data);
 			}
 		}
+		public function search(){
+			$data['busqueda']=strClean($_POST['buscar']);
+			$busqueda=strClean($_POST['buscar']);
+			$data['page_tag'] = NOMBRE_EMPESA;
+			$data['page_title'] = "Resultado de: ".$busqueda;
+			$data['page_name'] = "tienda";
+			$data['categorias'] = $this->getCategorias();
+			$data['productos'] = $this->getProdSearch($_POST['buscar'],0,PROBUSCAR);
+			$this->views->getView($this,"search",$data);
+
+		}
        
 
 	}

@@ -39,6 +39,7 @@
 	const WEB_EMPRESA = "www.mypets.com";
 
 	const STATUS = array('Completo','Aprobado','Cancelado','Reembolsado','Esperando pago','Entregado');
+	const ANIMALES = array('cat','dog','bird','fish','otro');
 
 	//Datos Empresa
 	const DIRECCION = "Avenida el infierno Zona 13, Mexico";

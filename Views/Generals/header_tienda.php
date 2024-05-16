@@ -16,8 +16,8 @@
     <link rel="stylesheet" type="text/css" href="<?=media(); ?>css/style2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
-  rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"/>
+    
     <meta property="og:locale" 		content='es_ES'/>
 	  <meta property="og:type"        content="website" />
     <meta property="og:site_name"	content="MyPets0"/>
@@ -97,15 +97,15 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Perro </a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Gato </a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pajaro </a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pez </a></li>
+          <li><a href="<?=base_url()?>" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="<?=base_url().'tienda/categoria/2'?>" class="nav-link px-2 text-white">Perro </a></li>
+          <li><a href="<?=base_url().'tienda/categoria/3'?>" class="nav-link px-2 text-white">Pajaro </a></li>
+          <li><a href="<?=base_url().'tienda/categoria/4'?>" class="nav-link px-2 text-white">Pez </a></li>
+          <li><a href="<?=base_url().'tienda/categoria/1'?>" class="nav-link px-2 text-white">Gato </a></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="<?=base_url().'tienda/search'?>" method="POST">
+          <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search" name="buscar" id="buscar">
         </form>
         <a href="<?=base_url().'carrito'?>">
         <i class="fa-solid fa-basket-shopping m-3 fa-lg " style="color:white"></i>
@@ -144,6 +144,7 @@
                 ?>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="<?=base_url().'pedidos'?>">Mis pedidos</a></li>
+                <li><a class="dropdown-item" href="<?=base_url().'mascotas'?>">Mis mascotass</a></li>
                 <?php }?>
                 <li><hr class="dropdown-divider"></li>
                 <a href="<?=base_url().'logout'?>" class="dropdown-item"> Logout</a>

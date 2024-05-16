@@ -92,7 +92,7 @@
 			{
 				if($this->strPassword  != "")
 				{
-					$sql = "UPDATE users  name=?,  email=?, password=?, idRol=?, status=? 
+					$sql = "UPDATE users set name=?,  email=?, password=?, idRol=?, status=? 
 							WHERE id = $this->intIdUsuario ";
 					$arrData = array(
 	        						$this->strNombre,

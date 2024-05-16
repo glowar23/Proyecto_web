@@ -1,16 +1,18 @@
 <?php     
     
     require_once('Views/Generals/header_tienda.php');
-    $arrProductos=$data['productos'];
     $categorias=$data['categorias'];
+    $arrProductos = $data['productos'];
 ?>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-3">
             
         </div>
-        <div class="col-md-9">
-            <h2 class="p-3 title"><?=($data['infoCategoria']['categoria'])?></h2>    
+        <div class="col-md-3">
+        <div><h2>Resultados de "<?=$data['busqueda']?>"</h2></div>
         </div>
+        
+    
         
     </div>
     <div class="row">

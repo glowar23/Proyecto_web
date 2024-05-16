@@ -24,11 +24,22 @@ class Pedidos extends Controllers{
 		$data['page_title'] = "PEDIDOS Tienda Virtual";
 		$data['page_name'] = "pedidos";
 		$data['page_functions_js'] = "functions_pedidos.js";
-		if ($_SESSION['userData']['idRol'] === 3)$this->views->getView($this,"pedidos",$data);
-        else $this->views->getView($this,"pedidosUser",$data);
+		if ($_SESSION['userData']['idRol'] == 3)$this->views->getView($this,"pedidos",$data);
+        else {
+			$pedidos=($this->selectPedidos($_SESSION['userData']['id']));
+			$ped=[];
+			foreach ($pedidos as $p) {
+				$ped[]=$this->selectPedido($p['idtransaccion']);
+			}
+			$data['pedidos']=$ped;
+			$this->views->getView($this,"pedidosUser",$data);
+		}
 	}
     public function getPedidos(){
 		if($_SESSION['permisosMod']['r']){
+			if ($_SESSION['userData']['idRol'] === 3){
+				$idpersona=$_SESSION['userData']['id'];
+			}
 			$idpersona = "";
 			$arrData = $this->selectPedidos($idpersona);
 			//dep($arrData);

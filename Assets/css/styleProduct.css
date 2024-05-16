@@ -132,7 +132,11 @@ cart-total h3{
     display: none;
 }
 
-
+@media (min-width: 768px) {
+    .card img {
+      height: 11em;
+    }
+ }
 
 /*Main */
 
@@ -212,11 +216,12 @@ cart-total h3{
     top: 50%;
     transform: translateY(-50%);
   }
-  @media (min-width: 768px) {
-    .card img {
-      height: 11em;
+  @media screen and (max-width: 567px){
+    .card:not(:first-child){
+        display: none;
     }
   }
+
   .card{
     border-color: black;
   }

@@ -195,7 +195,7 @@
 
     // Enviar datos mediante AJAX al script PHP
     $.ajax({
-      url: 'http://localhost/Proyecto_web/Carrito/postDomicilio', // Modificar con la URL del script PHP de destino
+      url: 'https://localhost/Proyecto_web/Carrito/postDomicilio', // Modificar con la URL del script PHP de destino
       type: 'POST',
       data: {
         domicilio: datosDomicilio
@@ -203,7 +203,7 @@
       success: function (response) {
         // Aquí puedes manejar la respuesta del servidor
         console.log(response);
-        location.href="http://localhost/Proyecto_web/carrito/seleccionarDomicilio";
+        location.href="https://localhost/Proyecto_web/carrito/seleccionarDomicilio";
         $('#formContainer1, #formOverlay1').fadeOut();
       
       },

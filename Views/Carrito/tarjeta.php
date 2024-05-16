@@ -231,6 +231,7 @@ $tarjetas = $data['tarjetas'];
 
 <!-- script de las funciones del formulario -->
 <script>
+  const base_url="<?=base_url()?>";
   $(document).ready(function () {
     $('#toggleFormButton, #formOverlay1').click(function () {
       $('#formContainer1, #formOverlay1').fadeToggle();
@@ -252,14 +253,14 @@ $tarjetas = $data['tarjetas'];
       };
 
       $.ajax({
-        url: 'http://localhost/Proyecto_web/Carrito/postCard', // Asegúrate de cambiar esto
+        url: base_url +'Carrito/postCard', // Asegúrate de cambiar esto
         type: 'POST',
         data: {
           tarjeta: datosTarjeta
         },
         success: function (response) {
           console.log(response);
-          location.href = "http://localhost/Proyecto_web/carrito/seleccionarTarjeta/";
+          location.href = base_url+"carrito/seleccionarTarjeta/";
           $('#formContainer1, #formOverlay1').fadeOut();
         },
         error: function (xhr, status, error) {
@@ -298,7 +299,7 @@ $tarjetas = $data['tarjetas'];
     if (idTarjetaSeleccionada && domicilioSeleccionado) {
       // Realizar la acción para enviar los datos
       $.ajax({
-        url: 'http://localhost/Proyecto_web/carrito/finT',
+        url: base_url +'carrito/finT',
         method: 'POST',
         
         data: {
@@ -315,7 +316,7 @@ $tarjetas = $data['tarjetas'];
                         confirmButtonText: 'Ok!'
                       }).then((result) => {
                           if (result.isConfirmed) {
-                            window.location.href ='http://localhost/Proyecto_web';
+                            window.location.href =base_url;
                           }
                         })
           

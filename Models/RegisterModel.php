@@ -43,7 +43,7 @@
                 $_SESSION['idUser'] = $result;
                 $_SESSION['tipoUsuario'] = 'Cliente';
                 $_SESSION['login'] = true;  
-                
+                sessionUser($result);
                 
             }
         }
