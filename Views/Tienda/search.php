@@ -45,8 +45,9 @@
                 }
                 ?>
                 <div class="item col">
-                    <div class="card h-100">
-                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto">
+                <div class="card h-100">
+                    <a href="<?= base_url() . 'productos/producto/' . $producto['idproductos']; ?>">
+                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto"></a>
                         <div class="card-body">
                             <h5 class="card-title"><?=$producto['nombre_producto']?></h5>
                             <p class="card-text price"><?='$'.$producto['precio']?></p>

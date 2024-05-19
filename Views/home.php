@@ -115,7 +115,8 @@
                         <?php 
                             for ($c=0; $c <3 ; $c++) { 
                         ?>
-                        <div class="card">
+                        <div class="card item">
+                          <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$intProd]['idproductos']; ?>">
                             <img src="<?php 
                                 if (count($arrProductos[$intProd]['images'])>0){
                                     $img = $arrProductos[$intProd]['images'][0]['url_image'];
@@ -124,6 +125,7 @@
                                     $img=media().'images/default-image.jpg';
                                 }                           
                             echo $img;?>" class="w-100 h-95" alt="...">
+                            </a>
                             <div class="card-body">
                             <h5 class="card-title"><?=$arrProductos[$intProd]['nombre_producto']?></h5>
                             <p class="card-text"><?='$'.$arrProductos[$intProd]['precio']?></p>
@@ -151,6 +153,7 @@
     </div>
     <br>
     <div class="container">
+      
     <?php if (count($arrProductos)==0): ?>
         <h1>No hay productos</h1>
     <?php else: ?>
@@ -165,7 +168,8 @@
                 ?>
                 <div class="item col">
                     <div class="card h-100">
-                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto">
+                    <a href="<?= base_url() . 'productos/producto/' . $producto['idproductos']; ?>">
+                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto"></a>
                         <div class="card-body">
                             <h5 class="card-title"><?=$producto['nombre_producto']?></h5>
                             <p class="card-text price"><?='$'.$producto['precio']?></p>
