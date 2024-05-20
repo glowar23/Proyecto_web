@@ -38,6 +38,7 @@
     </div>
 
   </header>
+  <div class="container">
   <?php
   $domicilios = $data['domicilios'];
   // echo json_encode($domicilios);
@@ -47,7 +48,7 @@
     $cod_p = $d['codigo_postal'];
 
     ?>
-
+  
     <div class="card mb-3" style="margin-right: 25%; margin-left: 25%;">
       <div class="card-body">
         <div class="d-flex justify-content-between">
@@ -75,7 +76,7 @@
       </div>
     </div>
   <?php } ?>
-
+  
     <div class="card mb-3" style="margin-right: 25%; margin-left: 25%; border:  #000;cursor: pointer;" id="toggleFormButton">
     <div class="card-body">
       <div class="d-flex justify-content-between">
@@ -84,14 +85,14 @@
 
     </div>
   </div>
-
+  </div>
   <div id="formOverlay1" class="form-overlay1" style="display: none;"></div> <!-- Fondo oscurecido -->
 
   <div id="formContainer1" class="form-popup1"
     style="display: none; width: 80%; max-width: 400px; min-height: 100px; max-height: 90vh; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); overflow-y: auto; z-index: 1050;">
 
-
-    <div class="card mb-4">
+<div class="row">
+    <div class=" card mb-4">
       <div class="card-header py-3">
         <h3 class="mb-0">Datos del domicilio</h3>
       </div>
@@ -131,6 +132,8 @@
       </form>
 
     </div>
+</div>
+    
   </div>
 
 

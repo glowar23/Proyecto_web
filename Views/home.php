@@ -115,7 +115,7 @@
                         <?php 
                             for ($c=0; $c <3 ; $c++) { 
                         ?>
-                        <div class="card item">
+                        <div class="card item ">
                           <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$intProd]['idproductos']; ?>">
                             <img src="<?php 
                                 if (count($arrProductos[$intProd]['images'])>0){
