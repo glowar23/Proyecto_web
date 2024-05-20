@@ -212,4 +212,4 @@ require_once("Models/TraitProducto.php");
 
 
 	}
- ?>
+?>
