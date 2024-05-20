@@ -73,79 +73,90 @@ require_once ('Views/Generals/header_tienda.php');
       <div class="swiper-pagination mb-5"></div>
 
     </div>
-  </div>
-</section>
-
-<section id="categories">
-  <div class="container my-3 py-5">
-    <div class="row my-5">
-
-      <div class="col text-center">
-        <a href="<?= base_url() . '/tienda/categoria/3' ?>" class="categories-item">
-          <iconify-icon class="category-icon" icon="ph:bird"></iconify-icon>
-          <h5>Aves</h5>
-        </a>
-      </div>
-      <div class="col text-center">
-        <a href="<?= base_url() . '/tienda/categoria/2' ?>" class="categories-item">
-          <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
-          <h5>Perros</h5>
-        </a>
-      </div>
-      <div class="col text-center">
-        <a href="<?= base_url() . '/tienda/categoria/4' ?>" class="categories-item">
-          <iconify-icon class="category-icon" icon="ph:fish"></iconify-icon>
-          <h5>Peces</h5>
-        </a>
-      </div>
-      <div class="col text-center">
-        <a href="<?= base_url() . '/tienda/categoria/1' ?>" class="categories-item">
-          <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
-          <h5>Gatos</h5>
-        </a>
-      </div>
+  </section>
+    <div class="container">
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <?php 
+                    $intProd=0;
+                    for ($indice=0; $indice <2 ; $indice++) { 
+                ?>
+                <div class="carousel-item <?php if ($indice==0) echo'active'?>">
+                    <div class="cards-wrapper">
+                        <?php 
+                            for ($c=0; $c <3 ; $c++) { 
+                        ?>
+                        <div class="card item">
+                          <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$intProd]['idproductos']; ?>">
+                            <img src="<?php 
+                                if (count($arrProductos[$intProd]['images'])>0){
+                                    $img = $arrProductos[$intProd]['images'][0]['url_image'];
+                                }
+                                else{
+                                    $img=media().'images/default-image.jpg';
+                                }                           
+                            echo $img;?>" class="w-100 h-95" alt="...">
+                            </a>
+                            <div class="card-body">
+                            <h5 class="card-title"><?=$arrProductos[$intProd]['nombre_producto']?></h5>
+                            <p class="card-text"><?='$'.$arrProductos[$intProd]['precio']?></p>
+                            <button class="btn btn-primary car" data-product="<?=$arrProductos[$intProd]['idproductos']?>">Añadir al carrito</button>
+                            
+                            </div>
+                        </div>
+                        <?php 
+                        $intProd++;
+                    }?>
+                        
+                    </div>
+                </div>
+                <?php }?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-  </div>
-</section>
-<div class="container">
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <?php
-      $intProd = 0;
-      for ($indice = 0; $indice < 2; $indice++) {
-        ?>
-        <div class="carousel-item <?php if ($indice == 0)
-          echo 'active' ?>">
-            <div class="cards-wrapper">
-              <?php
-        for ($c = 0; $c < 3; $c++) {
-          ?>
-          <a href="<?= base_url() . 'productos/producto/' . $arrProductos[$intProd]['idproductos']; ?>">
-              <div class="card">
-                <img src="<?php
-                if (count($arrProductos[$intProd]['images']) > 0) {
-                  $img = $arrProductos[$intProd]['images'][0]['url_image'];
+    <br>
+    <div class="container">
+      
+    <?php if (count($arrProductos)==0): ?>
+        <h1>No hay productos</h1>
+    <?php else: ?>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <?php foreach ($arrProductos as $producto): ?>
+                <?php 
+                if (count($producto['images']) > 0) {
+                    $portada = $producto['images'][0]['url_image'];
                 } else {
                   $img = media() . 'images/default-image.jpg';
                 }
-                echo $img; ?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title"><?= $arrProductos[$intProd]['nombre_producto'] ?></h5>
-                  <p class="card-text"><?= '$' . $arrProductos[$intProd]['precio'] ?></p>
-                  </a>
-                  <button class="btn btn-primary car" data-product="<?= $arrProductos[$intProd]['idproductos'] ?>">Añadir al
-                    carrito</button>
-
+                ?>
+                <div class="item col">
+                    <div class="card h-100">
+                    <a href="<?= base_url() . 'productos/producto/' . $producto['idproductos']; ?>">
+                        <img src="<?=$portada?>" class="w-90 h-100" alt="producto"></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$producto['nombre_producto']?></h5>
+                            <p class="card-text price"><?='$'.$producto['precio']?></p>
+                            <button class="btn btn-primary boton" data-product="<?=$producto['idproductos']?>">Añadir al carrito</button>
+                        </div>
+                    </div>
                 </div>
               
               </div>
               <?php
               $intProd++;
-        } ?>
+              endforeach; ?>
 
           </div>
         </div>
-      <?php } ?>
+      <?php endif; ?>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

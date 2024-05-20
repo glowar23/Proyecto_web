@@ -316,7 +316,7 @@ $tarjetas = $data['tarjetas'];
                         confirmButtonText: 'Ok!'
                       }).then((result) => {
                           if (result.isConfirmed) {
-                            window.location.href =base_url;
+                           window.location.href =base_url;
                           }
                         })
           

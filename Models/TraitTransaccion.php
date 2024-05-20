@@ -19,8 +19,21 @@
                 ?
             )";
             $result=$this->conn->insert($sql,array($total,$idUser,$tarjeta,$domicilio));
-            return $result;    
+            return $result;
         }
+		public function getStock(int $idProducto){
+			$this->conn = new Mysql();
+			$sql = "SELECT stock FROM productos WHERE idproductos =". $idProducto;
+			$request = $this->conn->select($sql);
+			return ($request);
+		}
+		public function updateStock(int $nuevoStock, int $idProducto){
+			$this->conn = new Mysql();
+			$sql = "UPDATE productos SET stock = ? WHERE idproductos =". $idProducto;
+			$arrData = array($nuevoStock);
+			$request_insert = $this->conn->update($sql,$arrData);
+			return $request_insert;
+		}
         public function insertDetalleTransaccion(int $idProducto, $idTransaccion , $cantidad,$precio){
             $this->conn =new Mysql();
             $sql="INSERT INTO `detalles_transaccion`(
@@ -90,7 +103,7 @@
 								'orden' => $requestPedido,
 								'detalle' => $requestProductos,
                                 'direccion'=>$requestDireccion
-								 );
+							);
 			}
 			return $request;
 		}
@@ -99,7 +112,7 @@
 			$query_insert  = "UPDATE transaccion SET status = ?  WHERE idtransaccion = $idpedido ";
 			$arrData = array($estado);
 			$request_insert = $this->conn->update($query_insert,$arrData);
-        	return $request_insert;
+			return $request_insert;
 		}
 
 

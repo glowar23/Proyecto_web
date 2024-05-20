@@ -33,6 +33,16 @@ class Carrito extends Controllers
 		if ($resultado1 != 0) {
 			foreach ($_SESSION['pedido']['productos'] as $p) {
 				$resultado2 = $this->insertDetalleTransaccion($p['idproductos'], intval($resultado1), $p['cantidad'],$p['precio']);
+				$cantidad = $this->getStock($p['idproductos']);
+				if(intval($cantidad) == -1){
+					echo "error en la transacción";
+				}else{
+					$nuevoStock = intval($cantidad['stock']) - $p['cantidad'];
+					//echo $nuevoStock.'  '.$p['cantidad'].' '. ($cantidad).'\n' ;
+					echo json_encode($nuevoStock);
+					$stock = $this->updateStock($nuevoStock,$p['idproductos']);
+					
+				}
 			}
 		}
 		$_SESSION['arrIdProductos'] = array();

@@ -5,13 +5,22 @@ $rel = $data['related_products']['productos'];
 ?>
 
 <div class="container">
+
     <div class="card">
+		
         <div class="card-body">
 
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-6">
+                  <?php 
+                    if (count($p['images']) > 0) {
+                      $portada = $p['images'][0]['url_image'];
+                    } else {
+                      $portada = media() .'images/default-image.jpg';
+                    }
+                  ?>
                     <div class="white-box text-center" style="width: 300px; height:300px  ;"><img
-                            src="<?= $p['images'][0]['url_image'] ?>" class="img-responsive"
+                            src="<?= $portada?>" class="img-responsive"
                             style=";width: auto; height: auto  ;"></div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-6">
@@ -19,9 +28,11 @@ $rel = $data['related_products']['productos'];
                     <h6 class="card-subtitle"><?= $p['SKU'] ?></h6> <!-- SKU del producto-->
                     <h2 class="mt-5">
                         $<?= $p['precio'] ?><small class="text-success"></small>
+
                     </h2>
+				
                     <button class="btn btn-dark btn-rounded mr-1 car"
-                        data-product="<?= $arrProductos[$i]['idproductos'] ?>" data-toggle="tooltip" title=""
+                        data-product="<?= $p['idproductos'] ?>" data-toggle="tooltip" title=""
                         data-original-title="Add to cart">
                         <i class="fa fa-shopping-cart"> Agregar al carrito</i>
                     </button>
@@ -35,7 +46,7 @@ $rel = $data['related_products']['productos'];
         
     
         <h3 class ="card-title" style="margin-left: 20px;"> <u>Productos relacionados</u></h3>
-        <div class="container-items container" style="">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="">
 
     <?php
     if (count($rel) == 0) {
@@ -46,10 +57,10 @@ $rel = $data['related_products']['productos'];
         if (count($rel[$i]['images']) > 0) {
           $portada = $rel[$i]['images'][0]['url_image'];
         } else {
-          $portada = media() . 'images/default-image.jpg';
+          $portada = media() .'images/default-image.jpg';
         } ?>
         
-        <div class="item">
+        <div class="item col">
         <a href="<?= base_url() . 'productos/producto/' . $rel[$i]['idproductos']; ?>">
           <figure>
             <img src="<?= $portada ?>" alt="producto">
@@ -63,7 +74,7 @@ $rel = $data['related_products']['productos'];
                   <?= $rel[$i]['precio'] ?>
                 </p>
                 </a>
-                <button class="btn btn-dark btn-rounded mr-1 car" data-product="<?= $rel[$i]['idproductos'] ?>"> Añadir al carrito</button>
+                <button class="btn btn-dark btn-rounded mr-1 car  " data-product="<?= $rel[$i]['idproductos'] ?>"> Añadir al carrito</button>
               </h2>
             </div>
           </div>
