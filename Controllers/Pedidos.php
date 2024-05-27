@@ -24,7 +24,7 @@ class Pedidos extends Controllers{
 		$data['page_title'] = "PEDIDOS Tienda Virtual";
 		$data['page_name'] = "pedidos";
 		$data['page_functions_js'] = "functions_pedidos.js";
-		if ($_SESSION['userData']['idRol'] == 3)$this->views->getView($this,"pedidos",$data);
+		if ($_SESSION['userData']['idRol'] != 4)$this->views->getView($this,"pedidos",$data);
         else {
 			$pedidos=($this->selectPedidos($_SESSION['userData']['id']));
 			$ped=[];

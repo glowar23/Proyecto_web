@@ -141,7 +141,7 @@
                 $permisos = $arrPermisos;
                 $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
             }
-            $_SESSION['permisos'] = $permisos;
+            $_SESSION['permisos'] = $permisos;  
             $_SESSION['permisosMod'] = $permisosMod;
         }
     }

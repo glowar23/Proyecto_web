@@ -16,7 +16,7 @@ require_once("Models/TraitProducto.php");
 			$data['page_title'] = "PRODUCTOS <small>Tienda Virtual</small>";
 			$data['page_name'] = "productos";
 			$data['page_functions_js'] = "functions_productos.js";
-			if($_SESSION['userData']['idRol']==3)$this->views->getView($this,"productosAdmin",$data);
+			if($_SESSION['userData']['idRol']!=4)$this->views->getView($this,"productosAdmin",$data);
 			else $this->views->getView($this,"productos",$data);
 		}
 		public function getProductos()

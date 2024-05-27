@@ -7,7 +7,9 @@
             getPermisos(MCATEGORIAS);
         }
         public function categoria () {
-           
+			if(empty($_SESSION['permisosMod']['r'])){
+				header("Location:".base_url());
+			}
 			$data['page_tag'] = "Categorias";
 			$data['page_title'] = "CATEGORIAS Tienda Virtual";
 			$data['page_name'] = "categorias";

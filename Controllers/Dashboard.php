@@ -4,17 +4,20 @@
 		public function __construct()
 		{
 			session_start();
-			if($_SESSION['userData']['idRol'] == 4)
+			if(empty($_SESSION['permisos'][1]['r']))
 			{
 				header('Location: '.base_url());
 				die();
 			}
             parent::__construct();
-			
+			getPermisos(MDASHBOARD);	
 		}
 
 		public function dashboard()
 		{
+			if(empty($_SESSION['permisosMod']['r'])){
+				header("Location:".base_url());
+			}
 			$data['page_id'] = 1;
 			$data['page_tag'] = "Estructura";
 			$data['page_title'] = "Página administrativa";

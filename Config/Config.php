@@ -1,7 +1,7 @@
 <?php 
 	
 	
-	const BASE_URL = "https://localhost/Proyecto_web/";
+	const BASE_URL = "http://localhost/Proyecto_web/";
 
 	//Zona horaria
 	date_default_timezone_set('America/Mexico_city');

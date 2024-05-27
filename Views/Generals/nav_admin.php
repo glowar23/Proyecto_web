@@ -7,8 +7,12 @@
         </div>
       </div>
       <ul class="app-menu">
+      <?php if(!empty($_SESSION['permisos'][1]['r'])){ ?>
         <li><a class="app-menu__item" href="<?=base_url().'/dashboard'?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <?php } ?>
+        <?php if(!empty($_SESSION['permisos'][2]['r'])){ ?>
         <li class="treeview">
+
             <a class="app-menu__item" href="#" data-toggle="treeview">
               <i class="fa-solid fa-users"></i>
                 <span class="app-menu__label">Usuarios</span>
@@ -19,12 +23,16 @@
                 <li><a class="treeview-item" href="<?= base_url(); ?>roles"><i class="fa-regular fa-circle m-1"></i></i> Roles</a></li>
             </ul>
         </li>
+        <?php } ?>
+        <?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
         <li>
+        
             <a class="app-menu__item" href="<?= base_url(); ?>/pedidos">
                 <i class="app-menu__icon fa fa-shopping-cart" aria-hidden="true"></i>
                 <span class="app-menu__label">Pedidos</span>
             </a>
         </li>
+        <?php } ?>
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-archive" aria-hidden="true"></i>
@@ -32,12 +40,12 @@
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
-                
+            <?php if(!empty($_SESSION['permisos'][4]['r'])){ ?>
                 <li><a class="treeview-item" href="<?= base_url(); ?>/productos"><i class="icon fa fa-circle-o"></i> Productos</a></li>
-                
-                
+                <?php } ?>                
+                <?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
                 <li><a class="treeview-item" href="<?= base_url(); ?>/categoria"><i class="icon fa fa-circle-o"></i> Categorías</a></li>
-                
+                <?php } ?>                
             </ul>
         </li>
       </ul>

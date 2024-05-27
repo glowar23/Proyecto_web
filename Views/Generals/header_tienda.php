@@ -139,10 +139,11 @@
               if(isset($_SESSION['login']))
               { ?>
                 <li><p class="dropdown-item-text title">Bienvenido <?=$_SESSION['name']?></p></li>  
-                <?php if ($_SESSION['userData']['idRol'] != 4){echo '<li><a class="dropdown-item" href="'.base_url().'dashboard">Administrar Sitio</a></li>';
+                <?php
+                  getPermisos(1);
+                if (!empty($_SESSION['permisos'][1]['r'])){echo '<li><a class="dropdown-item" href="'.base_url().'dashboard">Administrar Sitio</a></li>';
                 }else {
                 ?>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="<?=base_url().'pedidos'?>">Mis pedidos</a></li>
                 <li><a class="dropdown-item" href="<?=base_url().'mascotas'?>">Mis mascotass</a></li>
                 <?php }?>
