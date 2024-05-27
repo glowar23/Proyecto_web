@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": "https://localhost/Proyecto_web//categoria/getCategorias",
+            "url": base_url+"/categoria/getCategorias",
             "dataSrc":""
         },
         "columns":[
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         divLoading.style.display = "flex";
         let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        let ajaxUrl = "https://localhost/Proyecto_web//categoria/setCategoria"; 
+        let ajaxUrl = base_url+"/categoria/setCategoria"; 
         let formData = new FormData(formCategoria);
         request.open("POST",ajaxUrl,true);
         request.send(formData);
@@ -114,7 +114,7 @@ function fntEditInfo(element,idcategoria){
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
     document.querySelector('#btnText').innerHTML ="Actualizar";
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = "https://localhost/Proyecto_web//categoria/getCategoria/"+idcategoria;
+    let ajaxUrl = base_url+"categoria/getCategoria/"+idcategoria;
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
@@ -154,7 +154,7 @@ function fntDelInfo(idcategoria){
       }).then((result) => {
         if (result.isConfirmed) { 
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = "https://localhost/Proyecto_web//categoria/delCategoria";
+            let ajaxUrl = base_url+"categoria/delCategoria";
             let strData = "idCategoria="+idcategoria;
             request.open("POST",ajaxUrl,true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
